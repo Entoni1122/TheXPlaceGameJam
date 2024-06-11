@@ -28,12 +28,16 @@ public class SteamManager : MonoBehaviour
         SteamMatchmaking.OnLobbyCreated += OnLobbyCreated;
         SteamMatchmaking.OnLobbyEntered += OnLobbyEntered;
         SteamFriends.OnGameLobbyJoinRequested += GameLobbyJoinRequest;
+        NetworkManager.Singleton.OnClientConnectedCallback += OnClientJoin;
+        NetworkManager.Singleton.OnClientDisconnectCallback += OnClientLeave;
     }
     private void OnDisable()
     {
         SteamMatchmaking.OnLobbyCreated -= OnLobbyCreated;
         SteamMatchmaking.OnLobbyEntered -= OnLobbyEntered;
         SteamFriends.OnGameLobbyJoinRequested -= GameLobbyJoinRequest;
+        NetworkManager.Singleton.OnClientConnectedCallback -= OnClientJoin;
+        NetworkManager.Singleton.OnClientDisconnectCallback -= OnClientLeave;
     }
     #region SteamCallbacks
     private void OnLobbyCreated(Result result, Lobby lobby)
@@ -73,6 +77,16 @@ public class SteamManager : MonoBehaviour
             }
             currentLobby = lobby;
         }
+    }
+    private void OnClientJoin(ulong id)
+    {
+        print(id);
+        SteamUI.Instance.UpdatePlayersList();
+    }
+    private void OnClientLeave(ulong id)
+    {
+        print(id);
+        SteamUI.Instance.UpdatePlayersList();
     }
     #endregion
     #region ButtonFuncionts
