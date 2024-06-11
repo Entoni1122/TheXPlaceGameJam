@@ -105,7 +105,7 @@ public class GameNetworkManager : MonoBehaviour
     {
         Debug.Log("member join");
         GameManager.instance.SendMessageToChat($"{_steamId.Name} has entered", _steamId.Id, true);
-        NetworkTransmission.instance.AddMeToDictionaryServerRPC(_steamId.Id,_steamId.Name, 12);
+        NetworkTransmission.instance.AddMeToDictionaryServerRPC(_steamId.Id,_steamId.Name, GameManager.instance.myClientId);
     }
 
     private void SteamMatchmaking_OnLobbyEntered(Lobby _lobby)
@@ -115,7 +115,6 @@ public class GameNetworkManager : MonoBehaviour
             return;
         }
         StartClient(currentLobby.Value.Owner.Id);
-
     }
 
     private void SteamMatchmaking_OnLobbyCreated(Result _result, Lobby _lobby)

@@ -87,12 +87,12 @@ public class GameManager : MonoBehaviour
                 _name = playerInfo[_fromwho].GetComponent<PlayerInfo>().steamName;
             }
         }
+
         newMessage.text = _name + ": " + _text;
 
         GameObject newText = Instantiate(textObject, chatPanel.transform);
         newMessage.textObject = newText.GetComponent<TMP_Text>();
         newMessage.textObject.text = newMessage.text;
-        newMessage.textObject.color = Color.white;
 
         messageList.Add(newMessage);
     }
