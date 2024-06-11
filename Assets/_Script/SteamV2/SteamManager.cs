@@ -6,7 +6,7 @@ using Steamworks.Data;
 using Unity.Netcode;
 using Netcode.Transports.Facepunch;
 
-public class SteamManager : MonoBehaviour
+public class SteamManager : NetworkBehaviour
 {
     public static SteamManager Instance;
     public Lobby? currentLobby;
@@ -20,7 +20,7 @@ public class SteamManager : MonoBehaviour
     }
     private void Start()
     {
-        steamTransport = GetComponent<FacepunchTransport>();
+        steamTransport = NetworkManager.Singleton.transform.GetComponent<FacepunchTransport>();
     }
 
     private void OnEnable()
@@ -28,23 +28,18 @@ public class SteamManager : MonoBehaviour
         SteamMatchmaking.OnLobbyCreated += OnLobbyCreated;
         SteamMatchmaking.OnLobbyEntered += OnLobbyEntered;
         SteamFriends.OnGameLobbyJoinRequested += GameLobbyJoinRequest;
-        NetworkManager.Singleton.OnClientConnectedCallback += OnClientJoin;
-        NetworkManager.Singleton.OnClientDisconnectCallback += OnClientLeave;
     }
     private void OnDisable()
     {
         SteamMatchmaking.OnLobbyCreated -= OnLobbyCreated;
         SteamMatchmaking.OnLobbyEntered -= OnLobbyEntered;
         SteamFriends.OnGameLobbyJoinRequested -= GameLobbyJoinRequest;
-        NetworkManager.Singleton.OnClientConnectedCallback -= OnClientJoin;
-        NetworkManager.Singleton.OnClientDisconnectCallback -= OnClientLeave;
     }
     #region SteamCallbacks
     private void OnLobbyCreated(Result result, Lobby lobby)
     {
         if (result == Result.OK)
         {
-            print("Lobby Created");
             lobby.SetPublic();
             lobby.SetJoinable(true);
             lobby.SetGameServer(lobby.Owner.Id);
@@ -53,8 +48,7 @@ public class SteamManager : MonoBehaviour
     private void OnLobbyEntered(Lobby lobby)
     {
         currentLobby = lobby;
-        print("Joined Lobby");
-        SteamUI.Instance.UpdatePlayersList();
+        SteamUI.Instance.UpdatePlayersListServerRPC();
         if (NetworkManager.Singleton.IsHost)
         {
             return;
@@ -78,16 +72,7 @@ public class SteamManager : MonoBehaviour
             currentLobby = lobby;
         }
     }
-    private void OnClientJoin(ulong id)
-    {
-        print(id);
-        SteamUI.Instance.UpdatePlayersList();
-    }
-    private void OnClientLeave(ulong id)
-    {
-        print(id);
-        SteamUI.Instance.UpdatePlayersList();
-    }
+   
     #endregion
     #region ButtonFuncionts
     public async void HostLobby()
@@ -101,8 +86,8 @@ public class SteamManager : MonoBehaviour
         {
             NetworkManager.Singleton.Shutdown();
         }
-        print("LeaveLobby");
-        SteamUI.Instance.UpdatePlayersList();
+        currentLobby = null;
+        SteamUI.Instance.UpdatePlayersListServerRPC();
     }
     #endregion
 

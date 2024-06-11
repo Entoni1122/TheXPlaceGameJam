@@ -658,7 +658,6 @@ GameObject:
   - component: {fileID: 635803603}
   - component: {fileID: 635803602}
   - component: {fileID: 635803601}
-  - component: {fileID: 635803605}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -751,21 +750,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &635803605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 635803600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d26a4d1869fb5614fbcd95410dbbab58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerInfoUI: {fileID: 8086350032213356954, guid: 4efcbcba9ebf1a64c88325599beb6913,
-    type: 3}
-  PlayersListContent: {fileID: 672706014}
 --- !u!1 &672706014
 GameObject:
   m_ObjectHideFlags: 0
@@ -839,6 +823,8 @@ GameObject:
   m_Component:
   - component: {fileID: 828307342}
   - component: {fileID: 828307343}
+  - component: {fileID: 828307345}
+  - component: {fileID: 828307344}
   m_Layer: 0
   m_Name: SteamManager
   m_TagString: Untagged
@@ -873,6 +859,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8cf268ca4829b442b0e34741a84e118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &828307344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828307341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 930065948
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+--- !u!114 &828307345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828307341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d26a4d1869fb5614fbcd95410dbbab58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerInfoUI: {fileID: 8086350032213356954, guid: 4efcbcba9ebf1a64c88325599beb6913,
+    type: 3}
+  PlayersListContent: {fileID: 672706014}
 --- !u!1 &895504350
 GameObject:
   m_ObjectHideFlags: 0

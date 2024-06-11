@@ -4,7 +4,7 @@ using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 
-public class SteamUI : MonoBehaviour
+public class SteamUI : NetworkBehaviour
 {
     public static SteamUI Instance;
 
@@ -18,11 +18,13 @@ public class SteamUI : MonoBehaviour
         else { Destroy(gameObject); }
     }
 
-    public void UpdatePlayersList()
+
+    [ServerRpc]
+    public void UpdatePlayersListServerRPC()
     {
-        for (int i = PlayersListContent.transform.childCount; i > 0; i--)
+        for (int i = PlayersListContent.transform.childCount - 1; i >= 0; i--)
         {
-            DestroyImmediate(PlayersListContent.transform.GetChild(i));
+            DestroyImmediate(PlayersListContent.transform.GetChild(i).gameObject);
         }
 
         Lobby? lobby = SteamManager.Instance.currentLobby;
