@@ -128,10 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: {fileID: 8097020923671679683}
-  steamName: 
-  steamId: 0
-  readyImage: {fileID: 2318790757647455252}
-  isReady: 0
+  readyImage: {fileID: 8565755607295514576}
 --- !u!1 &4472648002271237325
 GameObject:
   m_ObjectHideFlags: 0
