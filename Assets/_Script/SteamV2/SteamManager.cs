@@ -31,7 +31,6 @@ public class SteamManager : NetworkBehaviour
         SteamMatchmaking.OnLobbyMemberJoined += OnMemberLobbyEntered;
         SteamFriends.OnGameLobbyJoinRequested += GameLobbyJoinRequest;
         SteamMatchmaking.OnLobbyMemberLeave += OnMemberLobbyLeave;
-        NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnectCallback;
     }
 
     private void OnDisable()
@@ -41,7 +40,6 @@ public class SteamManager : NetworkBehaviour
         SteamMatchmaking.OnLobbyMemberJoined -= OnMemberLobbyEntered;
         SteamFriends.OnGameLobbyJoinRequested -= GameLobbyJoinRequest;
         SteamMatchmaking.OnLobbyMemberLeave -= OnMemberLobbyLeave;
-        NetworkManager.Singleton.OnClientDisconnectCallback -= OnClientDisconnectCallback;
     }
 
     #region SteamCallbacks
@@ -74,7 +72,8 @@ public class SteamManager : NetworkBehaviour
 
     private void OnMemberLobbyLeave(Lobby lobby, Friend friend)
     {
-        print(friend.Name);
+        print(friend.Id);
+        print(lobby.Owner.Id);
         SteamUI.Instance.UpdatePlayersList();
     }
 
@@ -107,41 +106,11 @@ public class SteamManager : NetworkBehaviour
     {
         if (currentLobby != null)
         {
-            if (NetworkManager.Singleton.IsHost)
-            {
-                DisconnectAllClients();
-            }
-            else
-            {
-                NetworkManager.Singleton.Shutdown();
-                currentLobby?.Leave();
-                currentLobby = null;
-            }
+            NetworkManager.Singleton.Shutdown();
+            currentLobby?.Leave();
+            currentLobby = null;
         }
         SteamUI.Instance.UpdatePlayersList();
     }
     #endregion
-
-    public void DisconnectAllClients()
-    {
-        if (NetworkManager.Singleton.IsHost)
-        {
-            foreach (var clientId in NetworkManager.Singleton.ConnectedClientsIds)
-            {
-                if (clientId != NetworkManager.Singleton.LocalClientId)
-                {
-                    NetworkManager.Singleton.DisconnectClient(clientId);
-                }
-            }
-        }
-        NetworkManager.Singleton.Shutdown();
-        currentLobby?.Leave();
-        currentLobby = null;
-        SteamUI.Instance.UpdatePlayersList();
-    }
-
-    private void OnClientDisconnectCallback(ulong clientId)
-    {
-        SteamUI.Instance.UpdatePlayersList();
-    }
 }
