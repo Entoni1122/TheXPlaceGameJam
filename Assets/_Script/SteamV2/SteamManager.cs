@@ -30,6 +30,13 @@ public class SteamManager : NetworkBehaviour
         SteamMatchmaking.OnLobbyMemberJoined += OnMemberLobbyEntered;
         SteamFriends.OnGameLobbyJoinRequested += GameLobbyJoinRequest;
         SteamMatchmaking.OnLobbyMemberLeave += OnMemberLobbyLeave;
+        NetworkManager.Singleton.OnClientDisconnectCallback += (ulong id)=> 
+        {
+            if (id == currentLobby?.Owner.Id)
+            {
+                print("Host Leave");
+            }
+        };
     }
     private void OnDisable()
     {
@@ -64,17 +71,16 @@ public class SteamManager : NetworkBehaviour
     {
         SteamUI.Instance.UpdatePlayersList();
     }
-
     private void OnMemberLobbyLeave(Lobby lobby, Friend friend)
     {
-        if(friend.Id == lobby.Owner.Id)
+        if (friend.Id == currentLobby?.Owner.Id)
         {
+            print("Host Leave");
             LeaveLobby();
             return;
         }
         SteamUI.Instance.UpdatePlayersList();
     }
-
     private async void GameLobbyJoinRequest(Lobby lobby, SteamId steamId)
     {
         RoomEnter joinedLobby = await lobby.Join();
