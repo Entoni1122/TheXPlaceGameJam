@@ -31,7 +31,6 @@ public class SteamManager : NetworkBehaviour
         SteamMatchmaking.OnLobbyMemberJoined += OnMemberLobbyEntered;
         SteamFriends.OnGameLobbyJoinRequested += GameLobbyJoinRequest;
         SteamMatchmaking.OnLobbyMemberLeave += OnMemberLobbyLeave;
-
         NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnectCallback;
     }
 
@@ -42,7 +41,6 @@ public class SteamManager : NetworkBehaviour
         SteamMatchmaking.OnLobbyMemberJoined -= OnMemberLobbyEntered;
         SteamFriends.OnGameLobbyJoinRequested -= GameLobbyJoinRequest;
         SteamMatchmaking.OnLobbyMemberLeave -= OnMemberLobbyLeave;
-
         NetworkManager.Singleton.OnClientDisconnectCallback -= OnClientDisconnectCallback;
     }
 
@@ -76,6 +74,7 @@ public class SteamManager : NetworkBehaviour
 
     private void OnMemberLobbyLeave(Lobby lobby, Friend friend)
     {
+        print(friend.Name);
         SteamUI.Instance.UpdatePlayersList();
     }
 
@@ -108,8 +107,6 @@ public class SteamManager : NetworkBehaviour
     {
         if (currentLobby != null)
         {
-            currentLobby?.SendChatString("Update");
-
             if (NetworkManager.Singleton.IsHost)
             {
                 DisconnectAllClients();
