@@ -33,7 +33,6 @@ public class NetworkTransmission : MonoBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void AddMeToDictionaryServerRPC(ulong _steamId, string _steamName, ulong _clientId)
     {
-        GameManager.instance.SendMessageToChat($"{_steamName} has joined", _clientId, true);
         GameManager.instance.AddPlayerToDictionary(_clientId, _steamName, _steamId);
         GameManager.instance.UpdateClients();
     }
@@ -49,6 +48,7 @@ public class NetworkTransmission : MonoBehaviour
     {
         Debug.Log("removing client");
         GameManager.instance.RemovePlayerFromDictionary(_steamId);
+        GameManager.instance.UpdateClients();
     }
 
     [ClientRpc]

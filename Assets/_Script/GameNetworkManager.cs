@@ -65,7 +65,6 @@ public class GameNetworkManager : MonoBehaviour
     {
         Disconnected();
     }
-
     //when you accept the invite or Join on a friend
     private async void SteamFriends_OnGameLobbyJoinRequested(Lobby _lobby, SteamId _steamId)
     {
@@ -105,6 +104,8 @@ public class GameNetworkManager : MonoBehaviour
     private void SteamMatchmaking_OnLobbyMemberJoined(Lobby _lobby, Friend _steamId)
     {
         Debug.Log("member join");
+        GameManager.instance.SendMessageToChat($"{_steamId.Name} has entered", _steamId.Id, true);
+        NetworkTransmission.instance.AddMeToDictionaryServerRPC(_steamId.Id,_steamId.Name, 12);
     }
 
     private void SteamMatchmaking_OnLobbyEntered(Lobby _lobby)
