@@ -27,13 +27,17 @@ public class SteamManager : NetworkBehaviour
     {
         SteamMatchmaking.OnLobbyCreated += OnLobbyCreated;
         SteamMatchmaking.OnLobbyEntered += OnLobbyEntered;
+        SteamMatchmaking.OnLobbyMemberJoined += OnMemberLobbyEntered;
         SteamFriends.OnGameLobbyJoinRequested += GameLobbyJoinRequest;
+        SteamMatchmaking.OnLobbyMemberLeave += OnMemberLobbyLeave;
     }
     private void OnDisable()
     {
         SteamMatchmaking.OnLobbyCreated -= OnLobbyCreated;
         SteamMatchmaking.OnLobbyEntered -= OnLobbyEntered;
+        SteamMatchmaking.OnLobbyMemberJoined -= OnMemberLobbyEntered;
         SteamFriends.OnGameLobbyJoinRequested -= GameLobbyJoinRequest;
+        SteamMatchmaking.OnLobbyMemberLeave -= OnMemberLobbyLeave;
     }
     #region SteamCallbacks
     private void OnLobbyCreated(Result result, Lobby lobby)
@@ -56,6 +60,21 @@ public class SteamManager : NetworkBehaviour
         steamTransport.targetSteamId = lobby.Owner.Id;
         NetworkManager.Singleton.StartClient();
     }
+    private void OnMemberLobbyEntered(Lobby lobby,Friend friend)
+    {
+        SteamUI.Instance.UpdatePlayersList();
+    }
+
+    private void OnMemberLobbyLeave(Lobby lobby, Friend friend)
+    {
+        if(friend.Id == lobby.Owner.Id)
+        {
+            LeaveLobby();
+            return;
+        }
+        SteamUI.Instance.UpdatePlayersList();
+    }
+
     private async void GameLobbyJoinRequest(Lobby lobby, SteamId steamId)
     {
         RoomEnter joinedLobby = await lobby.Join();
