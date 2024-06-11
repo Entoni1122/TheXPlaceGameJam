@@ -20,11 +20,13 @@ public class SteamManager : MonoBehaviour
     {
         SteamMatchmaking.OnLobbyCreated += OnLobbyCreated;
         SteamMatchmaking.OnLobbyEntered += OnLobbyEntered;
+        SteamFriends.OnGameLobbyJoinRequested += GameLobbyJoinRequest;
     }
     private void OnDisable()
     {
         SteamMatchmaking.OnLobbyCreated -= OnLobbyCreated;
         SteamMatchmaking.OnLobbyEntered -= OnLobbyEntered;
+        SteamFriends.OnGameLobbyJoinRequested -= GameLobbyJoinRequest;
     }
     #region SteamCallbacks
     private void OnLobbyCreated(Result result, Lobby lobby)
@@ -42,6 +44,27 @@ public class SteamManager : MonoBehaviour
         currentLobby = lobby;
         print("Joined Lobby");
         SteamUI.Instance.UpdatePlayersList();
+        if (NetworkManager.Singleton.IsHost)
+        {
+            return;
+        }
+        NetworkManager.Singleton.StartClient();
+    }
+    private async void GameLobbyJoinRequest(Lobby lobby, SteamId steamId)
+    {
+        RoomEnter joinedLobby = await lobby.Join();
+        if (joinedLobby != RoomEnter.Success)
+        {
+            Debug.LogError("Failed to Join Lobby");
+        }
+        else
+        {
+            if (currentLobby != null)
+            {
+                NetworkManager.Singleton.Shutdown();
+            }
+            currentLobby = lobby;
+        }
     }
     #endregion
     #region ButtonFuncionts
