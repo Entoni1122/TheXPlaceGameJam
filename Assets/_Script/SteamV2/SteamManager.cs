@@ -46,6 +46,8 @@ public class SteamManager : NetworkBehaviour
         SteamFriends.OnGameLobbyJoinRequested -= GameLobbyJoinRequest;
         SteamMatchmaking.OnLobbyMemberLeave -= OnMemberLobbyLeave;
     }
+
+
     #region SteamCallbacks
     private void OnLobbyCreated(Result result, Lobby lobby)
     {
@@ -73,12 +75,6 @@ public class SteamManager : NetworkBehaviour
     }
     private void OnMemberLobbyLeave(Lobby lobby, Friend friend)
     {
-        if (friend.Id == currentLobby?.Owner.Id)
-        {
-            print("Host Leave");
-            LeaveLobby();
-            return;
-        }
         SteamUI.Instance.UpdatePlayersList();
     }
     private async void GameLobbyJoinRequest(Lobby lobby, SteamId steamId)
@@ -115,5 +111,4 @@ public class SteamManager : NetworkBehaviour
         SteamUI.Instance.UpdatePlayersList();
     }
     #endregion
-
 }
