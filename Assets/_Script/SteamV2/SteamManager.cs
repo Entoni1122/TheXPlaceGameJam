@@ -113,9 +113,9 @@ public class SteamManager : NetworkBehaviour
     {
         if (currentLobby != null)
         {
-            NetworkManager.Singleton.Shutdown();
             currentLobby?.Leave();
             currentLobby = null;
+            NetworkManager.Singleton.Shutdown();
         }
         SteamUI.Instance.UpdatePlayersList();
     }
