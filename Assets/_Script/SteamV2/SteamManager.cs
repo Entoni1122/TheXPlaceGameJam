@@ -4,11 +4,13 @@ using UnityEngine;
 using Steamworks;
 using Steamworks.Data;
 using Unity.Netcode;
+using Netcode.Transports.Facepunch;
 
 public class SteamManager : MonoBehaviour
 {
     public static SteamManager Instance;
     public Lobby? currentLobby;
+    private FacepunchTransport steamTransport;
 
     private void Awake()
     {
@@ -16,6 +18,11 @@ public class SteamManager : MonoBehaviour
             Instance = this;
         else { Destroy(gameObject); }
     }
+    private void Start()
+    {
+        steamTransport = GetComponent<FacepunchTransport>();
+    }
+
     private void OnEnable()
     {
         SteamMatchmaking.OnLobbyCreated += OnLobbyCreated;
@@ -48,6 +55,7 @@ public class SteamManager : MonoBehaviour
         {
             return;
         }
+        steamTransport.targetSteamId = lobby.Owner.Id;
         NetworkManager.Singleton.StartClient();
     }
     private async void GameLobbyJoinRequest(Lobby lobby, SteamId steamId)
