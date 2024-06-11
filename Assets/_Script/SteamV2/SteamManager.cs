@@ -5,7 +5,6 @@ using Steamworks;
 using Steamworks.Data;
 using Unity.Netcode;
 using Netcode.Transports.Facepunch;
-using System.Runtime.InteropServices;
 
 public class SteamManager : NetworkBehaviour
 {
@@ -19,6 +18,7 @@ public class SteamManager : NetworkBehaviour
             Instance = this;
         else { Destroy(gameObject); }
     }
+
     private void Start()
     {
         steamTransport = NetworkManager.Singleton.transform.GetComponent<FacepunchTransport>();
@@ -31,8 +31,10 @@ public class SteamManager : NetworkBehaviour
         SteamMatchmaking.OnLobbyMemberJoined += OnMemberLobbyEntered;
         SteamFriends.OnGameLobbyJoinRequested += GameLobbyJoinRequest;
         SteamMatchmaking.OnLobbyMemberLeave += OnMemberLobbyLeave;
-        SteamMatchmaking.OnChatMessage += ChatSent;
+
+        NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnectCallback;
     }
+
     private void OnDisable()
     {
         SteamMatchmaking.OnLobbyCreated -= OnLobbyCreated;
@@ -40,9 +42,9 @@ public class SteamManager : NetworkBehaviour
         SteamMatchmaking.OnLobbyMemberJoined -= OnMemberLobbyEntered;
         SteamFriends.OnGameLobbyJoinRequested -= GameLobbyJoinRequest;
         SteamMatchmaking.OnLobbyMemberLeave -= OnMemberLobbyLeave;
-        SteamMatchmaking.OnChatMessage -= ChatSent;
-    }
 
+        NetworkManager.Singleton.OnClientDisconnectCallback -= OnClientDisconnectCallback;
+    }
 
     #region SteamCallbacks
     private void OnLobbyCreated(Result result, Lobby lobby)
@@ -54,6 +56,7 @@ public class SteamManager : NetworkBehaviour
             lobby.SetGameServer(lobby.Owner.Id);
         }
     }
+
     private void OnLobbyEntered(Lobby lobby)
     {
         currentLobby = lobby;
@@ -65,14 +68,17 @@ public class SteamManager : NetworkBehaviour
         steamTransport.targetSteamId = lobby.Owner.Id;
         NetworkManager.Singleton.StartClient();
     }
-    private void OnMemberLobbyEntered(Lobby lobby,Friend friend)
+
+    private void OnMemberLobbyEntered(Lobby lobby, Friend friend)
     {
         SteamUI.Instance.UpdatePlayersList();
     }
+
     private void OnMemberLobbyLeave(Lobby lobby, Friend friend)
     {
         SteamUI.Instance.UpdatePlayersList();
     }
+
     private async void GameLobbyJoinRequest(Lobby lobby, SteamId steamId)
     {
         RoomEnter joinedLobby = await lobby.Join();
@@ -89,31 +95,56 @@ public class SteamManager : NetworkBehaviour
             currentLobby = lobby;
         }
     }
-
-    private void ChatSent(Lobby lobby, Friend friend, string msg)
-    {
-        if(msg == "Update")
-        {
-            LeaveLobby();
-        }
-    }
-
     #endregion
-    #region ButtonFuncionts
+
+    #region ButtonFunctions
     public async void HostLobby()
     {
         NetworkManager.Singleton.StartHost();
         currentLobby = await SteamMatchmaking.CreateLobbyAsync(4);
     }
+
     public void LeaveLobby()
     {
         if (currentLobby != null)
         {
             currentLobby?.SendChatString("Update");
-            NetworkManager.Singleton.Shutdown();
+
+            if (NetworkManager.Singleton.IsHost)
+            {
+                DisconnectAllClients();
+            }
+            else
+            {
+                NetworkManager.Singleton.Shutdown();
+                currentLobby?.Leave();
+                currentLobby = null;
+            }
         }
-        currentLobby = null;
         SteamUI.Instance.UpdatePlayersList();
     }
     #endregion
+
+    public void DisconnectAllClients()
+    {
+        if (NetworkManager.Singleton.IsHost)
+        {
+            foreach (var clientId in NetworkManager.Singleton.ConnectedClientsIds)
+            {
+                if (clientId != NetworkManager.Singleton.LocalClientId)
+                {
+                    NetworkManager.Singleton.DisconnectClient(clientId);
+                }
+            }
+        }
+        NetworkManager.Singleton.Shutdown();
+        currentLobby?.Leave();
+        currentLobby = null;
+        SteamUI.Instance.UpdatePlayersList();
+    }
+
+    private void OnClientDisconnectCallback(ulong clientId)
+    {
+        SteamUI.Instance.UpdatePlayersList();
+    }
 }
