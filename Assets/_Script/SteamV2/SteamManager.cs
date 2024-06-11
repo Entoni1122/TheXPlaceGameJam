@@ -12,7 +12,9 @@ public class SteamManager : NetworkBehaviour
     public Lobby? currentLobby;
     private FacepunchTransport steamTransport;
     private ulong ownerID;
-    private GameObject startGameBtn;
+
+    [SerializeField] private GameObject startGameBtn;
+    [SerializeField] private GameObject hostGameBtn;
 
     private void Awake()
     {
@@ -59,6 +61,7 @@ public class SteamManager : NetworkBehaviour
     {
         currentLobby = lobby;
         SteamUI.Instance.UpdatePlayersList();
+        hostGameBtn.SetActive(false);
         if (NetworkManager.Singleton.IsHost)
         {
             return;
@@ -79,6 +82,7 @@ public class SteamManager : NetworkBehaviour
         {
             ownerID = lobby.Owner.Id;
             LeaveLobby();
+            hostGameBtn.SetActive(true);
             return;
         }
         SteamUI.Instance.UpdatePlayersList();
@@ -93,7 +97,7 @@ public class SteamManager : NetworkBehaviour
         }
         else
         {
-            if (currentLobby != null)
+            if (currentLobby != null && lobby.Id != currentLobby.Value.Id)
             {
                 NetworkManager.Singleton.Shutdown();
             }
@@ -118,6 +122,7 @@ public class SteamManager : NetworkBehaviour
             NetworkManager.Singleton.Shutdown();
         }
         SteamUI.Instance.UpdatePlayersList();
+        hostGameBtn.SetActive(true);
     }
     #endregion
 }
