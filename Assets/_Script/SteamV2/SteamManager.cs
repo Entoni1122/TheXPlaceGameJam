@@ -11,6 +11,8 @@ public class SteamManager : NetworkBehaviour
     public static SteamManager Instance;
     public Lobby? currentLobby;
     private FacepunchTransport steamTransport;
+    private ulong ownerID;
+    private GameObject startGameBtn;
 
     private void Awake()
     {
@@ -63,6 +65,7 @@ public class SteamManager : NetworkBehaviour
         }
         steamTransport.targetSteamId = lobby.Owner.Id;
         NetworkManager.Singleton.StartClient();
+        ownerID = lobby.Owner.Id;
     }
 
     private void OnMemberLobbyEntered(Lobby lobby, Friend friend)
@@ -72,8 +75,12 @@ public class SteamManager : NetworkBehaviour
 
     private void OnMemberLobbyLeave(Lobby lobby, Friend friend)
     {
-        print(friend.Id);
-        print(lobby.Owner.Id);
+        if (ownerID == friend.Id)
+        {
+            ownerID = lobby.Owner.Id;
+            LeaveLobby();
+            return;
+        }
         SteamUI.Instance.UpdatePlayersList();
     }
 
