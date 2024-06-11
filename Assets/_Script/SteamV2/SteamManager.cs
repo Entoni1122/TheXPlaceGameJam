@@ -48,7 +48,7 @@ public class SteamManager : NetworkBehaviour
     private void OnLobbyEntered(Lobby lobby)
     {
         currentLobby = lobby;
-        SteamUI.Instance.UpdatePlayersListServerRPC();
+        SteamUI.Instance.UpdatePlayersList();
         if (NetworkManager.Singleton.IsHost)
         {
             return;
@@ -87,7 +87,7 @@ public class SteamManager : NetworkBehaviour
             NetworkManager.Singleton.Shutdown();
         }
         currentLobby = null;
-        SteamUI.Instance.UpdatePlayersListServerRPC();
+        SteamUI.Instance.UpdatePlayersList();
     }
     #endregion
 
