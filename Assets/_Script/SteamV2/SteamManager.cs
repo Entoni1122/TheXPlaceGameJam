@@ -5,6 +5,7 @@ using Steamworks;
 using Steamworks.Data;
 using Unity.Netcode;
 using Netcode.Transports.Facepunch;
+using System.Runtime.InteropServices;
 
 public class SteamManager : NetworkBehaviour
 {
@@ -30,13 +31,7 @@ public class SteamManager : NetworkBehaviour
         SteamMatchmaking.OnLobbyMemberJoined += OnMemberLobbyEntered;
         SteamFriends.OnGameLobbyJoinRequested += GameLobbyJoinRequest;
         SteamMatchmaking.OnLobbyMemberLeave += OnMemberLobbyLeave;
-        NetworkManager.Singleton.OnClientDisconnectCallback += (ulong id)=> 
-        {
-            if (id == currentLobby?.Owner.Id)
-            {
-                print("Host Leave");
-            }
-        };
+        SteamMatchmaking.OnChatMessage += ChatSent;
     }
     private void OnDisable()
     {
@@ -45,6 +40,7 @@ public class SteamManager : NetworkBehaviour
         SteamMatchmaking.OnLobbyMemberJoined -= OnMemberLobbyEntered;
         SteamFriends.OnGameLobbyJoinRequested -= GameLobbyJoinRequest;
         SteamMatchmaking.OnLobbyMemberLeave -= OnMemberLobbyLeave;
+        SteamMatchmaking.OnChatMessage -= ChatSent;
     }
 
 
@@ -93,7 +89,15 @@ public class SteamManager : NetworkBehaviour
             currentLobby = lobby;
         }
     }
-   
+
+    private void ChatSent(Lobby lobby, Friend friend, string msg)
+    {
+        if(msg == "Update")
+        {
+            LeaveLobby();
+        }
+    }
+
     #endregion
     #region ButtonFuncionts
     public async void HostLobby()
@@ -105,6 +109,7 @@ public class SteamManager : NetworkBehaviour
     {
         if (currentLobby != null)
         {
+            currentLobby?.SendChatString("Update");
             NetworkManager.Singleton.Shutdown();
         }
         currentLobby = null;
