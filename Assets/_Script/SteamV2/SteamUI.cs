@@ -1,6 +1,7 @@
 using Steamworks;
 using Steamworks.Data;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
@@ -25,6 +26,8 @@ public class SteamUI : NetworkBehaviour
     [SerializeField] GameObject startGameBtn;
     [SerializeField] GameObject hostGameBtn;
     [SerializeField] GameObject leaveLobbyBtn;
+    [SerializeField] GameObject joinPopUpPrefab;
+    [SerializeField] Transform joinTransform;
 
     private int readyCounter;
     public int ReadyCounter
@@ -42,6 +45,25 @@ public class SteamUI : NetworkBehaviour
         if (Instance == null)
             Instance = this;
         else { Destroy(gameObject); }
+    }
+    private void OnEnable()
+    {
+        SteamMatchmaking.OnLobbyInvite += LobbyRequest;
+    }
+    private void OnDisable()
+    {
+        SteamMatchmaking.OnLobbyInvite -= LobbyRequest;
+    }
+    private void LobbyRequest(Friend _friend, Lobby _lobby)
+    {
+        GameObject gameObject = Instantiate(joinPopUpPrefab, joinTransform);
+        gameObject.GetComponentInChildren<TextMeshProUGUI>().text = _friend.Name;
+        gameObject.GetComponentInChildren<Button>().onClick.AddListener(() =>
+        {
+            SteamManager.Instance.GameLobbyJoinRequest(_lobby, _friend.Id);
+            Destroy(gameObject,0.2f);
+        });
+        Destroy(gameObject, 1f);
     }
 
     private void Start()

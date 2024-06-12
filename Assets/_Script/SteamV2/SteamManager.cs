@@ -86,7 +86,7 @@ public class SteamManager : NetworkBehaviour
         SteamUI.Instance.UpdatePlayersList();
     }
 
-    private async void GameLobbyJoinRequest(Lobby lobby, SteamId steamId)
+    public async void GameLobbyJoinRequest(Lobby lobby, SteamId steamId)
     {
         RoomEnter joinedLobby = await lobby.Join();
         if (joinedLobby != RoomEnter.Success)
