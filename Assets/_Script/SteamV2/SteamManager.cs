@@ -5,6 +5,7 @@ using Steamworks;
 using Steamworks.Data;
 using Unity.Netcode;
 using Netcode.Transports.Facepunch;
+using UnityEngine.SceneManagement;
 
 public class SteamManager : NetworkBehaviour
 {
@@ -12,9 +13,6 @@ public class SteamManager : NetworkBehaviour
     public Lobby? currentLobby;
     private FacepunchTransport steamTransport;
     private ulong ownerID;
-
-    [SerializeField] private GameObject startGameBtn;
-    [SerializeField] private GameObject hostGameBtn;
 
     private void Awake()
     {
@@ -61,7 +59,6 @@ public class SteamManager : NetworkBehaviour
     {
         currentLobby = lobby;
         SteamUI.Instance.UpdatePlayersList();
-        hostGameBtn.SetActive(false);
         if (NetworkManager.Singleton.IsHost)
         {
             return;
@@ -82,7 +79,7 @@ public class SteamManager : NetworkBehaviour
         {
             ownerID = lobby.Owner.Id;
             LeaveLobby();
-            hostGameBtn.SetActive(true);
+            SteamUI.Instance.ResetButtons();
             return;
         }
         SteamUI.Instance.UpdatePlayersList();
@@ -107,10 +104,21 @@ public class SteamManager : NetworkBehaviour
     #endregion
 
     #region ButtonFunctions
+
+    public void StartGame(string scenToGo)
+    {
+        if (NetworkManager.Singleton.IsHost)
+        {
+            NetworkManager.Singleton.SceneManager.LoadScene(scenToGo, LoadSceneMode.Single);
+        }
+    }
+
+
     public async void HostLobby()
     {
         NetworkManager.Singleton.StartHost();
         currentLobby = await SteamMatchmaking.CreateLobbyAsync(4);
+
     }
 
     public void LeaveLobby()
@@ -122,7 +130,13 @@ public class SteamManager : NetworkBehaviour
             NetworkManager.Singleton.Shutdown();
         }
         SteamUI.Instance.UpdatePlayersList();
-        hostGameBtn.SetActive(true);
+
+    }
+
+    public void Quit()
+    {
+        LeaveLobby();
+        Application.Quit();
     }
     #endregion
 }

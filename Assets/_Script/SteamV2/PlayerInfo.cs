@@ -11,7 +11,7 @@ public class PlayerInfo : MonoBehaviour
     private bool isReady;
     public bool IsReady
     {
-        get => isReady; private set
+        get => isReady; set 
         {
             isReady = value;
             readyImage.color = isReady ? Color.green : Color.red;

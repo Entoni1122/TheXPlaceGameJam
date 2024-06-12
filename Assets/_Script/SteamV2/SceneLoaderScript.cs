@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoaderScript : MonoBehaviour
 {
-     void Start()
+    void Start()
     {
         StartCoroutine(LoadMainScene());
     }
@@ -14,6 +14,6 @@ public class SceneLoaderScript : MonoBehaviour
     IEnumerator LoadMainScene()
     {
         yield return new WaitUntil(() => NetworkManager.Singleton != null);
-        SceneManager.LoadScene("Entoni");
+        SceneManager.LoadScene("Lobby");
     }
 }

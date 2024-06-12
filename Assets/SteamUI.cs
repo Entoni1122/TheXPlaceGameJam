@@ -1,23 +1,29 @@
 using Steamworks;
 using Steamworks.Data;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class SteamUI : NetworkBehaviour
 {
     public static SteamUI Instance;
+    //InLobby Friend
+    [SerializeField] GameObject PlayerInfoUI;
+    [SerializeField] GameObject PlayersListContent;
+    private List<PlayerInfo> playersInfos = new List<PlayerInfo>();
 
-    [SerializeField] private GameObject PlayerInfoUI;
-    [SerializeField] private GameObject PlayersListContent;
-
-    [SerializeField] private GameObject FriendInfoUI;
-    [SerializeField] private GameObject FriendListContent;
-
-
+    //Steam friend display
+    [SerializeField] GameObject FriendInfoUI;
+    [SerializeField] GameObject FriendListContent;
     private List<FriendInfo> friends = new List<FriendInfo>();
+
+    [SerializeField] Button readyBtn;
+    [SerializeField] GameObject startGameBtn;
+    [SerializeField] GameObject hostGameBtn;
+    [SerializeField] GameObject leaveLobbyBtn;
 
     private void Awake()
     {
@@ -45,10 +51,9 @@ public class SteamUI : NetworkBehaviour
             script.IsOnline = script.friend.IsOnline;
         }
     }
-
-
     public void UpdatePlayersList()
     {
+        playersInfos.Clear();
         for (int i = PlayersListContent.transform.childCount - 1; i >= 0; i--)
         {
             DestroyImmediate(PlayersListContent.transform.GetChild(i).gameObject);
@@ -61,9 +66,25 @@ public class SteamUI : NetworkBehaviour
             {
                 string name = friend.Name;
                 GameObject playerInfoUI = Instantiate(PlayerInfoUI, PlayersListContent.transform);
-
-                playerInfoUI.GetComponent<PlayerInfo>().Init(name, friend.Id);
+                PlayerInfo pl = playerInfoUI.GetComponent<PlayerInfo>();
+                pl.Init(name, friend.Id);
+                playersInfos.Add(pl);
             }
         }
+    }
+
+    public void Ready()
+    {
+        playersInfos[0].IsReady = !playersInfos[0].IsReady;
+
+        readyBtn.GetComponentInChildren<TextMeshProUGUI>().text = playersInfos[0].IsReady ? "NonReady" : "Ready";
+    }
+    public void ResetButtons()
+    {
+        readyBtn.gameObject.SetActive(false);
+        readyBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Ready";
+        startGameBtn.SetActive(false);
+        hostGameBtn.SetActive(true);
+        leaveLobbyBtn.SetActive(false);
     }
 }
