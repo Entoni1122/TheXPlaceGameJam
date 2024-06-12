@@ -58,13 +58,28 @@ public class SteamUI : NetworkBehaviour
     {
         GameObject gameObject = Instantiate(joinPopUpPrefab, joinTransform);
         gameObject.GetComponentInChildren<TextMeshProUGUI>().text = _friend.Name;
-        gameObject.GetComponentInChildren<Button>().onClick.AddListener(() =>
+        gameObject.GetComponentInChildren<Button>().onClick.AddListener(async () =>
         {
-            SteamManager.Instance.GameLobbyJoinRequest(_lobby, _friend.Id);
-            Destroy(gameObject,0.2f);
+            RoomEnter joinedLobby = await _lobby.Join();
+            if (joinedLobby != RoomEnter.Success)
+            {
+                Debug.LogError("Failed to Join Lobby");
+            }
+            else
+            {
+                if (SteamManager.Instance.currentLobby != null && _lobby.Id != SteamManager.Instance.currentLobby.Value.Id)
+                {
+                    NetworkManager.Singleton.Shutdown();
+                }
+                SteamManager.Instance.currentLobby = _lobby;
+            }
+            Destroy(gameObject,.2f);
         });
         Destroy(gameObject, 3f);
     }
+
+
+
 
     private void Start()
     {
