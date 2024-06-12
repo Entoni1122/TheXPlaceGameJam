@@ -2,7 +2,10 @@ using Steamworks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Unity.Netcode;
 
+
+[System.Serializable]
 public class PlayerInfo : MonoBehaviour
 {
     [SerializeField] private TMP_Text playerName;

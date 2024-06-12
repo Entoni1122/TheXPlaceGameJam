@@ -14,7 +14,6 @@ public class SteamUI : NetworkBehaviour
     [SerializeField] GameObject PlayerInfoUI;
     [SerializeField] GameObject PlayersListContent;
     private List<PlayerInfo> playersInfos = new List<PlayerInfo>();
-    private NetworkVariable<List<PlayerInfo>> testServetList = new NetworkVariable<List<PlayerInfo>>();
 
 
     //Steam friend display
@@ -35,23 +34,6 @@ public class SteamUI : NetworkBehaviour
         {
             readyCounter = value;
             startGameBtn.SetActive(readyCounter >= playersInfos.Count);
-        }
-    }
-
-    public override void OnNetworkSpawn()
-    {
-        testServetList.Value = new List<PlayerInfo>();
-        if (!IsServer)
-        {
-            testServetList.OnValueChanged += (List<PlayerInfo> prev, List<PlayerInfo> curr) =>
-            {
-                foreach (PlayerInfo pl in curr)
-                {
-                    GameObject playerInfoUI = Instantiate(PlayerInfoUI, PlayersListContent.transform);
-                    PlayerInfo newPl  = playerInfoUI.GetComponent<PlayerInfo>();
-                    newPl = pl;
-                }
-            };
         }
     }
 
@@ -105,8 +87,6 @@ public class SteamUI : NetworkBehaviour
                     playersInfos.Add(pl);
                 }
             }
-
-            //testServetList.Value = playersInfos;
         }
     }
 
