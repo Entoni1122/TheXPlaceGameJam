@@ -75,21 +75,28 @@ public class SteamUI : NetworkBehaviour
 
     public void Ready()
     {
-        if (IsOwner)
-        {
-            OnReadyBTNServerRPC(playersInfos[0].SteamId);
-        }
+        OnReadyBTNServerRPC(playersInfos[0].SteamId);
+        playersInfos[0].IsReady = !playersInfos[0].IsReady;
+        readyBtn.GetComponentInChildren<TextMeshProUGUI>().text = playersInfos[0].IsReady ? "NonReady" : "Ready";
     }
     [ServerRpc]
     public void OnReadyBTNServerRPC(ulong steamId)
     {
-        foreach (var item in playersInfos)
+        OnReadyBTNClientRPC(steamId);
+    }
+    [ClientRpc]
+    public void OnReadyBTNClientRPC(ulong steamId)
+    {
+        if (!IsOwner)
         {
-            if (item.SteamId == steamId)
+            foreach (var item in playersInfos)
             {
-                item.IsReady = !item.IsReady;
-                readyBtn.GetComponentInChildren<TextMeshProUGUI>().text = item.IsReady ? "NonReady" : "Ready";
-                return;
+                if (item.SteamId == steamId)
+                {
+                    item.IsReady = !item.IsReady;
+                    readyBtn.GetComponentInChildren<TextMeshProUGUI>().text = item.IsReady ? "NonReady" : "Ready";
+                    return;
+                }
             }
         }
     }
