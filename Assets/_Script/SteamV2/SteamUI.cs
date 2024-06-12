@@ -73,13 +73,9 @@ public class SteamUI : NetworkBehaviour
         }
     }
 
-    bool localReady = false;
     public void Ready()
     {
         OnReadyBTNServerRPC(Steamworks.SteamClient.SteamId);
-
-        localReady = !localReady;
-        readyBtn.GetComponentInChildren<TextMeshProUGUI>().text = localReady ? "notReady" : "Ready";
     }
 
 
