@@ -1,7 +1,6 @@
 using Steamworks;
 using Steamworks.Data;
 using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
@@ -73,13 +72,10 @@ public class SteamUI : NetworkBehaviour
                 }
                 SteamManager.Instance.currentLobby = _lobby;
             }
-            Destroy(gameObject,.2f);
+            Destroy(gameObject, .2f);
         });
         Destroy(gameObject, 3f);
     }
-
-
-
 
     private void Start()
     {
@@ -128,7 +124,14 @@ public class SteamUI : NetworkBehaviour
 
     public void Ready()
     {
-        OnReadyBTNServerRPC(Steamworks.SteamClient.SteamId);
+        if (OwnerClientId != 0)
+        {
+            OnReadyBTNServerRPC(Steamworks.SteamClient.SteamId);
+        }
+        else
+        {
+            print("ur still loading stop .I.");
+        }
     }
 
     [ServerRpc(RequireOwnership = false)]
