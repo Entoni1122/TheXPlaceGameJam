@@ -14,6 +14,7 @@ public class SteamUI : NetworkBehaviour
     [SerializeField] GameObject PlayerInfoUI;
     [SerializeField] GameObject PlayersListContent;
     private List<PlayerInfo> playersInfos = new List<PlayerInfo>();
+    private NetworkVariable<List<PlayerInfo>> testServetList = new NetworkVariable<List<PlayerInfo>>();
 
 
     //Steam friend display
@@ -37,25 +38,20 @@ public class SteamUI : NetworkBehaviour
         }
     }
 
-    private NetworkVariable<int> testServetInt = new NetworkVariable<int>();
     public override void OnNetworkSpawn()
     {
-        if (!IsServer) 
+        if (!IsServer)
         {
-            testServetInt.OnValueChanged += (int prev, int curr) =>
+            testServetList.OnValueChanged += (List<PlayerInfo> prev, List<PlayerInfo> curr) =>
             {
-                print(curr);
+                foreach (PlayerInfo pl in curr)
+                {
+                    GameObject playerInfoUI = Instantiate(PlayerInfoUI, PlayersListContent.transform);
+                    PlayerInfo newPl  = playerInfoUI.GetComponent<PlayerInfo>();
+                    newPl = pl;
+                }
             };
-            print("ClientSpawn");
         }
-        else
-        {
-            print("ServerSpawn");
-        }
-    }
-    private void Update()
-    {
-        if (IsServer) { testServetInt.Value += 1; };
     }
 
     private void Awake()
@@ -88,23 +84,28 @@ public class SteamUI : NetworkBehaviour
 
     public void UpdatePlayersList()
     {
-        playersInfos.Clear();
-        for (int i = PlayersListContent.transform.childCount - 1; i >= 0; i--)
+        if (IsServer)
         {
-            DestroyImmediate(PlayersListContent.transform.GetChild(i).gameObject);
-        }
-
-        Lobby? lobby = SteamManager.Instance.currentLobby;
-        if (lobby != null)
-        {
-            foreach (Friend friend in lobby.Value.Members)
+            playersInfos.Clear();
+            for (int i = PlayersListContent.transform.childCount - 1; i >= 0; i--)
             {
-                string name = friend.Name;
-                GameObject playerInfoUI = Instantiate(PlayerInfoUI, PlayersListContent.transform);
-                PlayerInfo pl = playerInfoUI.GetComponent<PlayerInfo>();
-                pl.Init(name, friend.Id);
-                playersInfos.Add(pl);
+                DestroyImmediate(PlayersListContent.transform.GetChild(i).gameObject);
             }
+
+            Lobby? lobby = SteamManager.Instance.currentLobby;
+            if (lobby != null)
+            {
+                foreach (Friend friend in lobby.Value.Members)
+                {
+                    string name = friend.Name;
+                    GameObject playerInfoUI = Instantiate(PlayerInfoUI, PlayersListContent.transform);
+                    PlayerInfo pl = playerInfoUI.GetComponent<PlayerInfo>();
+                    pl.Init(name, friend.Id);
+                    playersInfos.Add(pl);
+                }
+            }
+
+            testServetList.Value = playersInfos;
         }
     }
 
