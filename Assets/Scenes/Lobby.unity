@@ -611,7 +611,7 @@ GameObject:
   - component: {fileID: 367636360}
   - component: {fileID: 367636359}
   m_Layer: 5
-  m_Name: Scroll View
+  m_Name: LobbyMenberBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3257,7 +3257,7 @@ MonoBehaviour:
   m_Content: {fileID: 1278072108}
   m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 2
+  m_MovementType: 0
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
