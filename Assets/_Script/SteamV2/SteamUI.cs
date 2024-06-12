@@ -25,12 +25,24 @@ public class SteamUI : NetworkBehaviour
     [SerializeField] GameObject hostGameBtn;
     [SerializeField] GameObject leaveLobbyBtn;
 
+    private int readyCounter;
+    public int ReadyCounter
+    {
+        get => readyCounter;
+        private set
+        {
+            readyCounter = value;
+            startGameBtn.SetActive(readyCounter >= playersInfos.Count);
+        }
+    }
+
     private void Awake()
     {
         if (Instance == null)
             Instance = this;
         else { Destroy(gameObject); }
     }
+
     private void Start()
     {
         foreach (Friend friend in SteamFriends.GetFriends())
@@ -93,6 +105,10 @@ public class SteamUI : NetworkBehaviour
             if (item.SteamId == steamId)
             {
                 item.IsReady = !item.IsReady;
+                if (IsHost)
+                {
+                    ReadyCounter += item.IsReady ? 1 : -1;
+                }
                 return;
             }
         }
