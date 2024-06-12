@@ -120,18 +120,13 @@ public class SteamUI : NetworkBehaviour
             }
             ReadyCounter = 0;
         }
+        readyBtn.gameObject.SetActive(true);
     }
 
     public void Ready()
     {
-        if (OwnerClientId != 0)
-        {
-            OnReadyBTNServerRPC(Steamworks.SteamClient.SteamId);
-        }
-        else
-        {
-            print("ur still loading stop .I.");
-        }
+
+        OnReadyBTNServerRPC(Steamworks.SteamClient.SteamId);
     }
 
     [ServerRpc(RequireOwnership = false)]
@@ -167,9 +162,13 @@ public class SteamUI : NetworkBehaviour
 
     public void OnMemberEnterButtons()
     {
-        readyBtn.gameObject.SetActive(true);
+        Invoke("LeaveReadyAsyncManual",1f);
         startGameBtn.SetActive(false);
         hostGameBtn.SetActive(false);
+    }
+    public void LeaveReadyAsyncManual()
+    {
+        readyBtn.gameObject.SetActive(true);
         leaveLobbyBtn.SetActive(true);
     }
 }
