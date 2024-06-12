@@ -63,7 +63,7 @@ public class SteamUI : NetworkBehaviour
             SteamManager.Instance.GameLobbyJoinRequest(_lobby, _friend.Id);
             Destroy(gameObject,0.2f);
         });
-        Destroy(gameObject, 1f);
+        Destroy(gameObject, 3f);
     }
 
     private void Start()
@@ -144,7 +144,7 @@ public class SteamUI : NetworkBehaviour
         startGameBtn.SetActive(false);
         hostGameBtn.SetActive(true);
         leaveLobbyBtn.SetActive(false);
-        ReadyCounter = 0;
+        readyCounter = 0;
     }
 
     public void OnMemberEnterButtons()

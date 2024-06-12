@@ -26,7 +26,7 @@ public class FriendInfo : MonoBehaviour
         inviteBtn.onClick.AddListener(() =>
         {
             SteamManager.Instance.currentLobby?.InviteFriend(friend.Id);
-            enabled = false;
+            gameObject.SetActive(false);
             Invoke("ForceEnable",2f);
         });
         IsOnline = false;
@@ -35,6 +35,6 @@ public class FriendInfo : MonoBehaviour
 
     private void ForceEnable()
     {
-        enabled = true;
+        gameObject.SetActive(true);
     }
 }
