@@ -119,6 +119,7 @@ public class SteamUI : NetworkBehaviour
         startGameBtn.SetActive(false);
         hostGameBtn.SetActive(true);
         leaveLobbyBtn.SetActive(false);
+        ReadyCounter = 0;
     }
 
     public void OnMemberEnterButtons()
