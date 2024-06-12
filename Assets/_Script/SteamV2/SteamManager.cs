@@ -66,12 +66,12 @@ public class SteamManager : NetworkBehaviour
         steamTransport.targetSteamId = lobby.Owner.Id;
         NetworkManager.Singleton.StartClient();
         ownerID = lobby.Owner.Id;
+        SteamUI.Instance.OnMemberEnterButtons();
     }
 
     private void OnMemberLobbyEntered(Lobby lobby, Friend friend)
     {
         SteamUI.Instance.UpdatePlayersList();
-        SteamUI.Instance.OnMemberEnterButtons();
     }
 
     private void OnMemberLobbyLeave(Lobby lobby, Friend friend)
