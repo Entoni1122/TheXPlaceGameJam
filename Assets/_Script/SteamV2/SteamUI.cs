@@ -42,12 +42,20 @@ public class SteamUI : NetworkBehaviour
     {
         if (!IsServer) 
         {
-
             testServetInt.OnValueChanged += (int prev, int curr) =>
             {
                 print(curr);
             };
+            print("ClientSpawn");
         }
+        else
+        {
+            print("ServerSpawn");
+        }
+    }
+    private void Update()
+    {
+        if (IsServer) { testServetInt.Value += 1; };
     }
 
     private void Awake()
@@ -96,10 +104,6 @@ public class SteamUI : NetworkBehaviour
                 PlayerInfo pl = playerInfoUI.GetComponent<PlayerInfo>();
                 pl.Init(name, friend.Id);
                 playersInfos.Add(pl);
-                if (IsHost)
-                {
-                    testServetInt.Value += 1;
-                }
             }
         }
     }
