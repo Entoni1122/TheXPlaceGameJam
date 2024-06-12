@@ -101,4 +101,13 @@ public class SteamUI : NetworkBehaviour
         hostGameBtn.SetActive(true);
         leaveLobbyBtn.SetActive(false);
     }
+
+    public void OnMemberEnterButtons()
+    {
+        readyBtn.gameObject.SetActive(true);
+        readyBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Ready";
+        startGameBtn.SetActive(false);
+        hostGameBtn.SetActive(false);
+        leaveLobbyBtn.SetActive(true);
+    }
 }
