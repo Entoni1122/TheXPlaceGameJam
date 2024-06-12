@@ -129,6 +129,7 @@ public class SteamManager : NetworkBehaviour
             currentLobby = null;
             NetworkManager.Singleton.Shutdown();
         }
+        SteamUI.Instance.ResetButtons();
         SteamUI.Instance.UpdatePlayersList();
 
     }
