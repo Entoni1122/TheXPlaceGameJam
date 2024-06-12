@@ -100,7 +100,6 @@ public class SteamUI : NetworkBehaviour
     public void ResetButtons()
     {
         readyBtn.gameObject.SetActive(false);
-        readyBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Ready";
         startGameBtn.SetActive(false);
         hostGameBtn.SetActive(true);
         leaveLobbyBtn.SetActive(false);
@@ -109,7 +108,6 @@ public class SteamUI : NetworkBehaviour
     public void OnMemberEnterButtons()
     {
         readyBtn.gameObject.SetActive(true);
-        readyBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Ready";
         startGameBtn.SetActive(false);
         hostGameBtn.SetActive(false);
         leaveLobbyBtn.SetActive(true);
