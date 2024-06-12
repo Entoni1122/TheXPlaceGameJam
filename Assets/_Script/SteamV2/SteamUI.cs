@@ -67,26 +67,25 @@ public class SteamUI : NetworkBehaviour
 
     public void UpdatePlayersList()
     {
-        if (IsServer)
+        playersInfos.Clear();
+        for (int i = PlayersListContent.transform.childCount - 1; i >= 0; i--)
         {
-            playersInfos.Clear();
-            for (int i = PlayersListContent.transform.childCount - 1; i >= 0; i--)
-            {
-                DestroyImmediate(PlayersListContent.transform.GetChild(i).gameObject);
-            }
+            DestroyImmediate(PlayersListContent.transform.GetChild(i).gameObject);
+        }
 
-            Lobby? lobby = SteamManager.Instance.currentLobby;
-            if (lobby != null)
+        Lobby? lobby = SteamManager.Instance.currentLobby;
+        if (lobby != null)
+        {
+            foreach (Friend friend in lobby.Value.Members)
             {
-                foreach (Friend friend in lobby.Value.Members)
-                {
-                    string name = friend.Name;
-                    GameObject playerInfoUI = Instantiate(PlayerInfoUI, PlayersListContent.transform);
-                    PlayerInfo pl = playerInfoUI.GetComponent<PlayerInfo>();
-                    pl.Init(name, friend.Id);
-                    playersInfos.Add(pl);
-                }
+                string name = friend.Name;
+                GameObject playerInfoUI = Instantiate(PlayerInfoUI, PlayersListContent.transform);
+                PlayerInfo pl = playerInfoUI.GetComponent<PlayerInfo>();
+                pl.Init(name, friend.Id);
+                playersInfos.Add(pl);
+
             }
+            ReadyCounter = 0;
         }
     }
 
@@ -94,7 +93,6 @@ public class SteamUI : NetworkBehaviour
     {
         OnReadyBTNServerRPC(Steamworks.SteamClient.SteamId);
     }
-
 
     [ServerRpc(RequireOwnership = false)]
     public void OnReadyBTNServerRPC(ulong steamId)
