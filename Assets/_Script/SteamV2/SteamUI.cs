@@ -40,6 +40,7 @@ public class SteamUI : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
+        testServetList.Value = new List<PlayerInfo>();
         if (!IsServer)
         {
             testServetList.OnValueChanged += (List<PlayerInfo> prev, List<PlayerInfo> curr) =>
@@ -105,7 +106,7 @@ public class SteamUI : NetworkBehaviour
                 }
             }
 
-            testServetList.Value = playersInfos;
+            //testServetList.Value = playersInfos;
         }
     }
 
