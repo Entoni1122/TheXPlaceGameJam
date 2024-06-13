@@ -4,22 +4,23 @@ using UnityEngine;
 
 public class SpawnerBase : MonoBehaviour
 {
-    [SerializeField] int numberOfEntitiesToSpawn;
-    [SerializeField] Transform positionToSpawn;
-    [SerializeField] GameObject entitiPrefab;
-    [SerializeField] float timerToSpawn;
+    [SerializeField] protected int numberOfEntitiesToSpawn;
+    [SerializeField] protected Transform positionToSpawn;
+    [SerializeField] protected GameObject entitiPrefab;
+    [SerializeField] protected float timerToSpawn;
     
-    int entitiCounter;
-    float timer;
+    protected int entitiCounter;
+    protected float timer;
 
-    void Start()
+    protected virtual void Start()
     {
         timer = timerToSpawn;
     }
 
-    void Update()
+
+    protected virtual void Update()
     {
-        if (numberOfEntitiesToSpawn <= entitiCounter)
+        if (entitiCounter >= numberOfEntitiesToSpawn)
         {
             timer -= Time.deltaTime;
             if (timer <= 0)
@@ -30,7 +31,7 @@ public class SpawnerBase : MonoBehaviour
     }
 
 
-    void SpawnEntitie()
+    protected virtual void SpawnEntitie()
     {
         GameObject entiti = Instantiate(entitiPrefab, positionToSpawn);
     }

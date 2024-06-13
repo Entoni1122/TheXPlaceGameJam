@@ -5,14 +5,27 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+
     public static Action OnRoundStart;
     public static Action OnLoseRound;
     [SerializeField] int roundCount;
-    [SerializeField] int numberOfValigieToSpawn;
-    [SerializeField] int numberOfClientsToSpawn;
+    public int RoundCount => roundCount;
     [SerializeField] float TimerOnUI;
 
     bool startRound;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
 
     private void Start()
     {
@@ -24,7 +37,7 @@ public class GameManager : MonoBehaviour
         if (startRound)
         {
             startRound = false;
-            
+
             StartingRound();
         }
 
