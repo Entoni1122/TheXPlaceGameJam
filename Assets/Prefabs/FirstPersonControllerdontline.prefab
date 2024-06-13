@@ -247,7 +247,7 @@ Transform:
   - {fileID: 6458155303504165543}
   - {fileID: 9067748931939409900}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &7407123700318592602
 CapsuleCollider:
@@ -352,7 +352,6 @@ MonoBehaviour:
   joint: {fileID: 9067748931939409900}
   bobSpeed: 10
   bobAmount: {x: 0, y: 0.1, z: 0}
-  inputMove: {x: 0, y: 0, z: 0}
 --- !u!95 &5302525023630981006
 Animator:
   serializedVersion: 5
@@ -528,6 +527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d9787b4f5e81fe428dd304e011cf045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerRef: {fileID: 3691635469694606089}
   _isMovingID: IsMoving
   _isFallingID: IsFalling
 --- !u!1 &1122923841980598038

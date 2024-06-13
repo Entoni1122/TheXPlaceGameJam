@@ -72,7 +72,7 @@ public class FPController : MonoBehaviour
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
     [SerializeField] float jumpPower = 5f;
 
-    public bool isGrounded { get; private set; }
+    private bool isGrounded;
 
     #endregion
 
@@ -314,13 +314,13 @@ public class FPController : MonoBehaviour
     #endregion
 
     #region MVM
-    public Vector3 inputMove;
+    private Vector3 _input;
     void Movement()
     {
         if (playerCanMove)
         {
-            inputMove = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            Vector3 targetVelocity = inputMove;
+            _input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            Vector3 targetVelocity = _input;
 
             if (targetVelocity.x != 0 || targetVelocity.z != 0 && isGrounded)
             {

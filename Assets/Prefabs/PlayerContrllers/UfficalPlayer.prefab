@@ -290,6 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d9787b4f5e81fe428dd304e011cf045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerRef: {fileID: 638186244333346245}
   _isMovingID: IsMoving
   _isFallingID: IsFalling
 --- !u!1 &554488464284453618

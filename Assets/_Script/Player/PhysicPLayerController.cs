@@ -18,9 +18,7 @@ public class PhysicPLayerController : MonoBehaviour
     Rigidbody _rb;
     [SerializeField] bool isGrounded;
 
-    public bool IsGrounded => isGrounded;
     private Vector3 _input;
-    public Vector3 InputRead => _input;
 
     [SerializeField] bool bCanRespawn;
     bool enableContorller = true;

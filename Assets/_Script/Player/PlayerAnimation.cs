@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
+using System.Reflection;
 using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
-    FPController playerRef;
+    [SerializeField] MonoBehaviour playerRef;
     Animator _animInstance;
     Rigidbody _rb;
 
@@ -14,38 +16,35 @@ public class PlayerAnimation : MonoBehaviour
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        if (_rb is null)
+        if (_rb == null)
         {
             Debug.LogError("No Rigidbody in this object");
             Destroy(this);
         }
 
-
         _animInstance = GetComponent<Animator>();
-        if (_animInstance is null)
+        if (_animInstance == null)
         {
             Debug.LogError("No Animator in this object");
             Destroy(this);
         }
 
-
-        playerRef = GetComponent<FPController>();
-        if (playerRef is null)
+        if (playerRef == null)
         {
-            Debug.LogError("No PhysicPlayerController in this object");
+            Debug.LogError("No controller in this object");
             Destroy(this);
         }
     }
-
 
     private void Update()
     {
         UpdateMoving();
         UpdateIsFalling();
     }
+
     private void UpdateMoving()
     {
-        Vector2 input = new Vector2(playerRef.inputMove.x, playerRef.inputMove.z);
+        Vector2 input = new Vector2(GetInputMove().x, GetInputMove().z);
         if (input != Vector2.zero)
         {
             if (!_animInstance.GetBool(_isMovingID))
@@ -64,7 +63,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private void UpdateIsFalling()
     {
-        if (!playerRef.isGrounded)
+        if (!GetIsGrounded())
         {
             if (!_animInstance.GetBool(_isFallingID))
             {
@@ -78,5 +77,31 @@ public class PlayerAnimation : MonoBehaviour
                 _animInstance.SetBool(_isFallingID, false);
             }
         }
+    }
+
+    private bool GetIsGrounded()
+    {
+        Type type = playerRef.GetType();
+        FieldInfo field = type.GetField("isGrounded", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+
+        if (field != null && field.FieldType == typeof(bool))
+        {
+            return (bool)field.GetValue(playerRef);
+        }
+
+        return false;
+    }
+
+    private Vector3 GetInputMove()
+    {
+        Type type = playerRef.GetType();
+        FieldInfo field = type.GetField("_input", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+
+        if (field != null && field.FieldType == typeof(Vector3))
+        {
+            return (Vector3)field.GetValue(playerRef);
+        }
+
+        return Vector3.zero;
     }
 }
