@@ -41,7 +41,6 @@ public class PlayerController : MonoBehaviour
 
         bIsGrounded = Physics.Raycast(transform.position, -transform.up, rayCastGroundDistance);
 
-
         Jump();
         ApplyGravity();
     }
