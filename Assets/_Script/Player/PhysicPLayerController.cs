@@ -47,6 +47,7 @@ public class PhysicPLayerController : MonoBehaviour
         _input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
     }
 
+    #region Movement
     private void Look()
     {
         if (_input == Vector3.zero) return;
@@ -67,6 +68,8 @@ public class PhysicPLayerController : MonoBehaviour
             _rb.velocity += new Vector3(0, _jumpForce, 0);
         }
     }
+    #endregion
+
 }
 public static class Helpers
 {
