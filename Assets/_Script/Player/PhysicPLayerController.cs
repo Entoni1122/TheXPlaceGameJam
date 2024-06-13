@@ -18,6 +18,7 @@ public class PhysicPLayerController : MonoBehaviour
 
     Rigidbody _rb;
     bool isGrounded;
+    public bool IsGrounded => isGrounded;
     private Vector3 _input;
 
     bool bCanRespawn;
