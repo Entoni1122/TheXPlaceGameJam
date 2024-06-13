@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class PhysicPLayerController : MonoBehaviour
 {
+    [SerializeField] Transform positionToSpawn;
+
+
     [Header("Movemnet")]
     [SerializeField] float _speed = 5f;
     [SerializeField] float _turnSpeed = 360f;
@@ -16,6 +20,8 @@ public class PhysicPLayerController : MonoBehaviour
     bool isGrounded;
     private Vector3 _input;
 
+    bool bCanRespawn;
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
@@ -23,6 +29,13 @@ public class PhysicPLayerController : MonoBehaviour
 
     private void Update()
     {
+        if (bCanRespawn)
+        {
+            bCanRespawn = false;
+            ResetPosition();
+        }
+
+
         GatherInput();
         Look();
         isGrounded = Physics.Raycast(transform.position, -transform.up, 1f);
@@ -37,6 +50,12 @@ public class PhysicPLayerController : MonoBehaviour
         Jump();
     }
 
+    void ResetPosition()
+    {
+        transform.position = positionToSpawn.position;
+        enabled = true;
+        _rb.freezeRotation = true;
+    }
     private void FixedUpdate()
     {
         Move();
@@ -70,6 +89,18 @@ public class PhysicPLayerController : MonoBehaviour
     }
     #endregion
 
+
+    [SerializeField] float explosionForce = 200f;
+    [SerializeField] float explosionRadius = 20f;
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Autobus"))
+        {
+            _rb.AddExplosionForce(explosionForce, collision.transform.position, explosionRadius);
+            enabled = false;
+            _rb.freezeRotation = false;
+        }
+    }
 }
 public static class Helpers
 {
