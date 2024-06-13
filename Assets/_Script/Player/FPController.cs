@@ -72,7 +72,7 @@ public class FPController : MonoBehaviour
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
     [SerializeField] float jumpPower = 5f;
 
-    private bool isGrounded = false;
+    public bool isGrounded { get; private set; }
 
     #endregion
 
@@ -297,7 +297,7 @@ public class FPController : MonoBehaviour
     }
     private void CheckGround()
     {
-        Vector3 origin = new Vector3(transform.position.x, transform.position.y - (transform.localScale.y * .5f), transform.position.z);
+        Vector3 origin = new Vector3(transform.position.x, transform.position.y /*- (transform.localScale.y * .5f)*/, transform.position.z);
         Vector3 direction = transform.TransformDirection(Vector3.down);
         float distance = .75f;
 
@@ -314,11 +314,13 @@ public class FPController : MonoBehaviour
     #endregion
 
     #region MVM
+    public Vector3 inputMove;
     void Movement()
     {
         if (playerCanMove)
         {
-            Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            inputMove = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            Vector3 targetVelocity = inputMove;
 
             if (targetVelocity.x != 0 || targetVelocity.z != 0 && isGrounded)
             {

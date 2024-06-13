@@ -4,24 +4,21 @@ using UnityEngine;
 
 public class ClientBehaviour : MonoBehaviour
 {
-    [SerializeField] float onLineSpeed;
-    [SerializeField] float stopDistanceToOtherClient;
+    ////[SerializeField] float onLineSpeed;
+    //[SerializeField] float stopDistanceToOtherClient;
     
 
-    private void Start()
-    {
+    //private void Start()
+    //{
         
-    }
+    //}
 
-    private void Update()
-    {
-        if (Physics.Raycast(transform.position,transform.forward, stopDistanceToOtherClient,LayerMask.NameToLayer("Client")))
-        {
-            onLineSpeed = 0;
-        }
-    }
-
-
-
+    //private void Update()
+    //{
+    //    if (Physics.Raycast(transform.position,transform.forward, stopDistanceToOtherClient,LayerMask.NameToLayer("Client")))
+    //    {
+    //        onLineSpeed = 0;
+    //    }
+    //}
 
 }

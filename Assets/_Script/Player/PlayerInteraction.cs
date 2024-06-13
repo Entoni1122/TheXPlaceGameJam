@@ -166,7 +166,12 @@ public class PlayerInteraction : MonoBehaviour
     {
         int lastObjIndex = objsInSocket.Count - 1;
         IInteract _interface = objsInSocket[lastObjIndex].GetComponent<IInteract>();
-        _interface.ThrowAway((transform.forward + transform.up * upForceMultiplier) * currentForce);
+
+        Vector3 dir = view == PlayerView.FirstPerson
+            ? Camera.main.transform.forward + transform.up * upForceMultiplier
+            : transform.forward + transform.up * upForceMultiplier;
+
+        _interface.ThrowAway(dir * currentForce);
         objsInSocket.RemoveAt(lastObjIndex);
         trajcetory.SetTrajectoryVisible(false);
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
-    PhysicPLayerController playerRef;
+    FPController playerRef;
     Animator _animInstance;
     Rigidbody _rb;
 
@@ -29,7 +29,7 @@ public class PlayerAnimation : MonoBehaviour
         }
 
 
-        playerRef = GetComponent<PhysicPLayerController>();
+        playerRef = GetComponent<FPController>();
         if (playerRef is null)
         {
             Debug.LogError("No PhysicPlayerController in this object");
@@ -45,7 +45,7 @@ public class PlayerAnimation : MonoBehaviour
     }
     private void UpdateMoving()
     {
-        Vector2 input = new Vector2(playerRef.InputRead.x, playerRef.InputRead.z);
+        Vector2 input = new Vector2(playerRef.inputMove.x, playerRef.inputMove.z);
         if (input != Vector2.zero)
         {
             if (!_animInstance.GetBool(_isMovingID))
@@ -64,7 +64,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private void UpdateIsFalling()
     {
-        if (!playerRef.IsGrounded)
+        if (!playerRef.isGrounded)
         {
             if (!_animInstance.GetBool(_isFallingID))
             {
