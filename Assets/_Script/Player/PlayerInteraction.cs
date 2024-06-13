@@ -153,7 +153,7 @@ public class PlayerInteraction : MonoBehaviour
         property.Drag = rb.drag;
         property.Mass = rb.mass;
 
-        Vector3 dir = view == PlayerView.FirstPerson 
+        Vector3 dir = view == PlayerView.FirstPerson
             ? Camera.main.transform.forward + transform.up * upForceMultiplier
             : transform.forward + transform.up * upForceMultiplier;
 
@@ -161,6 +161,18 @@ public class PlayerInteraction : MonoBehaviour
         property.InitialPosition = objsInSocket[lastObjIndex].transform.position;
         property.InitialSpeed = currentForce;
         trajcetory.PredictTrajectory(property);
+
+        if (view == PlayerView.Iso)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Physics.Raycast(ray,out RaycastHit result,100);
+            Vector3 dist = result.point - transform.position;
+            dist.Normalize();
+
+            var rot = Quaternion.LookRotation(dist, Vector3.up);
+            rot.eulerAngles = Vector3.up * rot.eulerAngles.y;
+            transform.rotation = Quaternion.Slerp(transform.rotation, rot, 5 * Time.deltaTime);
+        }
     }
     private void Throw()
     {

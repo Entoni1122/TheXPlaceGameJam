@@ -90,10 +90,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.59196454
-  m_Height: 2.0248117
+  m_Radius: 0.54605865
+  m_Height: 2.2235255
   m_Direction: 1
-  m_Center: {x: 0, y: 0.87, z: 0}
+  m_Center: {x: 0.07234478, y: 0.9693568, z: -0.0050172806}
 --- !u!114 &638186244333346245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,7 +113,7 @@ MonoBehaviour:
   gravity: 50
   isGrounded: 0
   bCanRespawn: 0
-  explosionForce: 10000
+  explosionForce: 1000
   explosionRadius: 20
 --- !u!95 &1663694180957727583
 Animator:
@@ -275,6 +275,8 @@ MonoBehaviour:
   firstPersonDistance: 100
   isoRadius: 2
   throwForce: 10
+  minForce: 2
+  upForceMultiplier: 0.2
   forceIncrementMultiplier: 20
 --- !u!114 &2558164185471797552
 MonoBehaviour:
@@ -526,7 +528,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6976256099194479968}
   m_LocalRotation: {x: 0.01797906, y: 0.70687807, z: -0.70687807, w: -0.017986529}
-  m_LocalPosition: {x: -0.0032283112, y: 0.0000000014628548, z: 0.002074786}
+  m_LocalPosition: {x: -0.00296, y: -0.00001, z: 0.00207}
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children: []
