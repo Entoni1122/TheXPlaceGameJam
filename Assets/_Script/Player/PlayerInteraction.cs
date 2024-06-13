@@ -16,12 +16,14 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] Transform startCheckerPoint;
     [SerializeField] Transform socket;
     [SerializeField] PlayerView view;
-    [SerializeField] float checkInterval = 0.1f;
+    [SerializeField] float checkInterval = .1f;
     bool ShowHide => view == PlayerView.FirstPerson;
     [ShowIf("ShowHide")] public float firstPersonDistance;
     [HideIf("ShowHide")] public float isoRadius;
     GameObject interactableObj;
-    [SerializeField] float throwForce = 10;
+    [SerializeField] float throwForce = 10f;
+    [SerializeField] float minForce = 2f;
+    [SerializeField] float upForceMultiplier = .2f;
     [SerializeField] float forceIncrementMultiplier = 2f;
     float currentForce;
 
@@ -45,7 +47,7 @@ public class PlayerInteraction : MonoBehaviour
             if (objsInSocket.Count > 0)
             {
                 trajcetory.SetTrajectoryVisible(true);
-                currentForce = 0;
+                currentForce = minForce;
             }
         }
         if (Input.GetKey(KeyCode.Mouse0))
@@ -150,7 +152,11 @@ public class PlayerInteraction : MonoBehaviour
         ProjectileProperties property = new ProjectileProperties();
         property.Drag = rb.drag;
         property.Mass = rb.mass;
-        Vector3 dir = view == PlayerView.FirstPerson ? Camera.main.transform.forward + transform.up * 0.2f : transform.forward + transform.up * 0.2f;
+
+        Vector3 dir = view == PlayerView.FirstPerson 
+            ? Camera.main.transform.forward + transform.up * upForceMultiplier
+            : transform.forward + transform.up * upForceMultiplier;
+
         property.Direction = dir;
         property.InitialPosition = objsInSocket[lastObjIndex].transform.position;
         property.InitialSpeed = currentForce;
@@ -160,7 +166,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         int lastObjIndex = objsInSocket.Count - 1;
         IInteract _interface = objsInSocket[lastObjIndex].GetComponent<IInteract>();
-        _interface.ThrowAway((transform.forward + transform.up * 0.2f) * currentForce);
+        _interface.ThrowAway((transform.forward + transform.up * upForceMultiplier) * currentForce);
         objsInSocket.RemoveAt(lastObjIndex);
         trajcetory.SetTrajectoryVisible(false);
     }

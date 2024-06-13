@@ -7,7 +7,6 @@ public class PhysicPLayerController : MonoBehaviour
 {
     [SerializeField] Transform positionToSpawn;
 
-
     [Header("Movemnet")]
     [SerializeField] float _speed = 5f;
     [SerializeField] float _turnSpeed = 360f;
@@ -17,11 +16,12 @@ public class PhysicPLayerController : MonoBehaviour
     [SerializeField] float gravity = 20f;
 
     Rigidbody _rb;
-    bool isGrounded;
+    [SerializeField] bool isGrounded;
     public bool IsGrounded => isGrounded;
     private Vector3 _input;
+    public Vector3 InputRead => _input;
 
-    bool bCanRespawn;
+    public bool bCanRespawn;
 
     private void Awake()
     {

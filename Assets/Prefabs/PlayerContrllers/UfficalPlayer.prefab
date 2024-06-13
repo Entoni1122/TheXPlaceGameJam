@@ -42,7 +42,7 @@ Transform:
   - {fileID: 369784867436003388}
   - {fileID: 6859559512964860499}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &5352015316820361610
 Rigidbody:
@@ -93,7 +93,7 @@ CapsuleCollider:
   m_Radius: 0.59196454
   m_Height: 2.0248117
   m_Direction: 1
-  m_Center: {x: 0, y: 1.0269372, z: 0}
+  m_Center: {x: 0, y: 0.87, z: 0}
 --- !u!114 &638186244333346245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,7 +111,9 @@ MonoBehaviour:
   _turnSpeed: 20
   _jumpForce: 15
   gravity: 50
-  explosionForce: 200
+  isGrounded: 0
+  bCanRespawn: 0
+  explosionForce: 10000
   explosionRadius: 20
 --- !u!95 &1663694180957727583
 Animator:
@@ -271,9 +273,9 @@ MonoBehaviour:
   view: 1
   checkInterval: 0.1
   firstPersonDistance: 100
-  isoRadius: 0.5
+  isoRadius: 2
   throwForce: 10
-  forceIncrementMultiplier: 10
+  forceIncrementMultiplier: 20
 --- !u!114 &2558164185471797552
 MonoBehaviour:
   m_ObjectHideFlags: 0

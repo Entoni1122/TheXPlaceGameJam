@@ -43,11 +43,10 @@ public class PlayerAnimation : MonoBehaviour
         UpdateMoving();
         UpdateIsFalling();
     }
-
-
     private void UpdateMoving()
     {
-        if (LibraryFunction.LengthXZ(_rb.velocity) > .5f)
+        Vector2 input = new Vector2(playerRef.InputRead.x, playerRef.InputRead.z);
+        if (input != Vector2.zero)
         {
             if (!_animInstance.GetBool(_isMovingID))
             {
@@ -65,7 +64,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private void UpdateIsFalling()
     {
-        if (playerRef.IsGrounded)
+        if (!playerRef.IsGrounded)
         {
             if (!_animInstance.GetBool(_isFallingID))
             {
