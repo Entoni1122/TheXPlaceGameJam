@@ -13,20 +13,20 @@ public class BaseInteractableObj : MonoBehaviour, IInteract
     {
         transform.parent = socket;
         transform.position = transform.parent.position + objectOffset;
-        _rb.useGravity = false;
+        _rb.isKinematic = true;
     }
 
     void IInteract.Interact(Transform socket, Vector3 offset, int length)
     {
         transform.parent = socket;
         transform.position = transform.parent.position + offset + objectOffset * length;
-        _rb.useGravity = false;
+        _rb.isKinematic = true;
     }
 
     void IInteract.ThrowAway(Vector3 impluseForce)
     {
         transform.parent = null;
+        _rb.isKinematic = false;
         _rb.AddForce(impluseForce,ForceMode.Impulse);
-        _rb.useGravity = true;
     }
 }
