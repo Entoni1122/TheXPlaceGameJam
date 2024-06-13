@@ -17,11 +17,13 @@ public class PhysicPLayerController : MonoBehaviour
 
     Rigidbody _rb;
     [SerializeField] bool isGrounded;
+
     public bool IsGrounded => isGrounded;
     private Vector3 _input;
     public Vector3 InputRead => _input;
 
-    public bool bCanRespawn;
+    [SerializeField] bool bCanRespawn;
+    bool enableContorller = true;
 
     private void Awake()
     {
@@ -36,30 +38,36 @@ public class PhysicPLayerController : MonoBehaviour
             ResetPosition();
         }
 
-
-        GatherInput();
-        Look();
-        isGrounded = Physics.Raycast(transform.position, -transform.up, 1f);
-        if (isGrounded)
+        if (enableContorller)
         {
-            _rb.velocity -= new Vector3(0, 0, 0) * Time.deltaTime;
+            GatherInput();
+            Look();
+            isGrounded = Physics.Raycast(transform.position, -transform.up, 1f);
+            if (isGrounded)
+            {
+                _rb.velocity -= new Vector3(0, 0, 0) * Time.deltaTime;
+            }
+            else
+            {
+                _rb.velocity -= new Vector3(0, gravity, 0) * Time.deltaTime;
+            }
+            Jump();
         }
-        else
-        {
-            _rb.velocity -= new Vector3(0, gravity, 0) * Time.deltaTime;
-        }
-        Jump();
     }
 
     void ResetPosition()
     {
         transform.position = positionToSpawn.position;
-        enabled = true;
+        enableContorller = true;
         _rb.freezeRotation = true;
+        transform.rotation = Quaternion.identity;
     }
     private void FixedUpdate()
     {
-        Move();
+        if (enableContorller)
+        {
+            Move();
+        }
     }
 
     private void GatherInput()
@@ -90,7 +98,6 @@ public class PhysicPLayerController : MonoBehaviour
     }
     #endregion
 
-
     [SerializeField] float explosionForce = 200f;
     [SerializeField] float explosionRadius = 20f;
     private void OnCollisionEnter(Collision collision)
@@ -98,7 +105,7 @@ public class PhysicPLayerController : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Autobus"))
         {
             _rb.AddExplosionForce(explosionForce, collision.transform.position, explosionRadius);
-            enabled = false;
+            enableContorller = false;
             _rb.freezeRotation = false;
         }
     }
