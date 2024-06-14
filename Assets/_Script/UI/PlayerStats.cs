@@ -26,10 +26,10 @@ public class PlayerStats : MonoBehaviour
 
     public void IncreseStats(string StatName)
     {
-        variableValues[StatName] += 1;
+        variableValues[StatName] += 1f;
         if (StatName == "Speed")
         {
-            Speed = variableValues[StatName];
+            Speed = variableValues[StatName] * 0.2f;
         }
         if (StatName == "Force")
         {
