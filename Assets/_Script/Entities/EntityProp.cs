@@ -33,6 +33,22 @@ public class EntityProp : MonoBehaviour
         Move = StartMovement;
         entityType = _type;
     }
+
+    public void GoToStorage(Transform inTarget)
+    {
+        transform.parent = null;
+        rb.constraints = RigidbodyConstraints.None;
+        rb.useGravity = false;
+        rb.velocity = Vector3.zero;
+        target = inTarget;
+        dir = target.position - transform.position;
+        dir.Normalize();
+        Move = StartMovement;
+        speed *= 2f;
+    }
+
+
+
     void Update()
     {
         Move?.Invoke();

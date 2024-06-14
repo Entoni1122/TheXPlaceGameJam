@@ -3,7 +3,6 @@ using UnityEngine;
 public class Spot : MonoBehaviour
 {
     [SerializeField] int ID;
-    [SerializeField] Transform pivot;
     [SerializeField] Transform target;
     public int amountBaggage;
     private int currentAmountBaggage;
@@ -18,7 +17,7 @@ public class Spot : MonoBehaviour
             {
                 currentAmountBaggage++;
                 other.transform.gameObject.layer = 0;
-                other.GetComponent<EntityProp>().Init(target,EntityType.Baggage);
+                other.GetComponent<EntityProp>().GoToStorage(target);
                 Destroy(other.gameObject, 5);
                 if (currentAmountBaggage >= amountBaggage) { print("FullBaggage"); }
             }
