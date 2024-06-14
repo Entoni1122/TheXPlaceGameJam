@@ -81,7 +81,6 @@ public class Shooter : MonoBehaviour
             : transform.forward + transform.up * upForceMultiplier;
 
         _inventory.GetLastItem.GetComponent<BaseInteractableObj>().ThrowAway(dir * currentForce);
-        _inventory.Remove();
         trajcetory.SetTrajectoryVisible(false);
     }
 }

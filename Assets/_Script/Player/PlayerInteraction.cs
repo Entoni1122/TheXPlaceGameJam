@@ -107,7 +107,6 @@ public class PlayerInteraction : MonoBehaviour
                         if (_inventory.GetLastItem)
                         {
                             _interface.Interact(_inventory.GetLastItem);
-                            _inventory.Remove();
                         }
                         break;
                     case InteractType.Valigia:
@@ -143,7 +142,6 @@ public class PlayerInteraction : MonoBehaviour
                     if (obj != null)
                     {
                         _inventory.AddObjInInventory(carrelloInventory.GetLastItem);
-                        carrelloInventory.Remove();
                     }
                     return;
                 }

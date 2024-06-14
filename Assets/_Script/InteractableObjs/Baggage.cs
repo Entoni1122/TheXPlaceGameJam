@@ -7,7 +7,6 @@ public class Baggage : BaseInteractableObj
 {
 
     private Rigidbody _rb;
-    [SerializeField] Vector3 objectOffset = Vector3.zero;
 
     private Point currentPoint;
 

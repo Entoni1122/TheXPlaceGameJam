@@ -6,8 +6,11 @@ public class Inventory : MonoBehaviour
 {
     [SerializeField] bool isPlayerInventory;
     [SerializeField] Transform socketRef;
-    List<Transform> objsInSocket = new List<Transform>();
+    [SerializeField] Vector3 socketOffset;
     [SerializeField] int maxPickableObj;
+    private int count => socketRef.childCount;
+    public Transform GetLastItem => count > 0 ? socketRef.GetChild(count - 1) : null;
+    public bool IsEmpty => count <= 0;
 
     private void Awake()
     {
@@ -20,22 +23,16 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public Transform GetLastItem => objsInSocket.Count > 0 ? objsInSocket[objsInSocket.Count - 1] : null;
-    public bool IsEmpty => objsInSocket.Count <= 0;
+   
 
     public void AddObjInInventory(Transform obj)
     {
-        if (objsInSocket.Count < maxPickableObj)
+        if (count < maxPickableObj)
         {
-            objsInSocket.Add(obj);
             obj.SetParent(socketRef);
-            obj.position = socketRef.position + objsInSocket.Count * socketRef.up;
+            obj.position = socketRef.position + (count - 1) * socketRef.up;
+            obj.position += (count - 1) * socketOffset;
             obj.rotation = socketRef.rotation;
         }
-    }
-
-    public void Remove()
-    {
-        objsInSocket.RemoveAt(objsInSocket.Count - 1);
     }
 }
