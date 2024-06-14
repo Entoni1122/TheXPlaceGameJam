@@ -22,20 +22,25 @@ public class BaseInteractableObj : MonoBehaviour, IInteract
         currentPoint = point;
     }
 
-    void IInteract.Interact(Transform socket)
+    bool IInteract.Interact(Transform socket)
     {
         NotifyObjectRemoved();
         transform.parent = socket;
+        transform.rotation = socket.rotation;
         transform.position = transform.parent.position + objectOffset;
         _rb.isKinematic = true;
+        return true;
     }
 
-    void IInteract.Interact(Transform socket, Vector3 offset, int length)
+    bool IInteract.Interact(Transform socket, Vector3 offset, int length)
     {
         NotifyObjectRemoved();
         transform.parent = socket;
+        transform.rotation = socket.rotation;
         transform.position = transform.parent.position + offset + objectOffset * length;
         _rb.isKinematic = true;
+        return true;
+
     }
 
     void IInteract.ThrowAway(Vector3 impluseForce)
