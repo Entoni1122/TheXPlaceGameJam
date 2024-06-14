@@ -20,7 +20,7 @@ public class Baggage : BaseInteractableObj
     protected override void InteractNoParam()
     {
         NotifyObjectRemoved();
-        _rb.isKinematic = true;
+        _rb.constraints = RigidbodyConstraints.FreezeAll;
     }
 
     public void NotifyObjectRemoved()
