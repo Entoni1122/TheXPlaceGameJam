@@ -59,7 +59,6 @@ public class PhysicPLayerController : MonoBehaviour
             Jump();
         }
     }
-
     void ResetPosition()
     {
         transform.position = positionToSpawn.position;
