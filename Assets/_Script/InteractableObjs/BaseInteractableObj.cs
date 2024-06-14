@@ -30,7 +30,7 @@ public class BaseInteractableObj : MonoBehaviour, IInteract
     {
         Rigidbody _rb = GetComponent<Rigidbody>();
         transform.parent = null;
-        _rb.isKinematic = false;
+        _rb.constraints = RigidbodyConstraints.None;
         _rb.AddForce(force, ForceMode.Impulse);
     }
 }

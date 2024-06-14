@@ -111,7 +111,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactType: 1
-  objectOffset: {x: 0, y: 0, z: 0}
 --- !u!1001 &2218201584929667816
 PrefabInstance:
   m_ObjectHideFlags: 0
