@@ -43,6 +43,7 @@ public class FPController : MonoBehaviour
     [SerializeField] bool playerCanMove = true;
     [SerializeField] float walkSpeed = 5f;
     [SerializeField] float maxVelocityChange = 10f;
+    private float speedMultiplier;
 
     private bool isWalking = false;
 
@@ -116,6 +117,11 @@ public class FPController : MonoBehaviour
             sprintRemaining = sprintDuration;
             sprintCooldownReset = sprintCooldown;
         }
+
+        PlayerStats.OnChangeStats += (float inSpeedMultiplier, float InForce) =>
+        {
+            speedMultiplier = inSpeedMultiplier;
+        };
     }
     void Start()
     {
@@ -333,7 +339,7 @@ public class FPController : MonoBehaviour
 
             if (enableSprint && Input.GetKey(sprintKey) && sprintRemaining > 0f && !isSprintCooldown)
             {
-                targetVelocity = transform.TransformDirection(targetVelocity) * sprintSpeed;
+                targetVelocity = transform.TransformDirection(targetVelocity) * sprintSpeed * speedMultiplier;
 
                 Vector3 velocity = rb.velocity;
                 Vector3 velocityChange = (targetVelocity - velocity);
@@ -358,7 +364,7 @@ public class FPController : MonoBehaviour
             {
                 isSprinting = false;
 
-                targetVelocity = transform.TransformDirection(targetVelocity) * walkSpeed;
+                targetVelocity = transform.TransformDirection(targetVelocity) * walkSpeed * speedMultiplier;
 
                 Vector3 velocity = rb.velocity;
                 Vector3 velocityChange = (targetVelocity - velocity);
