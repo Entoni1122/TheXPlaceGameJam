@@ -24,6 +24,7 @@ public class MoveSuitcase : MonoBehaviour
             if (Vector3.Distance(target.position, transform.position) < .5f)
             {
                 rb.useGravity = true;
+                transform.parent = null;
                 Destroy(this);
             }
         }

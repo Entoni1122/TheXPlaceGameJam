@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7088860955429576144}
   - component: {fileID: 7537509940099490609}
-  - component: {fileID: 4421718052021731045}
   - component: {fileID: 6680369257959866982}
   - component: {fileID: 2979704712044700369}
+  - component: {fileID: 5036837491737068164}
   m_Layer: 8
   m_Name: Valigie
   m_TagString: Untagged
@@ -57,19 +57,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.4913862, y: 0.6578958, z: 1.8148298}
   m_Center: {x: 0.034210414, y: 0.28301358, z: -0.009330273}
---- !u!114 &4421718052021731045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6330567668775106612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 777d71f3b931feb4092496567d70d387, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectOffset: {x: 0, y: 0.2, z: 0}
 --- !u!54 &6680369257959866982
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -111,6 +98,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 150
   rb: {fileID: 6680369257959866982}
+--- !u!114 &5036837491737068164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6330567668775106612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b9fcecf1478e74479084e660a19b98c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactType: 1
+  objectOffset: {x: 0, y: 0, z: 0}
 --- !u!1001 &2218201584929667816
 PrefabInstance:
   m_ObjectHideFlags: 0

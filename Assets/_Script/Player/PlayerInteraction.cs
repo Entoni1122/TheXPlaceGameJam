@@ -1,8 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using NaughtyAttributes;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 
 enum PlayerView
 {
@@ -10,10 +8,8 @@ enum PlayerView
     Iso
 }
 
-[RequireComponent(typeof(TrajectoryPredictor))]
 public class PlayerInteraction : MonoBehaviour
 {
-    TrajectoryPredictor trajcetory;
     [SerializeField] Transform startCheckerPoint;
     [SerializeField] Transform socket;
     [SerializeField] PlayerView view;
@@ -22,58 +18,25 @@ public class PlayerInteraction : MonoBehaviour
     [ShowIf("ShowHide")] public float firstPersonDistance;
     [HideIf("ShowHide")] public float isoRadius;
     GameObject interactableObj;
-    [SerializeField] float throwForce = 10f;
-    [SerializeField] float minForce = 2f;
-    [SerializeField] float upForceMultiplier = .2f;
-    [SerializeField] float forceIncrementMultiplier = 2f;
-    float currentForce;
-
-    List<GameObject> objsInSocket = new List<GameObject>();
-    private int maxPickableObj;
+    [SerializeField] Inventory _inventory;
 
     #region UnityFunctions
     private void Awake()
     {
-        trajcetory = GetComponent<TrajectoryPredictor>();
         StartCoroutine("CheckingForInteraction");
-
-        PlayerStats.OnChangeStats += (float inSpeedMultiplier, float InForce) =>
-        {
-            maxPickableObj = (int)InForce;
-        };
     }
-
     private void Update()
     {
         if (Input.GetKeyUp(KeyCode.E))
         {
             Interact();
         }
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyUp(KeyCode.Q))
         {
-            if (objsInSocket.Count > 0)
-            {
-                trajcetory.SetTrajectoryVisible(true);
-                currentForce = minForce;
-            }
-        }
-        if (Input.GetKey(KeyCode.Mouse0))
-        {
-            if (objsInSocket.Count > 0)
-            {
-                Prediction();
-            }
-        }
-        if (Input.GetKeyUp(KeyCode.Mouse0))
-        {
-            if (objsInSocket.Count > 0)
-            {
-                Throw();
-            }
+            PickUpFromCarrello();
         }
     }
     #endregion
-
     #region Functions
     private IEnumerator CheckingForInteraction()
     {
@@ -132,76 +95,60 @@ public class PlayerInteraction : MonoBehaviour
     }
     private void Interact()
     {
-        if (objsInSocket.Count < maxPickableObj)
+        if (interactableObj != null)
         {
-            if (interactableObj != null)
+            IInteract _interface = interactableObj.GetComponent<IInteract>();
+            if (_interface != null)
             {
-                IInteract _interface = interactableObj.GetComponent<IInteract>();
-                if (_interface != null)
+                InteractType objType = _interface.GetInteractType();
+                switch (objType)
                 {
-                    bool result = false;
-
-                    if (objsInSocket.Count > 0)
-                    {
-                        result = _interface.Interact(socket, objsInSocket.Count * socket.up, objsInSocket.Count + 1);
-                    }
-                    else
-                    {
-                        result = _interface.Interact(socket);
-                    }
-                    if (result)
-                    {
-                        objsInSocket.Add(interactableObj);
-                    }
-
-                    interactableObj = null;
+                    case InteractType.Carrello:
+                        if (_inventory.GetLastItem)
+                        {
+                            _interface.Interact(_inventory.GetLastItem);
+                            _inventory.Remove();
+                        }
+                        break;
+                    case InteractType.Valigia:
+                        if (interactableObj.transform.parent == null)
+                        {
+                            _interface.Interact();
+                            _inventory.AddObjInInventory(interactableObj.transform);
+                        }
+                        break;
+                    case InteractType.Shop:
+                        _interface.Interact();
+                        break;
+                    default:
+                        break;
                 }
+
+                interactableObj = null;
             }
         }
     }
-    private void Prediction()
+
+    private void PickUpFromCarrello()
     {
-        currentForce += Time.deltaTime * forceIncrementMultiplier;
-        currentForce = Mathf.Clamp(currentForce, 0, throwForce);
-        int lastObjIndex = objsInSocket.Count - 1;
-        Rigidbody rb = objsInSocket[lastObjIndex].GetComponent<Rigidbody>();
-        ProjectileProperties property = new ProjectileProperties();
-        property.Drag = rb.drag;
-        property.Mass = rb.mass;
-
-        Vector3 dir = view == PlayerView.FirstPerson
-            ? Camera.main.transform.forward + transform.up * upForceMultiplier
-            : transform.forward + transform.up * upForceMultiplier;
-
-        property.Direction = dir;
-        property.InitialPosition = objsInSocket[lastObjIndex].transform.position;
-        property.InitialSpeed = currentForce;
-        trajcetory.PredictTrajectory(property);
-
-        if (view == PlayerView.Iso)
+        Collider[] colliders = Physics.OverlapSphere(startCheckerPoint.position, isoRadius);
+        foreach (Collider cl in colliders)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            Physics.Raycast(ray, out RaycastHit result, 100);
-            Vector3 dist = result.point - transform.position;
-            dist.Normalize();
-
-            var rot = Quaternion.LookRotation(dist, Vector3.up);
-            rot.eulerAngles = Vector3.up * rot.eulerAngles.y;
-            transform.rotation = Quaternion.Slerp(transform.rotation, rot, 5 * Time.deltaTime);
+            if (cl.gameObject.layer == LayerMask.NameToLayer("Interactable"))
+            {
+                Inventory carrelloInventory = cl.GetComponent<Inventory>();
+                if (carrelloInventory)
+                {
+                    Transform obj = carrelloInventory.GetLastItem;
+                    if (obj != null)
+                    {
+                        _inventory.AddObjInInventory(carrelloInventory.GetLastItem);
+                        carrelloInventory.Remove();
+                    }
+                    return;
+                }
+            }
         }
-    }
-    private void Throw()
-    {
-        int lastObjIndex = objsInSocket.Count - 1;
-        IInteract _interface = objsInSocket[lastObjIndex].GetComponent<IInteract>();
-
-        Vector3 dir = view == PlayerView.FirstPerson
-            ? Camera.main.transform.forward + transform.up * upForceMultiplier
-            : transform.forward + transform.up * upForceMultiplier;
-
-        _interface.ThrowAway(dir * currentForce);
-        objsInSocket.RemoveAt(lastObjIndex);
-        trajcetory.SetTrajectoryVisible(false);
     }
     #endregion
 }

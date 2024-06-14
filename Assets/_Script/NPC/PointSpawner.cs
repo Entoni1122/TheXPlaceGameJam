@@ -21,7 +21,7 @@ public class PointSpawner : MonoBehaviour
         var interactableObj = entity.GetComponent<BaseInteractableObj>();
         if (interactableObj != null)
         {
-            interactableObj.SetCurrentPoint(pointA);
+            //interactableObj.SetCurrentPoint(pointA);
         }
         entity.transform.SetParent(pointA.transform);
         pointA.isOccupied = true;

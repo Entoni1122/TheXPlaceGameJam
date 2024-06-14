@@ -5,59 +5,32 @@ using UnityEngine;
 
 public class BaseInteractableObj : MonoBehaviour, IInteract
 {
-    private Rigidbody _rb;
-    [SerializeField] Vector3 objectOffset = Vector3.zero;
+    [SerializeField] InteractType interactType;
 
-    private Point currentPoint;
+    protected virtual void InteractNoParam() { }
+    protected virtual void InteractOneParam(Transform obj) { }
 
-    public static event Action<Point> OnObjectRemoved;
-
-    private void Start()
+    void IInteract.Interact()
     {
-        _rb = GetComponent<Rigidbody>();
+        InteractNoParam();
     }
 
-    public void SetCurrentPoint(Point point)
+    void IInteract.Interact(Transform obj)
     {
-        currentPoint = point;
+        InteractOneParam(obj);
     }
 
-    bool IInteract.Interact(Transform socket)
+    InteractType IInteract.GetInteractType()
     {
-        NotifyObjectRemoved();
-        transform.parent = socket;
-        transform.rotation = socket.rotation;
-        transform.position = transform.parent.position + objectOffset;
-        _rb.isKinematic = true;
-        return true;
+        return interactType;
     }
 
-    bool IInteract.Interact(Transform socket, Vector3 offset, int length)
-    {
-        NotifyObjectRemoved();
-        transform.parent = socket;
-        transform.rotation = socket.rotation;
-        transform.position = transform.parent.position + offset + objectOffset * length;
-        _rb.isKinematic = true;
-        return true;
 
-    }
-
-    void IInteract.ThrowAway(Vector3 impluseForce)
+    public virtual void ThrowAway(Vector3 force)
     {
-        NotifyObjectRemoved();
+        Rigidbody _rb = GetComponent<Rigidbody>();
         transform.parent = null;
         _rb.isKinematic = false;
-        _rb.AddForce(impluseForce, ForceMode.Impulse);
-    }
-
-    private void NotifyObjectRemoved()
-    {
-        if (currentPoint != null)
-        {
-            currentPoint.isOccupied = false;
-            OnObjectRemoved?.Invoke(currentPoint);
-            currentPoint = null;
-        }
+        _rb.AddForce(force, ForceMode.Impulse);
     }
 }
