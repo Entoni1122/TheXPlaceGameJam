@@ -10,6 +10,7 @@ public class PhysicPLayerController : MonoBehaviour
     [Header("Movemnet")]
     [SerializeField] float _speed = 5f;
     [SerializeField] float _turnSpeed = 360f;
+    private float currentSpeed;
 
     [Header("Jump")]
     [SerializeField] float _jumpForce = 10f;
@@ -26,6 +27,12 @@ public class PhysicPLayerController : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
+        currentSpeed = _speed;
+
+        PlayerStats.OnChangeStats += (float inSpeedMultiplier, float InForce) =>
+        {
+            currentSpeed = _speed * inSpeedMultiplier;
+        };
     }
 
     private void Update()
@@ -84,7 +91,7 @@ public class PhysicPLayerController : MonoBehaviour
 
     private void Move()
     {
-        _rb.MovePosition(transform.position + transform.forward * _input.normalized.magnitude * _speed * Time.deltaTime);
+        _rb.MovePosition(transform.position + transform.forward * _input.normalized.magnitude * currentSpeed * Time.deltaTime);
     }
 
     private void Jump()

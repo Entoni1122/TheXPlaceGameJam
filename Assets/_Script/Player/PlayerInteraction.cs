@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using NaughtyAttributes;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 enum PlayerView
 {
@@ -28,12 +29,18 @@ public class PlayerInteraction : MonoBehaviour
     float currentForce;
 
     List<GameObject> objsInSocket = new List<GameObject>();
+    private int maxPickableObj;
 
     #region UnityFunctions
-    private void Start()
+    private void Awake()
     {
         trajcetory = GetComponent<TrajectoryPredictor>();
         StartCoroutine("CheckingForInteraction");
+
+        PlayerStats.OnChangeStats += (float inSpeedMultiplier, float InForce) =>
+        {
+            maxPickableObj = (int)InForce;
+        };
     }
 
     private void Update()
@@ -125,21 +132,30 @@ public class PlayerInteraction : MonoBehaviour
     }
     private void Interact()
     {
-        if (interactableObj != null)
+        if (objsInSocket.Count < maxPickableObj)
         {
-            IInteract _interface = interactableObj.GetComponent<IInteract>();
-            if (_interface != null)
+            if (interactableObj != null)
             {
-                if (objsInSocket.Count > 0)
+                IInteract _interface = interactableObj.GetComponent<IInteract>();
+                if (_interface != null)
                 {
-                    _interface.Interact(socket, objsInSocket.Count * Vector3.up, objsInSocket.Count + 1);
+                    bool result = false;
+
+                    if (objsInSocket.Count > 0)
+                    {
+                        result = _interface.Interact(socket, objsInSocket.Count * socket.up, objsInSocket.Count + 1);
+                    }
+                    else
+                    {
+                        result = _interface.Interact(socket);
+                    }
+                    if (result)
+                    {
+                        objsInSocket.Add(interactableObj);
+                    }
+
+                    interactableObj = null;
                 }
-                else
-                {
-                    _interface.Interact(socket);
-                }
-                objsInSocket.Add(interactableObj);
-                interactableObj = null;
             }
         }
     }
@@ -165,7 +181,7 @@ public class PlayerInteraction : MonoBehaviour
         if (view == PlayerView.Iso)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            Physics.Raycast(ray,out RaycastHit result,100);
+            Physics.Raycast(ray, out RaycastHit result, 100);
             Vector3 dist = result.point - transform.position;
             dist.Normalize();
 
