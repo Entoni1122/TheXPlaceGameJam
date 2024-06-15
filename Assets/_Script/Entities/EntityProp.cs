@@ -5,7 +5,8 @@ using UnityEngine;
 public enum EntityType
 {
     People,
-    Baggage
+    Baggage,
+    NONE
 }
 public enum ColorType
 {

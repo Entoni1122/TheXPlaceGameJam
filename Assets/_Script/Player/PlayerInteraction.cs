@@ -127,8 +127,16 @@ public class PlayerInteraction : MonoBehaviour
                         }
                         break;
                     case InteractType.Mulino:
-                        _interface.Interact(transform);
+                        if (_inventory.IsEmpty)
+                        {
+                            _interface.Interact(transform);
+                        }
+                        else
+                        {
+                            _interface.Interact(_inventory.GetLastItem, true);
+                        }
                         break;
+
                     case InteractType.Shop:
                         _interface.Interact();
                         break;

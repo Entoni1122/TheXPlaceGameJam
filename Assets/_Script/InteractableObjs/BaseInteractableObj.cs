@@ -9,6 +9,7 @@ public class BaseInteractableObj : MonoBehaviour, IInteract
 
     protected virtual void InteractNoParam() { }
     protected virtual void InteractOneParam(Transform obj) { }
+    protected virtual void InteractTwoParam(Transform transform,bool bNig) { }
 
     void IInteract.Interact()
     {
@@ -32,5 +33,9 @@ public class BaseInteractableObj : MonoBehaviour, IInteract
         transform.parent = null;
         _rb.constraints = RigidbodyConstraints.None;
         _rb.AddForce(force, ForceMode.Impulse);
+    }
+    public void Interact(Transform baggage, bool bHasToStore)
+    {
+        InteractTwoParam(baggage, bHasToStore);
     }
 }

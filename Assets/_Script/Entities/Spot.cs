@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class Spot : MonoBehaviour
@@ -12,6 +13,9 @@ public class Spot : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!other.GetComponent<EntityProp>()) return;
+
+
         if (other.GetComponent<EntityProp>().color == color)
         {
             if (other.GetComponent<EntityProp>().entityType == EntityType.Baggage)

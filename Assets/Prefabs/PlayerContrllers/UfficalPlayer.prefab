@@ -290,6 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4f35ba76c51456408bb50396de06974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StorableLock: 2
   isPlayerInventory: 1
   socketRef: {fileID: 369784867436003388}
   socketOffsetBaggage: {x: 0, y: -0.4, z: 0}

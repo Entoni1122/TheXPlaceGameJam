@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using NaughtyAttributes;
 
 public class Inventory : MonoBehaviour
 {
+    [SerializeField] EntityType StorableLock;
     [SerializeField] bool isPlayerInventory;
     [SerializeField] public Transform socketRef;
     [SerializeField] Vector3 socketOffsetBaggage;
@@ -12,6 +12,9 @@ public class Inventory : MonoBehaviour
     private int count => socketRef.childCount;
     public Transform GetLastItem => count > 0 ? socketRef.GetChild(count - 1) : null;
     public bool IsEmpty => count <= 0;
+
+    
+
 
     private void Awake()
     {
@@ -27,6 +30,11 @@ public class Inventory : MonoBehaviour
     EntityType currentTypeStored;
     public void AddObjInInventory(Transform obj)
     {
+        if (StorableLock != EntityType.NONE)
+        {
+            if (StorableLock != obj.GetComponent<EntityProp>().entityType) return;
+        }
+
         if (count < maxPickableObj)
         {
             if(count == 0)
