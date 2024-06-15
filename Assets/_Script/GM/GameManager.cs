@@ -1,8 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 
 
@@ -16,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] int roundCount;
 
     [SerializeField] int startTimerPerRound;
+    [SerializeField] TextMeshProUGUI timerTxt;
     private float currentTimer;
     public float GetTimerRound =>currentTimer;
 
@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         currentTimer -= Time.deltaTime;
+        timerTxt.text = $"Timer:{currentTimer.ToString("0")}";
         if (currentTimer <= 0)
         {
             OnLoseRound?.Invoke();
