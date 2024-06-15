@@ -47,7 +47,7 @@ Transform:
   - {fileID: 6859559512964860499}
   - {fileID: 5264836005276433004}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &5352015316820361610
 Rigidbody:
@@ -292,7 +292,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayerInventory: 1
   socketRef: {fileID: 369784867436003388}
-  socketOffset: {x: 0, y: -0.4, z: 0}
+  socketOffsetBaggage: {x: 0, y: -0.4, z: 0}
+  socketOffsetPeople: {x: 0, y: 1.1, z: 0}
   maxPickableObj: 0
 --- !u!114 &6264279113447999304
 MonoBehaviour:

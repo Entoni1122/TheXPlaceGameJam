@@ -21,13 +21,12 @@ public class EntityProp : MonoBehaviour
     [SerializeField] Rigidbody rb;
     private Transform target;
     private Vector3 dir;
-    public ColorType color { get;private set; }
+    public ColorType color { get; private set; }
     private Action Move;
 
 
     public void Init(Transform inTarget, EntityType _type, ColorType _color)
     {
-        transform.parent = null;
         rb.constraints = RigidbodyConstraints.None;
         rb.useGravity = false;
         rb.velocity = Vector3.zero;
@@ -54,10 +53,22 @@ public class EntityProp : MonoBehaviour
             default:
                 break;
         }
-        foreach(Material mat in GetComponentInChildren<MeshRenderer>().materials)
+
+        MeshRenderer meshRenderer = GetComponentInChildren<MeshRenderer>();
+        if (meshRenderer)
         {
-            mat.color = meshcolor;
+            meshRenderer.materials[1].color = meshcolor;
         }
+        else
+        {
+            SkinnedMeshRenderer skinnedmeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+            if (skinnedmeshRenderer)
+            {
+                skinnedmeshRenderer.materials[5].color = meshcolor;
+            }
+
+        }
+
     }
 
     public void GoToStorage(Transform inTarget)

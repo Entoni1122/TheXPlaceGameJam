@@ -18,8 +18,7 @@ public class Spot : MonoBehaviour
             {
                 currentAmountBaggage++;
                 other.transform.gameObject.layer = 0;
-                other.GetComponent<EntityProp>().GoToStorage(target);
-                Destroy(other.gameObject, 5);
+               
                 if (currentAmountBaggage >= amountBaggage)
                 {
                     GameManager.instance.OnFullSpot(amountBaggage, 0);
@@ -35,6 +34,9 @@ public class Spot : MonoBehaviour
                     currentAmountPeople = 0;
                 }
             }
+
+            other.GetComponent<EntityProp>().GoToStorage(target);
+            Destroy(other.gameObject, 5);
         }
     }
 }

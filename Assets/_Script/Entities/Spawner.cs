@@ -26,11 +26,12 @@ public class Spawner : MonoBehaviour
 
         spawnTimer = timeToSpawn;
         List<EntityInfo> list = GameManager.instance.GetEnityInfoToSpawn(entityTypeToSpawn);
+
         foreach (EntityInfo ent in list)
         {
             for (int i = 0; i < ent.count; i++)
             {
-                GameObject entiti = Instantiate(entity, spawnPos.position, Quaternion.identity, this.transform);
+                GameObject entiti = Instantiate(entity, spawnPos.position, Quaternion.identity);
                 entiti.GetComponent<EntityProp>().Init(targetPos, entityTypeToSpawn, ent.color);
                 entiti.SetActive(false);
                 entitiesSpawned.Add(entiti);

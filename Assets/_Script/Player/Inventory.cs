@@ -6,7 +6,8 @@ public class Inventory : MonoBehaviour
 {
     [SerializeField] bool isPlayerInventory;
     [SerializeField] Transform socketRef;
-    [SerializeField] Vector3 socketOffset;
+    [SerializeField] Vector3 socketOffsetBaggage;
+    [SerializeField] Vector3 socketOffsetPeople;
     [SerializeField] int maxPickableObj;
     private int count => socketRef.childCount;
     public Transform GetLastItem => count > 0 ? socketRef.GetChild(count - 1) : null;
@@ -23,15 +24,23 @@ public class Inventory : MonoBehaviour
         }
     }
 
-   
-
+    EntityType currentTypeStored;
     public void AddObjInInventory(Transform obj)
     {
         if (count < maxPickableObj)
         {
+            if(count == 0)
+            {
+                currentTypeStored = obj.GetComponent<EntityProp>().entityType;
+            }
+            else
+            {
+                if (currentTypeStored != obj.GetComponent<EntityProp>().entityType)return;
+            }
             obj.SetParent(socketRef);
+            Vector3 offset = currentTypeStored == EntityType.Baggage ? socketOffsetBaggage : socketOffsetPeople;
             obj.position = socketRef.position + (count - 1) * socketRef.up;
-            obj.position += (count - 1) * socketOffset;
+            obj.position += (count - 1) * offset;
             obj.rotation = socketRef.rotation;
         }
     }
