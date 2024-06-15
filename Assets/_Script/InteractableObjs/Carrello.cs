@@ -25,6 +25,10 @@ public class Carrello : BaseInteractableObj
 
     public void Handle(Transform player)
     {
+        if (handlePosition == null)
+        {
+            return;
+        }
         if (IsPlayerNearHandle(player))
         {
             if (initialPlayerOffset == Vector3.zero) 
