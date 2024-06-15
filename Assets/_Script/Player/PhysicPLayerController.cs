@@ -43,21 +43,19 @@ public class PhysicPLayerController : MonoBehaviour
             ResetPosition();
         }
 
-        if (enableContorller)
+        GatherInput();
+        Look();
+        isGrounded = Physics.Raycast(transform.position, -transform.up, 1f);
+        if (isGrounded)
         {
-            GatherInput();
-            Look();
-            isGrounded = Physics.Raycast(transform.position, -transform.up, 1f);
-            if (isGrounded)
-            {
-                _rb.velocity -= new Vector3(0, 0, 0) * Time.deltaTime;
-            }
-            else
-            {
-                _rb.velocity -= new Vector3(0, gravity, 0) * Time.deltaTime;
-            }
-            Jump();
+            _rb.velocity -= new Vector3(0, 0, 0) * Time.deltaTime;
         }
+        else
+        {
+            _rb.velocity -= new Vector3(0, gravity, 0) * Time.deltaTime;
+        }
+        Jump();
+
     }
     void ResetPosition()
     {
@@ -68,10 +66,9 @@ public class PhysicPLayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (enableContorller)
-        {
-            Move();
-        }
+
+        Move();
+
     }
 
     private void GatherInput()

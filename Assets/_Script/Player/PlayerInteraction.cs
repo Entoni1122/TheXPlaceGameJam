@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using NaughtyAttributes;
+using Unity.VisualScripting;
+using System;
 
 enum PlayerView
 {
@@ -115,6 +117,9 @@ public class PlayerInteraction : MonoBehaviour
                             _interface.Interact();
                             _inventory.AddObjInInventory(interactableObj.transform);
                         }
+                        break;
+                    case InteractType.Mulino:
+                        _interface.Interact(transform);
                         break;
                     case InteractType.Shop:
                         _interface.Interact();

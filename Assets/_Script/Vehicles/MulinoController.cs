@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using Unity.Netcode;
@@ -18,18 +19,40 @@ public class MulinoController : MonoBehaviour
     [SerializeField] Transform groundRayPoint;
 
     private float speedInput, turnInput, verticalInput;
-    [SerializeField] bool bEnableController = true;
+    [SerializeField] bool bEnableController = false;
     public bool BEnableController { get { return bEnableController; } set { bEnableController = value; } }
 
     [SerializeField] float respawnTimer = 2f;
     bool isGrounded;
-
+    [SerializeField] Transform playerDismountPos;
     private void Update()
     {
-        isGrounded = Physics.Raycast(transform.position, Vector3.down,2f);
-        InputReader();
+        if (bEnableController)
+        {
+            isGrounded = Physics.Raycast(transform.position, Vector3.down, 2f);
+            InputReader();
+        
+        }
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            PlayerStats.OnEnableController?.Invoke(true, playerDismountPos.position);
+
+            gameObject.layer = LayerMask.NameToLayer("Interactable");
+            enabled = false;
+        }
     }
 
+    private void FixedUpdate()
+    {
+        if (bEnableController)
+        {
+            if (!isGrounded)
+            {
+                return;
+            }
+            Move();
+        }
+    }
     private void InputReader()
     {
         float localVerticalInput = Input.GetAxisRaw("Vertical");
@@ -41,7 +64,6 @@ public class MulinoController : MonoBehaviour
         OnVerticalInput();
         OnTurnInput();
     }
-    
     private void OnVerticalInput()
     {
         speedInput = 0f;

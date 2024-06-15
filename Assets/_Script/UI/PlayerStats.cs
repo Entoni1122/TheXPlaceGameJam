@@ -11,15 +11,23 @@ public class PlayerStats : MonoBehaviour
     public float Force = 1;
     public float Money = 0;
 
-    public static Action<float,float> OnChangeStats;//remember first is Speed, second is Force
+    public static Action<float, float> OnChangeStats;
 
+    public static Action<bool,Vector3> OnEnableController;
 
-    // Start is called before the first frame update
     void Start()
     {
+        OnEnableController += (bool porcodio,Vector3 position) =>
+            {
+                GetComponent<PhysicPLayerController>().enabled = porcodio;
+                GetComponent<Shooter>().enabled = porcodio;
+                GetComponent<PlayerInteraction>().enabled = porcodio;
+                GetComponent<Transform>().parent = null;
+                GetComponent<Transform>().position = position;
+            };
+
         variableValues["Force"] = Speed;
         variableValues["Speed"] = Force;
-
 
         OnChangeStats?.Invoke(Speed, Force);
     }
@@ -36,6 +44,6 @@ public class PlayerStats : MonoBehaviour
             Force = variableValues[StatName];
         }
 
-        OnChangeStats?.Invoke(Speed,Force);
+        OnChangeStats?.Invoke(Speed, Force);
     }
 }
