@@ -19,6 +19,7 @@ public class PlayerInteraction : MonoBehaviour
     [HideIf("ShowHide")] public float isoRadius;
     GameObject interactableObj;
     [SerializeField] Inventory _inventory;
+    private Carrello _currentCarrello;
 
     #region UnityFunctions
     private void Awake()
@@ -34,6 +35,11 @@ public class PlayerInteraction : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Q))
         {
             PickUpFromCarrello();
+        }
+
+        if (Input.GetKeyUp(KeyCode.C))
+        {
+            HandleCarrello();
         }
     }
     #endregion
@@ -104,6 +110,7 @@ public class PlayerInteraction : MonoBehaviour
                 switch (objType)
                 {
                     case InteractType.Carrello:
+
                         if (_inventory.GetLastItem)
                         {
                             _interface.Interact(_inventory.GetLastItem);
@@ -144,6 +151,32 @@ public class PlayerInteraction : MonoBehaviour
                         _inventory.AddObjInInventory(carrelloInventory.GetLastItem);
                     }
                     return;
+                }
+            }
+        }
+    }
+
+    private void HandleCarrello()
+    {
+        if (_currentCarrello != null)
+        {
+            _currentCarrello.Release(transform);
+            _currentCarrello = null;
+        }
+        else
+        {
+            Collider[] colliders = Physics.OverlapSphere(startCheckerPoint.position, isoRadius);
+            foreach (Collider cl in colliders)
+            {
+                Carrello carrello = cl.GetComponent<Carrello>();
+                if (carrello != null)
+                {
+                    if (cl.gameObject.layer == LayerMask.NameToLayer("Interactable"))
+                    {
+                        carrello.Handle(transform);
+                        _currentCarrello = carrello;
+                        return;
+                    }
                 }
             }
         }
