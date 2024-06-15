@@ -42,6 +42,7 @@ public class PlayerInteraction : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.C))
         {
             HandleCarrello();
+            ToggleMagnetism();
         }
     }
     #endregion
@@ -184,6 +185,14 @@ public class PlayerInteraction : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    private void ToggleMagnetism()
+    {
+        if (_currentCarrello != null)
+        {
+            _currentCarrello.magnetActive = !_currentCarrello.magnetActive;
         }
     }
     #endregion

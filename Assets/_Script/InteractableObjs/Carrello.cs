@@ -11,11 +11,26 @@ public class Carrello : BaseInteractableObj
     public Vector3 playerOffset = new Vector3(0, 0, -1);
     public Vector3 rotationOffset = new Vector3(0, 0, 0);
     private Vector3 initialPlayerOffset = Vector3.zero;
+    public float magnetRadius = 5.0f;
+    public float magnetSpeed = 10.0f;
+    public bool magnetActive = false;
+    public float attachDistance = 1.0f;
+    private Transform _socketTransform;
+    private bool isCarrelloInHand = false;
 
     private void Awake()
     {
         _inventory = GetComponent<Inventory>();
         _rb = GetComponent<Rigidbody>();
+        _socketTransform = _inventory.socketRef;
+    }
+
+    private void Update()
+    {
+        if (isCarrelloInHand && magnetActive)
+        {
+            AttractNearbyValigie();
+        }
     }
 
     protected override void InteractOneParam(Transform obj)
@@ -31,7 +46,9 @@ public class Carrello : BaseInteractableObj
         }
         if (IsPlayerNearHandle(player))
         {
-            if (initialPlayerOffset == Vector3.zero) 
+            isCarrelloInHand = true;
+
+            if (initialPlayerOffset == Vector3.zero)
             {
                 initialPlayerOffset = player.position - handlePosition.position;
             }
@@ -50,9 +67,11 @@ public class Carrello : BaseInteractableObj
 
     public void Release(Transform player)
     {
+        isCarrelloInHand = false;
+
         _rb.isKinematic = false;
         transform.SetParent(null);
-        initialPlayerOffset = Vector3.zero; 
+        initialPlayerOffset = Vector3.zero;
     }
 
     private bool IsPlayerNearHandle(Transform player)
@@ -63,5 +82,62 @@ public class Carrello : BaseInteractableObj
             return distance <= interactionDistance;
         }
         return false;
+    }
+
+    private void AttractNearbyValigie()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, magnetRadius);
+        foreach (Collider col in colliders)
+        {
+            IInteract interactable = col.GetComponent<IInteract>();
+            if (interactable != null && interactable.GetInteractType() == InteractType.Valigia)
+            {
+                Transform valigiaTransform = col.transform;
+
+                if (valigiaTransform.IsChildOf(_socketTransform))
+                {
+                    continue;
+                }
+
+                Rigidbody valigiaRb = valigiaTransform.GetComponent<Rigidbody>();
+                if (valigiaRb != null)
+                {
+                    Vector3 direction = (_socketTransform.position - valigiaTransform.position).normalized;
+                    float distToSocket = Vector3.Distance(valigiaTransform.position, _socketTransform.position);
+
+                    if (distToSocket <= attachDistance)
+                    {
+                        AttachValigiaToSocket(valigiaTransform);
+                    }
+                    else
+                    {
+                        valigiaRb.velocity = direction * magnetSpeed;
+                    }
+                }
+            }
+        }
+    }
+
+    private void AttachValigiaToSocket(Transform valigia)
+    {
+        valigia.SetParent(_socketTransform);
+
+        int index = _socketTransform.childCount - 1;
+        Vector3 newPos = _socketTransform.position + index * _socketTransform.up * 0.8f;
+        valigia.position = newPos;
+        valigia.rotation = _socketTransform.rotation;
+
+        Rigidbody valigiaRb = valigia.GetComponent<Rigidbody>();
+        if (valigiaRb != null)
+        {
+            valigiaRb.velocity = Vector3.zero;
+            valigiaRb.isKinematic = true;
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, magnetRadius);
     }
 }

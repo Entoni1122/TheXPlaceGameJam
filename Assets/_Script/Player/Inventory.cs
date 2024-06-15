@@ -5,7 +5,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     [SerializeField] bool isPlayerInventory;
-    [SerializeField] Transform socketRef;
+    [SerializeField] public Transform socketRef;
     [SerializeField] Vector3 socketOffsetBaggage;
     [SerializeField] Vector3 socketOffsetPeople;
     [SerializeField] int maxPickableObj;
