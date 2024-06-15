@@ -2,11 +2,16 @@ using System;
 using UnityEngine;
 
 
-
 public enum EntityType
 {
     People,
     Baggage
+}
+public enum ColorType
+{
+    Blue,
+    Orange,
+    Green
 }
 
 public class EntityProp : MonoBehaviour
@@ -16,11 +21,11 @@ public class EntityProp : MonoBehaviour
     [SerializeField] Rigidbody rb;
     private Transform target;
     private Vector3 dir;
-    public int spotID { get;private set; }
+    public ColorType color { get;private set; }
     private Action Move;
 
 
-    public void Init(Transform inTarget, EntityType _type, int targetSpotID = 0)
+    public void Init(Transform inTarget, EntityType _type, ColorType _color)
     {
         transform.parent = null;
         rb.constraints = RigidbodyConstraints.None;
@@ -29,9 +34,30 @@ public class EntityProp : MonoBehaviour
         target = inTarget;
         dir = target.position - transform.position;
         dir.Normalize();
-        spotID = targetSpotID;
+        color = _color;
         Move = StartMovement;
         entityType = _type;
+
+
+        Color meshcolor = Color.white;
+        switch (color)
+        {
+            case ColorType.Blue:
+                meshcolor = Color.blue;
+                break;
+            case ColorType.Orange:
+                meshcolor = Color.yellow;
+                break;
+            case ColorType.Green:
+                meshcolor = Color.green;
+                break;
+            default:
+                break;
+        }
+        foreach(Material mat in GetComponentInChildren<MeshRenderer>().materials)
+        {
+            mat.color = meshcolor;
+        }
     }
 
     public void GoToStorage(Transform inTarget)
@@ -46,8 +72,6 @@ public class EntityProp : MonoBehaviour
         Move = StartMovement;
         speed *= 2f;
     }
-
-
 
     void Update()
     {

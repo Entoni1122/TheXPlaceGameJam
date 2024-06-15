@@ -10,35 +10,51 @@ public class Spawner : MonoBehaviour
     [SerializeField] Transform targetPos;
     [SerializeField] float timeToSpawn;
 
+    private float spawnTimer;
 
-    int maxSpawnerCount;
-    int spawnerCount;
-    float spawnTimer;
+    private List<GameObject> entitiesSpawned = new List<GameObject>();
+    private bool startSpawn;
 
-    protected void Start()
+    private void Awake()
     {
-        spawnTimer = timeToSpawn;
-        maxSpawnerCount = GameManager.instance.GetCountPerRoundByEntityType(entityTypeToSpawn);
+        GameManager.OnRoundStart += StartRound;
     }
+
+    public void StartRound()
+    {
+        entitiesSpawned.Clear();
+
+        spawnTimer = timeToSpawn;
+        List<EntityInfo> list = GameManager.instance.GetEnityInfoToSpawn(entityTypeToSpawn);
+        foreach (EntityInfo ent in list)
+        {
+            for (int i = 0; i < ent.count; i++)
+            {
+                GameObject entiti = Instantiate(entity, spawnPos.position, Quaternion.identity, this.transform);
+                entiti.GetComponent<EntityProp>().Init(targetPos, entityTypeToSpawn, ent.color);
+                entiti.SetActive(false);
+                entitiesSpawned.Add(entiti);
+            }
+        }
+        startSpawn = true;
+    }
+
 
     protected void Update()
     {
-        if (spawnerCount < maxSpawnerCount)
+        if (startSpawn)
         {
-            spawnTimer += Time.deltaTime;
-            if (spawnTimer > timeToSpawn)
+            if (entitiesSpawned.Count > 0)
             {
-                spawnTimer = 0;
-                SpawnEntitie();
+                spawnTimer += Time.deltaTime;
+                if (spawnTimer > timeToSpawn)
+                {
+                    spawnTimer = 0;
+                    int randomIndex = Random.Range(0, entitiesSpawned.Count - 1);
+                    entitiesSpawned[randomIndex].SetActive(true);
+                    entitiesSpawned.RemoveAt(randomIndex);
+                }
             }
         }
-    }
-
-    protected void SpawnEntitie()
-    {
-        GameObject entiti = Instantiate(entity, spawnPos.position, Quaternion.identity, this.transform);
-        int ID = (spawnerCount + GameManager.instance.RoundCount) % 3;
-        entiti.GetComponent<EntityProp>().Init(targetPos, entityTypeToSpawn, ID);
-        spawnerCount++;
     }
 }

@@ -2,16 +2,17 @@ using UnityEngine;
 
 public class Spot : MonoBehaviour
 {
-    [SerializeField] int ID;
+    [SerializeField] ColorType color;
+    public ColorType GetColor => color;
     [SerializeField] Transform target;
-    public int amountBaggage;
+    public int amountBaggage { private get; set; }
     private int currentAmountBaggage;
-    public int amountPeople;
+    public int amountPeople { private get; set; }
     private int currentAmountPeople;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<EntityProp>().spotID == ID)
+        if (other.GetComponent<EntityProp>().color == color)
         {
             if (other.GetComponent<EntityProp>().entityType == EntityType.Baggage)
             {
@@ -19,12 +20,18 @@ public class Spot : MonoBehaviour
                 other.transform.gameObject.layer = 0;
                 other.GetComponent<EntityProp>().GoToStorage(target);
                 Destroy(other.gameObject, 5);
-                if (currentAmountBaggage >= amountBaggage) { print("FullBaggage"); }
+                if (currentAmountBaggage >= amountBaggage)
+                {
+                    GameManager.instance.OnFullSpot(amountBaggage, 0);
+                }
             }
             else
             {
                 currentAmountPeople++;
-                if (amountPeople > currentAmountPeople) { print("FullPeople"); }
+                if (amountPeople > currentAmountPeople)
+                {
+                    GameManager.instance.OnFullSpot(0, amountPeople);
+                }
             }
             print("CorrectSpot");
         }

@@ -12,6 +12,7 @@ public class Shooter : MonoBehaviour
     [SerializeField] float upForceMultiplier = .2f;
     [SerializeField] float forceIncrementMultiplier = 2f;
     float currentForce;
+    private bool canShoot;
 
     private void Awake()
     {
@@ -30,6 +31,7 @@ public class Shooter : MonoBehaviour
             {
                 trajcetory.SetTrajectoryVisible(true);
                 currentForce = minForce;
+                canShoot = true;
             }
             if (Input.GetKey(KeyCode.Mouse0))
             {
@@ -39,6 +41,11 @@ public class Shooter : MonoBehaviour
             {
                 Throw();
             } 
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            trajcetory.SetTrajectoryVisible(false);
+            canShoot = false;
         }
     }
 
@@ -74,6 +81,7 @@ public class Shooter : MonoBehaviour
     }
     private void Throw()
     {
+        if (!canShoot) return;
         IInteract _interface = _inventory.GetLastItem.GetComponent<IInteract>();
 
         Vector3 dir = view == PlayerView.FirstPerson

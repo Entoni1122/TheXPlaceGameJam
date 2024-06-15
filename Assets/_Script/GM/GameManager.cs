@@ -2,107 +2,107 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-
-
-[System.Serializable]
-public struct EntetiesPerLevel
-{
-    public int level;
-    public int count;
-}
 
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-
     public static Action OnRoundStart;
     public static Action OnLoseRound;
-    [SerializeField] int roundCount;
-    public int RoundCount => roundCount;
-    [SerializeField] float TimerOnUI;
-
-    bool startRound;
-
 
     [Header("Gameplay")]
+    [SerializeField] int roundCount;
+
+    [SerializeField] int startBaggageToSpawn;
+    [SerializeField] int startPeopleToSpawn;
+
     [SerializeField] List<Spot> spotsList;
-    [SerializeField] List<EntetiesPerLevel> baggagesPerRound;
-    [SerializeField] List<EntetiesPerLevel> peoplesPerRound;
-    private Dictionary<EntityType, Dictionary<int, int>> _dictGame = new Dictionary<EntityType, Dictionary<int, int>>();
+
+    private List<EntityInfo> baggagePerSpot = new List<EntityInfo>();
+    private List<EntityInfo> peoplePerSpot = new List<EntityInfo>();
+
+    private int currentBaggageOnSpot;
+    private int currentPeopleOnSpot;
 
     private void Awake()
     {
         instance = this;
+    }
+    private void Start()
+    {
         SetupGame();
+        OnRoundStart += () => roundCount += 1;
     }
 
     private void SetupGame()
     {
-        startRound = true;
+        baggagePerSpot.Clear();
+        peoplePerSpot.Clear();
+        currentBaggageOnSpot = 0;
+        currentPeopleOnSpot = 0;
 
-        _dictGame[EntityType.Baggage] = new Dictionary<int, int>();
-        _dictGame[EntityType.People] = new Dictionary<int, int>();
+        int maxBaggage = startBaggageToSpawn * roundCount;
+        int maxPeople = startPeopleToSpawn * roundCount;
 
-
-        foreach (EntetiesPerLevel entity in baggagesPerRound)
+        for (int i = 0; i < spotsList.Count; i++)
         {
-            _dictGame[EntityType.Baggage][entity.level] = entity.count;
-        }
-        foreach (EntetiesPerLevel entity in peoplesPerRound)
-        {
-            _dictGame[EntityType.People][entity.level] = entity.count;
-        }
+            EntityInfo infoBaggage = new EntityInfo();
+            EntityInfo infoPeople = new EntityInfo();
 
-
-        int maxAmountBaggage = _dictGame[EntityType.Baggage][roundCount];
-        int maxAmountPeople = _dictGame[EntityType.People][roundCount];
-        int numSpots = spotsList.Count;
-
-        int baggagePerSpot = maxAmountBaggage / numSpots;
-        int peoplePerSpot = maxAmountPeople / numSpots;
-
-        int remainingBaggage = maxAmountBaggage % numSpots;
-        int remainingPeople = maxAmountPeople % numSpots;
-
-        foreach (Spot spot in spotsList)
-        {
-            spot.amountBaggage = baggagePerSpot;
-            spot.amountPeople = peoplePerSpot;
-
-            if (remainingBaggage > 0)
+            if (i < spotsList.Count - 1)
             {
-                spot.amountBaggage++;
-                remainingBaggage--;
+                if (maxBaggage > 0)
+                {
+                    int baggageInSpot = UnityEngine.Random.Range(1, maxBaggage);
+                    spotsList[i].amountBaggage = baggageInSpot;
+                    maxBaggage -= baggageInSpot;
+                    infoBaggage.count = baggageInSpot;
+                    infoBaggage.color = spotsList[i].GetColor;
+                }
+                if (maxPeople > 0)
+                {
+                    int peopleInSpot = UnityEngine.Random.Range(1, maxPeople);
+                    spotsList[i].amountPeople = peopleInSpot;
+                    maxPeople -= peopleInSpot;
+                    infoPeople.count = peopleInSpot;
+                    infoPeople.color = spotsList[i].GetColor;
+                }
             }
-
-            if (remainingPeople > 0)
+            else
             {
-                spot.amountPeople++;
-                remainingPeople--;
+                spotsList[i].amountBaggage = maxBaggage;
+                spotsList[i].amountPeople = maxPeople;
+                infoBaggage.count = maxBaggage;
+                infoBaggage.color = spotsList[i].GetColor;
+                infoPeople.count = maxPeople;
+                infoPeople.color = spotsList[i].GetColor;
             }
+            baggagePerSpot.Add(infoBaggage);
+            peoplePerSpot.Add(infoPeople);
         }
-
-    }
-
-    private void Update()
-    {
-        if (startRound)
-        {
-            startRound = false;
-
-            StartingRound();
-        }
-
-    }
-
-    void StartingRound()
-    {
         OnRoundStart?.Invoke();
     }
-    public int GetCountPerRoundByEntityType(EntityType entityType)
+    public List<EntityInfo> GetEnityInfoToSpawn(EntityType entityType)
     {
-        return _dictGame[entityType][roundCount];
+        return entityType == EntityType.Baggage ? baggagePerSpot : peoplePerSpot;
     }
+    public void OnFullSpot(int amountBaggage, int amountPeople)
+    {
+        currentBaggageOnSpot += amountBaggage;
+        currentPeopleOnSpot += amountPeople;
+
+        if (currentBaggageOnSpot == startBaggageToSpawn * roundCount &&
+            currentPeopleOnSpot == startPeopleToSpawn * roundCount)
+        {
+            OnRoundStart?.Invoke();
+        }
+    }
+}
+
+public struct EntityInfo
+{
+    public int count;
+    public ColorType color;
 }

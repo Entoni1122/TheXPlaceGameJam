@@ -15,7 +15,8 @@ GameObject:
   - component: {fileID: 1663694180957727583}
   - component: {fileID: 5421829949343354538}
   - component: {fileID: 2292341833390884488}
-  - component: {fileID: 2145986523984992914}
+  - component: {fileID: 2703682564020307313}
+  - component: {fileID: 7740968298191262404}
   - component: {fileID: 8094754988494075171}
   - component: {fileID: 6264279113447999304}
   - component: {fileID: 2558164185471797552}
@@ -47,7 +48,7 @@ Transform:
   - {fileID: 6859559512964860499}
   - {fileID: 5264836005276433004}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &5352015316820361610
 Rigidbody:
@@ -261,7 +262,7 @@ MonoBehaviour:
   maxPoints: 100
   increment: 0.025
   rayOverlap: 1.1
---- !u!114 &2145986523984992914
+--- !u!114 &2703682564020307313
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -278,6 +279,22 @@ MonoBehaviour:
   minForce: 2
   upForceMultiplier: 1
   forceIncrementMultiplier: 5
+--- !u!114 &7740968298191262404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395809041837854031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4f35ba76c51456408bb50396de06974, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlayerInventory: 1
+  socketRef: {fileID: 369784867436003388}
+  socketOffset: {x: 0, y: -0.4, z: 0}
+  maxPickableObj: 0
 --- !u!114 &8094754988494075171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,7 +329,7 @@ MonoBehaviour:
   checkInterval: 0.1
   firstPersonDistance: 100
   isoRadius: 1
-  _inventory: {fileID: 8094754988494075171}
+  _inventory: {fileID: 7740968298191262404}
 --- !u!114 &2558164185471797552
 MonoBehaviour:
   m_ObjectHideFlags: 0
