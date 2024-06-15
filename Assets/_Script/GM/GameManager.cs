@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] int startTimerPerRound;
     private float currentTimer;
+    public float GetTimerRound =>currentTimer;
+
 
     [SerializeField] int startBaggageToSpawn;
     [SerializeField] int startPeopleToSpawn;
@@ -32,23 +34,19 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-    }
-    private void Start()
-    {
-        SetupGame();
-
-        OnRoundStart += () =>
-        {
-            roundCount += 1;
-            SetupGame();
-        };
 
         OnLoseRound += () =>
         {
             roundCount = 0;
-            OnRoundStart?.Invoke();
+            StartGame();
         };
     }
+
+    private void Start()
+    {
+        StartGame();
+    }
+
     private void Update()
     {
         currentTimer -= Time.deltaTime;
@@ -59,8 +57,10 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private void SetupGame()
+    private void StartGame()
     {
+        roundCount++;
+
         currentTimer = startTimerPerRound * roundCount;
 
         baggagePerSpot.Clear();
@@ -122,7 +122,7 @@ public class GameManager : MonoBehaviour
         if (currentBaggageOnSpot == startBaggageToSpawn * roundCount &&
             currentPeopleOnSpot == startPeopleToSpawn * roundCount)
         {
-            OnRoundStart?.Invoke();
+            StartGame();
         }
     }
 }
