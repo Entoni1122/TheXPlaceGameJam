@@ -12,6 +12,7 @@ public class PlayerAnimation : MonoBehaviour
 
     [SerializeField] string _isMovingID;
     [SerializeField] string _isFallingID;
+    [SerializeField] string _OnCarID;
 
     private void Start()
     {
@@ -78,7 +79,10 @@ public class PlayerAnimation : MonoBehaviour
             }
         }
     }
-
+    public void NotifyOnCar(bool InCar)
+    {
+        _animInstance.SetBool(_OnCarID, InCar);
+    }
     private bool GetIsGrounded()
     {
         Type type = playerRef.GetType();

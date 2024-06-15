@@ -35,7 +35,7 @@ public class MulinoController : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.E))
         {
-            PlayerStats.OnEnableController?.Invoke(true, playerDismountPos.position);
+            PlayerStats.OnEnableController?.Invoke(true, playerDismountPos,false);
 
             gameObject.layer = LayerMask.NameToLayer("Interactable");
             enabled = false;
