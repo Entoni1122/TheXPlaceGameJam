@@ -23,21 +23,18 @@ public class Spot : MonoBehaviour
                 if (currentAmountBaggage >= amountBaggage)
                 {
                     GameManager.instance.OnFullSpot(amountBaggage, 0);
+                    currentAmountBaggage = 0;
                 }
             }
             else
             {
                 currentAmountPeople++;
-                if (amountPeople > currentAmountPeople)
+                if (amountPeople >= currentAmountPeople)
                 {
                     GameManager.instance.OnFullSpot(0, amountPeople);
+                    currentAmountPeople = 0;
                 }
             }
-            print("CorrectSpot");
-        }
-        else
-        {
-            print("WrongSpot");
         }
     }
 }

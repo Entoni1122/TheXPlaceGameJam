@@ -122,9 +122,9 @@ public class PlayerInteraction : MonoBehaviour
                     default:
                         break;
                 }
-
-                interactableObj = null;
             }
+
+            interactableObj = null;
         }
     }
 
