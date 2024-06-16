@@ -8,9 +8,8 @@ public class Carrello : BaseInteractableObj
     public Transform handlePosition;
     public float interactionDistance = 1.0f;
     private Inventory _inventory;
-    public Vector3 playerOffset = new Vector3(0, 0, -1);
+    public Vector3 fixedPlayerOffset = new Vector3(0, 0, -1);
     public Vector3 rotationOffset = new Vector3(0, 0, 0);
-    private Vector3 initialPlayerOffset = Vector3.zero;
     public float magnetRadius = 5.0f;
     public float magnetSpeed = 10.0f;
     public bool magnetActive = false;
@@ -44,23 +43,16 @@ public class Carrello : BaseInteractableObj
         {
             return;
         }
+
         if (IsPlayerNearHandle(player))
         {
             isCarrelloInHand = true;
 
-            if (initialPlayerOffset == Vector3.zero)
-            {
-                initialPlayerOffset = player.position - handlePosition.position;
-            }
-
             _rb.isKinematic = true;
-
-            Vector3 newPosition = handlePosition.position + initialPlayerOffset;
+            Vector3 newPosition = handlePosition.position + handlePosition.TransformDirection(fixedPlayerOffset);
             player.position = newPosition;
-
             Quaternion newRotation = handlePosition.rotation * Quaternion.Euler(rotationOffset);
             player.rotation = newRotation;
-
             transform.SetParent(player);
         }
     }
@@ -68,10 +60,8 @@ public class Carrello : BaseInteractableObj
     public void Release(Transform player)
     {
         isCarrelloInHand = false;
-
         _rb.isKinematic = false;
         transform.SetParent(null);
-        initialPlayerOffset = Vector3.zero;
     }
 
     private bool IsPlayerNearHandle(Transform player)
