@@ -66,6 +66,7 @@ public class Inventory : MonoBehaviour
             Rigidbody itemRB = item.GetComponent<Rigidbody>();
             itemRB.constraints = RigidbodyConstraints.None;
             itemRB.AddForce(Vector3.up * 10, ForceMode.Impulse);
+            GetComponent<PlayerAnimation>().NotifyHands(false);
         }
     }
 }
