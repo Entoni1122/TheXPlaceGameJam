@@ -21,9 +21,6 @@ public class PhysicPLayerController : MonoBehaviour
 
     private Vector3 _input;
 
-    [SerializeField] bool bCanRespawn;
-    bool enableContorller = true;
-
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
@@ -37,12 +34,6 @@ public class PhysicPLayerController : MonoBehaviour
 
     private void Update()
     {
-        if (bCanRespawn)
-        {
-            bCanRespawn = false;
-            ResetPosition();
-        }
-
         GatherInput();
         Look();
         isGrounded = Physics.Raycast(transform.position, -transform.up, 1f);
@@ -56,13 +47,6 @@ public class PhysicPLayerController : MonoBehaviour
         }
         Jump();
 
-    }
-    void ResetPosition()
-    {
-        transform.position = positionToSpawn.position;
-        enableContorller = true;
-        _rb.freezeRotation = true;
-        transform.rotation = Quaternion.identity;
     }
     private void FixedUpdate()
     {
@@ -106,8 +90,8 @@ public class PhysicPLayerController : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Autobus"))
         {
             _rb.AddExplosionForce(explosionForce, collision.transform.position, explosionRadius);
-            enableContorller = false;
             _rb.freezeRotation = false;
+            GetComponent<UnrealPlayerController>().OnDeath();
         }
     }
 }

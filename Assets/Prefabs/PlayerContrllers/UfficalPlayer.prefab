@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 2558164185471797552}
   - component: {fileID: 7785891116161515438}
   - component: {fileID: 4395470171086576068}
+  - component: {fileID: 1532466037937599253}
   m_Layer: 0
   m_Name: UfficalPlayer
   m_TagString: Player
@@ -47,7 +48,7 @@ Transform:
   - {fileID: 6859559512964860499}
   - {fileID: 5264836005276433004}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &5352015316820361610
 Rigidbody:
@@ -117,7 +118,6 @@ MonoBehaviour:
   _jumpForce: 15
   gravity: 50
   isGrounded: 0
-  bCanRespawn: 0
   explosionForce: 1000
   explosionRadius: 20
 --- !u!95 &1663694180957727583
@@ -361,6 +361,22 @@ MonoBehaviour:
   placeToPSawn: {fileID: 5264836005276433004}
   dustPrefab: {fileID: 4829206119682111012, guid: 6166946f100f76246a6f01758ba084c3,
     type: 3}
+--- !u!114 &1532466037937599253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395809041837854031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28eaa42d2eec39e47af34710c9714ba9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptsReference:
+  - {fileID: 638186244333346245}
+  - {fileID: 2703682564020307313}
+  - {fileID: 6264279113447999304}
 --- !u!1 &554488464284453618
 GameObject:
   m_ObjectHideFlags: 0

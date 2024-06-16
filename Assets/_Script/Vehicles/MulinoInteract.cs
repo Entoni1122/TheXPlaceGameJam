@@ -8,7 +8,11 @@ public class MulinoInteract : BaseInteractableObj
     [SerializeField] Transform postionToSit;
     protected override void InteractOneParam(Transform obj)
     {
-        PlayerStats.OnEnableController?.Invoke(false, postionToSit,true);
+        UnrealPlayerController controller = LibraryFunction.GetUnrealPlayerController();
+        controller.DisableInput();
+        controller.SetTransfrom(postionToSit);
+        controller.GetComponent<PlayerAnimation>().NotifyOnCar(true);
+
         obj.parent = gameObject.transform;
         GetComponent<MulinoController>().enabled = true;
         gameObject.layer = LayerMask.NameToLayer("MulinoMotor");

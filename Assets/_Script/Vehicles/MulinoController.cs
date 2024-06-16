@@ -35,7 +35,11 @@ public class MulinoController : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.E))
         {
-            PlayerStats.OnEnableController?.Invoke(true, playerDismountPos,false);
+            UnrealPlayerController controller = LibraryFunction.GetUnrealPlayerController();
+            controller.EnableInput();
+            controller.SetTransfrom(playerDismountPos);
+            controller.GetComponent<PlayerAnimation>().NotifyOnCar(false);
+
 
             gameObject.layer = LayerMask.NameToLayer("Interactable");
             enabled = false;

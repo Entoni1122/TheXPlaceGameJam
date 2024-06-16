@@ -13,21 +13,8 @@ public class PlayerStats : MonoBehaviour
 
     public static Action<float, float> OnChangeStats;
 
-    public static Action<bool, Transform,bool> OnEnableController;
-
     void Start()
     {
-        OnEnableController += (bool enable, Transform target,bool inCar) =>
-        {
-            GetComponent<PhysicPLayerController>().enabled = enable;
-            GetComponent<Shooter>().enabled = enable;
-            GetComponent<PlayerInteraction>().enabled = enable;
-            transform.position = target.position;
-            transform.rotation = target.rotation;
-            GetComponent<Rigidbody>().isKinematic = !enable;
-            GetComponent<PlayerAnimation>().NotifyOnCar(inCar);
-        };
-
         variableValues["Force"] = Speed;
         variableValues["Speed"] = Force;
 
