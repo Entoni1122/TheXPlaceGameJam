@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2453385119118360421}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.876, z: 0}
+  m_LocalPosition: {x: 0, y: 1.284, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -131,7 +131,7 @@ MonoBehaviour:
   StorableLock: 1
   isPlayerInventory: 0
   socketRef: {fileID: 8516265991305704149}
-  socketOffsetBaggage: {x: 0, y: 0, z: 0}
+  socketOffsetBaggage: {x: 0, y: 0.66, z: 0}
   socketOffsetPeople: {x: 0, y: 0, z: 0}
   maxPickableObj: 5
 --- !u!114 &7964826413120498610

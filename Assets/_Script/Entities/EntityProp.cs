@@ -24,6 +24,7 @@ public class EntityProp : MonoBehaviour
     private Vector3 dir;
     public ColorType color { get; private set; }
     private Action Move;
+    private Inventory inventory;
 
 
     public void Init(Transform inTarget, EntityType _type, ColorType _color)
@@ -71,9 +72,17 @@ public class EntityProp : MonoBehaviour
         }
 
     }
+    public void UpdateInventoryRef(Inventory InInventory)
+    {
+        inventory = InInventory;
+    }
 
     public void GoToStorage(Transform inTarget)
     {
+        if (inventory)
+        {
+            inventory.RemoveItem(inTarget);
+        }
         transform.parent = null;
         rb.constraints = RigidbodyConstraints.None;
         rb.useGravity = false;
@@ -83,6 +92,8 @@ public class EntityProp : MonoBehaviour
         dir.Normalize();
         Move = StartMovement;
         speed *= 2f;
+        inventory.HandleOnLostLastItem();
+        gameObject.layer = 0;  
     }
 
     void Update()

@@ -121,7 +121,10 @@ public class PlayerInteraction : MonoBehaviour
                     case InteractType.Carrello:
                         if (_inventory.GetLastItem)
                         {
+                            _inventory.HandleOnLostLastItem();
                             _interface.Interact(_inventory.GetLastItem);
+                            _inventory.RemoveLastItem();
+
                         }
                         break;
                     case InteractType.Valigia:
@@ -138,7 +141,9 @@ public class PlayerInteraction : MonoBehaviour
                         }
                         else
                         {
-                            _interface.Interact(_inventory.GetLastItem, true);
+                            _inventory.HandleOnLostLastItem();
+                            _interface.Interact(_inventory.GetLastItem,true);
+                            _inventory.RemoveLastItem();
                         }
                         break;
                     case InteractType.Shop:
@@ -165,7 +170,9 @@ public class PlayerInteraction : MonoBehaviour
                     Transform obj = carrelloInventory.GetLastItem;
                     if (obj != null)
                     {
+                        carrelloInventory.HandleOnLostLastItem();
                         _inventory.AddObjInInventory(carrelloInventory.GetLastItem);
+                        carrelloInventory.RemoveLastItem();
                     }
                     return;
                 }

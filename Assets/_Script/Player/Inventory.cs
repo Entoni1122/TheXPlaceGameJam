@@ -1,6 +1,7 @@
 using UnityEngine;
 using NaughtyAttributes;
 using System.Data;
+using System.Collections.Generic;
 
 public class Inventory : MonoBehaviour
 {
@@ -10,8 +11,8 @@ public class Inventory : MonoBehaviour
     [SerializeField] Vector3 socketOffsetBaggage;
     [SerializeField] Vector3 socketOffsetPeople;
     [SerializeField] public int maxPickableObj;
-    public int count => socketRef.childCount;
-    public Transform GetLastItem => count > 0 ? socketRef.GetChild(count - 1) : null;
+    public int count => items.Count;
+    public Transform GetLastItem => count > 0 ? items[count - 1] : null;
     public bool IsEmpty => count <= 0;
 
 
@@ -24,6 +25,7 @@ public class Inventory : MonoBehaviour
                 maxPickableObj = (int)InForce;
             };
         }
+        GameManager.OnLoseRound += () => items.Clear();
     }
 
     EntityType currentTypeStored;
@@ -48,23 +50,86 @@ public class Inventory : MonoBehaviour
             {
                 if (currentTypeStored != obj.GetComponent<EntityProp>().entityType) return;
             }
+            HandleJointOnAdd(obj);
+        }
+    }
+
+    private List<Transform> items = new List<Transform>();
+    private void HandleJointOnAdd(Transform obj)
+    {
+        if (items.Count == 0)
+        {
             obj.SetParent(socketRef);
             Vector3 offset = currentTypeStored == EntityType.Baggage ? socketOffsetBaggage : socketOffsetPeople;
-            obj.position = socketRef.position + (count - 1) * socketRef.up;
-            obj.position += (count - 1) * offset;
+            obj.position = socketRef.position + offset;
             obj.rotation = socketRef.rotation;
+            obj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        }
+        else
+        {
+            Vector3 offset = currentTypeStored == EntityType.Baggage ? socketOffsetBaggage : socketOffsetPeople;
+            obj.position = items[count - 1].position + offset;
+            obj.rotation = items[count - 1].rotation;
+            obj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+
+            ConfigurableJoint joint = items[count - 1].gameObject.AddComponent<ConfigurableJoint>();
+            joint.connectedBody = obj.GetComponent<Rigidbody>();
+            joint.anchor = new Vector3(0, 0.62f, 0);
+            joint.xMotion = ConfigurableJointMotion.Locked;
+            joint.yMotion = ConfigurableJointMotion.Locked;
+            joint.zMotion = ConfigurableJointMotion.Locked;
+            joint.angularXMotion = ConfigurableJointMotion.Limited;
+            joint.angularYMotion = ConfigurableJointMotion.Limited;
+            joint.angularZMotion = ConfigurableJointMotion.Limited;
+            SoftJointLimit angularLimit = new SoftJointLimit();
+            angularLimit.limit = 5;
+            joint.angularYLimit = angularLimit;
+            joint.enableCollision = true;
+        }
+        items.Add(obj);
+        obj.GetComponent<EntityProp>().UpdateInventoryRef(this);
+    }
+    public void HandleOnLostLastItem()
+    {
+        if (count > 1)
+        {
+            Destroy(items[count - 2].GetComponent<ConfigurableJoint>());
+        }
+    }
+    public void RemoveLastItem()
+    {
+        items[count - 1].GetComponent<EntityProp>().UpdateInventoryRef(null);
+        items.RemoveAt(count - 1);
+    }
+    public void RemoveItem(Transform item)
+    {
+        for (int i = 0; i < items.Count; i++)
+        {
+            if (items[i] == item)
+            {
+                if (i > 1)
+                {
+                    Destroy(items[i - 2].GetComponent<ConfigurableJoint>());
+                }
+                items[i].GetComponent<EntityProp>().UpdateInventoryRef(null);
+                items.RemoveAt(i);
+                return;
+            }
+
         }
     }
     public void ThrowAwayAllItems()
     {
         for (int i = count - 1; i >= 0; i--)
         {
-            Transform item = socketRef.GetChild(i);
+            Transform item = items[i];
             item.parent = null;
             Rigidbody itemRB = item.GetComponent<Rigidbody>();
             itemRB.constraints = RigidbodyConstraints.None;
             itemRB.AddForce(Vector3.up * 10, ForceMode.Impulse);
             GetComponent<PlayerAnimation>().NotifyHands(false);
+            Destroy(items[i].GetComponent<ConfigurableJoint>());
         }
+        items.Clear();
     }
 }

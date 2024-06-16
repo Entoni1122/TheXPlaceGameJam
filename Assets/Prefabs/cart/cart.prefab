@@ -436,7 +436,7 @@ Transform:
   - {fileID: 7880810168848841790}
   - {fileID: 9011131323626750352}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &8378331766712392456
 Rigidbody:
@@ -501,7 +501,7 @@ MonoBehaviour:
   interactType: 0
   handlePosition: {fileID: 7880810168848841790}
   interactionDistance: 2
-  fixedPlayerOffset: {x: -0.7, y: -1.6, z: 0.1}
+  fixedPlayerOffset: {x: -0.7, y: -1.75, z: 0.1}
   rotationOffset: {x: 0, y: 90, z: 0}
   magnetRadius: 10
   magnetSpeed: 15
@@ -519,12 +519,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4f35ba76c51456408bb50396de06974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StorableLock: 0
+  StorableLock: 1
   isPlayerInventory: 0
   socketRef: {fileID: 9011131323626750352}
-  socketOffsetBaggage: {x: 0, y: 0, z: 0}
+  socketOffsetBaggage: {x: 0, y: 0.6, z: 0}
   socketOffsetPeople: {x: 0, y: 0, z: 0}
-  maxPickableObj: 10
+  maxPickableObj: 3
 --- !u!1 &6707794889366271284
 GameObject:
   m_ObjectHideFlags: 0

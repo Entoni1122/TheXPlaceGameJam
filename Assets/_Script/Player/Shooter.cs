@@ -89,7 +89,9 @@ public class Shooter : MonoBehaviour
             ? Camera.main.transform.forward + transform.up * upForceMultiplier
             : transform.forward + transform.up * upForceMultiplier;
 
+        _inventory.HandleOnLostLastItem();
         _inventory.GetLastItem.GetComponent<BaseInteractableObj>().ThrowAway(dir * currentForce);
+        _inventory.RemoveLastItem();
         trajcetory.SetTrajectoryVisible(false);
 
         if (_inventory.IsEmpty)
