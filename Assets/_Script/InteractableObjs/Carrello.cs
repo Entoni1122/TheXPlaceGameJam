@@ -76,6 +76,11 @@ public class Carrello : BaseInteractableObj
 
     private void AttractNearbyValigie()
     {
+        if (_inventory.count >= _inventory.maxPickableObj)
+        {
+            return;
+        }
+
         Collider[] colliders = Physics.OverlapSphere(transform.position, magnetRadius);
         foreach (Collider col in colliders)
         {
@@ -110,6 +115,11 @@ public class Carrello : BaseInteractableObj
 
     private void AttachValigiaToSocket(Transform valigia)
     {
+        if (_inventory.count >= _inventory.maxPickableObj)
+        {
+            return;
+        }
+
         valigia.SetParent(_socketTransform);
 
         int index = _socketTransform.childCount - 1;
@@ -123,6 +133,8 @@ public class Carrello : BaseInteractableObj
             valigiaRb.velocity = Vector3.zero;
             valigiaRb.isKinematic = true;
         }
+
+        _inventory.AddObjInInventory(valigia);
     }
 
     private void OnDrawGizmosSelected()

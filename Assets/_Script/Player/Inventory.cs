@@ -9,8 +9,8 @@ public class Inventory : MonoBehaviour
     [SerializeField] public Transform socketRef;
     [SerializeField] Vector3 socketOffsetBaggage;
     [SerializeField] Vector3 socketOffsetPeople;
-    [SerializeField] int maxPickableObj;
-    private int count => socketRef.childCount;
+    [SerializeField] public int maxPickableObj;
+    public int count => socketRef.childCount;
     public Transform GetLastItem => count > 0 ? socketRef.GetChild(count - 1) : null;
     public bool IsEmpty => count <= 0;
 
