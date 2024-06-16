@@ -18,6 +18,7 @@ public class PhysicPLayerController : MonoBehaviour
 
     Rigidbody _rb;
     [SerializeField] bool isGrounded;
+    [SerializeField] Transform groundChecker;
 
     private Vector3 _input;
 
@@ -36,7 +37,7 @@ public class PhysicPLayerController : MonoBehaviour
     {
         GatherInput();
         Look();
-        isGrounded = Physics.Raycast(transform.position, -transform.up, 1f);
+        isGrounded = Physics.Raycast(groundChecker.position, -transform.up, 1f);
         if (isGrounded)
         {
             _rb.velocity -= new Vector3(0, 0, 0) * Time.deltaTime;
