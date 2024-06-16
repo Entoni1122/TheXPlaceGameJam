@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Shooter : MonoBehaviour
 {
@@ -90,5 +91,10 @@ public class Shooter : MonoBehaviour
 
         _inventory.GetLastItem.GetComponent<BaseInteractableObj>().ThrowAway(dir * currentForce);
         trajcetory.SetTrajectoryVisible(false);
+
+        if (_inventory.IsEmpty)
+        {
+            GetComponent<PlayerAnimation>().NotifyHands(false);
+        }
     }
 }

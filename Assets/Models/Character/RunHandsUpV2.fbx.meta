@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 10426713dbd0a1d4ba6775573260d797
+guid: ece8709325a719c4fb20c872496b53c1
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Idle
+      name: RunHandsUpV2
       takeName: Scene
       internalID: -623603649343465320
       firstFrame: 1
-      lastFrame: 19
+      lastFrame: 13
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

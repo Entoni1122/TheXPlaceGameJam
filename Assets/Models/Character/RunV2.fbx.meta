@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a800b9ea9f0708b4a98f8517b4d068b2
+guid: ce78c3deab7b65c4586d93090ddd7bfa
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Run
+      name: RunV2
       takeName: Scene
       internalID: -623603649343465320
       firstFrame: 1
-      lastFrame: 15
+      lastFrame: 13
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -56,23 +56,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0.17041801
-        functionName: SpawnDust
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 89bb9f9a748c79f488c2e3b48b1c76b9,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.8971061
-        functionName: SpawnDust
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 89bb9f9a748c79f488c2e3b48b1c76b9,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

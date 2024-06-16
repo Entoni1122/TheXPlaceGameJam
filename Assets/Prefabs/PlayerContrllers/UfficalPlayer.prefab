@@ -48,7 +48,7 @@ Transform:
   - {fileID: 6859559512964860499}
   - {fileID: 5264836005276433004}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &5352015316820361610
 Rigidbody:
@@ -331,6 +331,7 @@ MonoBehaviour:
   _isMovingID: IsMoving
   _isFallingID: IsFalling
   _OnCarID: OnCar
+  _HandsUpID: HandsUp
 --- !u!114 &7785891116161515438
 MonoBehaviour:
   m_ObjectHideFlags: 0

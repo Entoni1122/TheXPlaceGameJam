@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -505,7 +505,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 26624499}
-  m_LocalRotation: {x: 0.24837855, y: 0.4164152, z: -0.11937689, w: 0.8664039}
+  m_LocalRotation: {x: 0.24837853, y: 0.41641524, z: -0.119376905, w: 0.8664039}
   m_LocalPosition: {x: -56.68, y: 40, z: -38.37}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5251,7 +5251,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1223103314}
-  m_LocalRotation: {x: 0.24837855, y: 0.4164152, z: -0.11937689, w: 0.8664039}
+  m_LocalRotation: {x: 0.24837853, y: 0.41641524, z: -0.119376905, w: 0.8664039}
   m_LocalPosition: {x: -56.68, y: 40, z: -38.37}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -12085,12 +12085,8 @@ MonoBehaviour:
   bEnableController: 1
   respawnTimer: 2
   playerDismountPos: {fileID: 3034246781733314454}
-  carrelliPosition:
-  - {fileID: 5123869453185301555}
-  - {fileID: 5592843200955268371}
-  - {fileID: 288008169691786331}
-  carreloPrefab: {fileID: 5782993385463296817, guid: afb99ec7ee7487d46b696459dc13ee34,
-    type: 3}
+  carrelliPosition: []
+  carreloPrefab: {fileID: 0}
   carreloReference: []
 --- !u!4 &3658534924969808066
 Transform:

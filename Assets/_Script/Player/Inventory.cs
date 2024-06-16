@@ -40,6 +40,10 @@ public class Inventory : MonoBehaviour
         {
             if (count == 0)
             {
+                if (isPlayerInventory)
+                {
+                    GetComponent<PlayerAnimation>().NotifyHands(true);
+                }
                 currentTypeStored = obj.GetComponent<EntityProp>().entityType;
             }
             else
@@ -58,10 +62,10 @@ public class Inventory : MonoBehaviour
         for (int i = count - 1; i >= 0; i--)
         {
             Transform item = socketRef.GetChild(i);
-            item.parent = null; 
+            item.parent = null;
             Rigidbody itemRB = item.GetComponent<Rigidbody>();
             itemRB.constraints = RigidbodyConstraints.None;
-            itemRB.AddForce(Vector3.up * 10,ForceMode.Impulse);
+            itemRB.AddForce(Vector3.up * 10, ForceMode.Impulse);
         }
     }
 }
