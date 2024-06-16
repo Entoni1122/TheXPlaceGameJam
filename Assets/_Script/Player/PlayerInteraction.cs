@@ -44,7 +44,6 @@ public class PlayerInteraction : MonoBehaviour
             HandleCarrello();
             ToggleMagnetism();
         }
-        print(interactableObj);
     }
     #endregion
     #region Functions
