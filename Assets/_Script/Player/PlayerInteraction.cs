@@ -1,8 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using NaughtyAttributes;
-using Unity.VisualScripting;
-using System;
 
 enum PlayerView
 {
@@ -28,6 +26,17 @@ public class PlayerInteraction : MonoBehaviour
     {
         StartCoroutine("CheckingForInteraction");
     }
+
+    private void Start()
+    {
+        PlayerStats.ToggleMagnetismAction += ToggleMagnetism;
+    }
+
+    private void OnDestroy()
+    {
+        PlayerStats.ToggleMagnetismAction -= ToggleMagnetism;
+    }
+
     private void Update()
     {
         if (Input.GetKeyUp(KeyCode.E))
@@ -42,10 +51,11 @@ public class PlayerInteraction : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.C))
         {
             HandleCarrello();
-            ToggleMagnetism();
+            //ToggleMagnetism();
         }
     }
     #endregion
+
     #region Functions
     private IEnumerator CheckingForInteraction()
     {
@@ -115,7 +125,6 @@ public class PlayerInteraction : MonoBehaviour
                 switch (objType)
                 {
                     case InteractType.Carrello:
-
                         if (_inventory.GetLastItem)
                         {
                             _interface.Interact(_inventory.GetLastItem);
@@ -138,7 +147,6 @@ public class PlayerInteraction : MonoBehaviour
                             _interface.Interact(_inventory.GetLastItem, true);
                         }
                         break;
-
                     case InteractType.Shop:
                         _interface.Interact();
                         break;
@@ -146,7 +154,6 @@ public class PlayerInteraction : MonoBehaviour
                         break;
                 }
             }
-
             interactableObj = null;
         }
     }
@@ -198,7 +205,7 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    private void ToggleMagnetism()
+    public void ToggleMagnetism()
     {
         if (_currentCarrello != null)
         {

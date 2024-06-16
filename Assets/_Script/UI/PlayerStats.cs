@@ -12,6 +12,7 @@ public class PlayerStats : MonoBehaviour
     public float Money = 0;
 
     public static Action<float, float> OnChangeStats;
+    public static Action ToggleMagnetismAction;
 
     void Start()
     {
@@ -34,5 +35,10 @@ public class PlayerStats : MonoBehaviour
         }
 
         OnChangeStats?.Invoke(Speed, Force);
+    }
+
+    public void ToggleMagnetism()
+    {
+        ToggleMagnetismAction?.Invoke();
     }
 }

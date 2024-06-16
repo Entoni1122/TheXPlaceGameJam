@@ -501,6 +501,12 @@ MonoBehaviour:
   interactType: 0
   handlePosition: {fileID: 7880810168848841790}
   interactionDistance: 2
+  fixedPlayerOffset: {x: -0.7, y: -1.6, z: 0.1}
+  rotationOffset: {x: 0, y: 90, z: 0}
+  magnetRadius: 10
+  magnetSpeed: 15
+  magnetActive: 0
+  attachDistance: 2
 --- !u!114 &8202158717617977488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -513,10 +519,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4f35ba76c51456408bb50396de06974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StorableLock: 0
   isPlayerInventory: 0
   socketRef: {fileID: 9011131323626750352}
-  socketOffset: {x: 0, y: 0, z: 0}
-  maxPickableObj: 3
+  socketOffsetBaggage: {x: 0, y: 0, z: 0}
+  socketOffsetPeople: {x: 0, y: 0, z: 0}
+  maxPickableObj: 10
 --- !u!1 &6707794889366271284
 GameObject:
   m_ObjectHideFlags: 0

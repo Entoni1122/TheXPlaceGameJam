@@ -917,7 +917,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 189952694}
-  m_LocalRotation: {x: 0.24837855, y: 0.4164152, z: -0.11937689, w: 0.8664039}
+  m_LocalRotation: {x: 0.24837853, y: 0.4164152, z: -0.1193769, w: 0.8664039}
   m_LocalPosition: {x: -74.04, y: 41.284, z: -76.28}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7330,76 +7330,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7657136711750043678, guid: 69f306dce2427e94f83f420e375dedfe,
-        type: 3}
-      propertyPath: magnetSpeed
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7657136711750043678, guid: 69f306dce2427e94f83f420e375dedfe,
-        type: 3}
-      propertyPath: magnetActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7657136711750043678, guid: 69f306dce2427e94f83f420e375dedfe,
-        type: 3}
-      propertyPath: magnetRadius
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7657136711750043678, guid: 69f306dce2427e94f83f420e375dedfe,
-        type: 3}
-      propertyPath: attachDistance
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7657136711750043678, guid: 69f306dce2427e94f83f420e375dedfe,
-        type: 3}
-      propertyPath: playerOffset.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7657136711750043678, guid: 69f306dce2427e94f83f420e375dedfe,
-        type: 3}
-      propertyPath: playerOffset.y
-      value: -1.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7657136711750043678, guid: 69f306dce2427e94f83f420e375dedfe,
-        type: 3}
-      propertyPath: playerOffset.z
-      value: 0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 7657136711750043678, guid: 69f306dce2427e94f83f420e375dedfe,
-        type: 3}
-      propertyPath: rotationOffset.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7657136711750043678, guid: 69f306dce2427e94f83f420e375dedfe,
-        type: 3}
-      propertyPath: rotationOffset.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 7657136711750043678, guid: 69f306dce2427e94f83f420e375dedfe,
-        type: 3}
-      propertyPath: rotationOffset.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7657136711750043678, guid: 69f306dce2427e94f83f420e375dedfe,
-        type: 3}
-      propertyPath: fixedPlayerOffset.x
-      value: -0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7657136711750043678, guid: 69f306dce2427e94f83f420e375dedfe,
-        type: 3}
-      propertyPath: fixedPlayerOffset.y
-      value: -1.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7657136711750043678, guid: 69f306dce2427e94f83f420e375dedfe,
-        type: 3}
-      propertyPath: fixedPlayerOffset.z
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8202158717617977488, guid: 69f306dce2427e94f83f420e375dedfe,
-        type: 3}
-      propertyPath: maxPickableObj
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8376,7 +8306,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1787301663}
-  m_LocalRotation: {x: 0.24837855, y: 0.4164152, z: -0.11937689, w: 0.8664039}
+  m_LocalRotation: {x: 0.24837853, y: 0.4164152, z: -0.1193769, w: 0.8664039}
   m_LocalPosition: {x: -74.04, y: 41.284, z: -76.28}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
