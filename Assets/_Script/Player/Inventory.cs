@@ -1,5 +1,6 @@
 using UnityEngine;
 using NaughtyAttributes;
+using System.Data;
 
 public class Inventory : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class Inventory : MonoBehaviour
     public Transform GetLastItem => count > 0 ? socketRef.GetChild(count - 1) : null;
     public bool IsEmpty => count <= 0;
 
-    
+
 
 
     private void Awake()
@@ -37,19 +38,30 @@ public class Inventory : MonoBehaviour
 
         if (count < maxPickableObj)
         {
-            if(count == 0)
+            if (count == 0)
             {
                 currentTypeStored = obj.GetComponent<EntityProp>().entityType;
             }
             else
             {
-                if (currentTypeStored != obj.GetComponent<EntityProp>().entityType)return;
+                if (currentTypeStored != obj.GetComponent<EntityProp>().entityType) return;
             }
             obj.SetParent(socketRef);
             Vector3 offset = currentTypeStored == EntityType.Baggage ? socketOffsetBaggage : socketOffsetPeople;
             obj.position = socketRef.position + (count - 1) * socketRef.up;
             obj.position += (count - 1) * offset;
             obj.rotation = socketRef.rotation;
+        }
+    }
+    public void ThrowAwayAllItems()
+    {
+        for (int i = count - 1; i >= 0; i--)
+        {
+            Transform item = socketRef.GetChild(i);
+            item.parent = null; 
+            Rigidbody itemRB = item.GetComponent<Rigidbody>();
+            itemRB.constraints = RigidbodyConstraints.None;
+            itemRB.AddForce(Vector3.up * 10,ForceMode.Impulse);
         }
     }
 }

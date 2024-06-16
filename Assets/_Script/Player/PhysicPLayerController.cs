@@ -92,6 +92,7 @@ public class PhysicPLayerController : MonoBehaviour
             _rb.AddExplosionForce(explosionForce, collision.transform.position, explosionRadius);
             _rb.freezeRotation = false;
             GetComponent<UnrealPlayerController>().OnDeath();
+            GetComponent<Inventory>().ThrowAwayAllItems();
         }
     }
 }

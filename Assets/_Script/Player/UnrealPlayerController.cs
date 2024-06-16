@@ -39,6 +39,8 @@ public class UnrealPlayerController : MonoBehaviour
 
         EnableInput();
         transform.eulerAngles = Vector3.zero;
+        GetComponent<Rigidbody>().freezeRotation = true;
+
     }
 
     public void SetTransfrom(Transform InTransform)
