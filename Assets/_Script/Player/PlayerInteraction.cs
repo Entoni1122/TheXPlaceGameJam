@@ -44,6 +44,7 @@ public class PlayerInteraction : MonoBehaviour
             HandleCarrello();
             ToggleMagnetism();
         }
+        print(interactableObj);
     }
     #endregion
     #region Functions
@@ -80,6 +81,7 @@ public class PlayerInteraction : MonoBehaviour
     }
     private void CheckIsoPerson()
     {
+        bool foundInteractable = false;
         Collider[] colliders = Physics.OverlapSphere(startCheckerPoint.position, isoRadius);
         if (colliders.Length != 0)
         {
@@ -93,11 +95,12 @@ public class PlayerInteraction : MonoBehaviour
                     {
                         interactableObj = cl.gameObject;
                         maxDist = dist;
+                        foundInteractable = true;
                     }
                 }
             }
         }
-        else
+        if (!foundInteractable)
         {
             interactableObj = null;
         }
