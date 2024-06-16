@@ -118,7 +118,7 @@ public class FPController : MonoBehaviour
             sprintCooldownReset = sprintCooldown;
         }
 
-        PlayerStats.OnChangeStats += (float inSpeedMultiplier, float InForce) =>
+        PlayerStats.OnChangeStats += (float inSpeedMultiplier, float InForce, bool InMagnetism) =>
         {
             speedMultiplier = inSpeedMultiplier;
         };

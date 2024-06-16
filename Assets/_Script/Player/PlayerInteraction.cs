@@ -20,21 +20,16 @@ public class PlayerInteraction : MonoBehaviour
     GameObject interactableObj;
     [SerializeField] Inventory _inventory;
     private Carrello _currentCarrello;
+    private bool magnetismON;
 
     #region UnityFunctions
     private void Awake()
     {
         StartCoroutine("CheckingForInteraction");
-    }
-
-    private void Start()
-    {
-        PlayerStats.ToggleMagnetismAction += ToggleMagnetism;
-    }
-
-    private void OnDestroy()
-    {
-        PlayerStats.ToggleMagnetismAction -= ToggleMagnetism;
+        PlayerStats.OnChangeStats += (float speed,float force, bool InMagnetism) =>
+        {
+            magnetismON = InMagnetism;
+        };
     }
 
     private void Update()
@@ -51,7 +46,6 @@ public class PlayerInteraction : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.C))
         {
             HandleCarrello();
-            //ToggleMagnetism();
         }
     }
     #endregion
@@ -198,18 +192,11 @@ public class PlayerInteraction : MonoBehaviour
                     {
                         carrello.Handle(transform);
                         _currentCarrello = carrello;
+                        _currentCarrello.magnetActive = magnetismON;
                         return;
                     }
                 }
             }
-        }
-    }
-
-    public void ToggleMagnetism()
-    {
-        if (_currentCarrello != null)
-        {
-            _currentCarrello.magnetActive = !_currentCarrello.magnetActive;
         }
     }
     #endregion

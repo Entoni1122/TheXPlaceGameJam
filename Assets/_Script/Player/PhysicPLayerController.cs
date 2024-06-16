@@ -27,7 +27,7 @@ public class PhysicPLayerController : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         currentSpeed = _speed;
 
-        PlayerStats.OnChangeStats += (float inSpeedMultiplier, float InForce) =>
+        PlayerStats.OnChangeStats += (float inSpeedMultiplier, float InForce, bool InMagnetism)=>
         {
             currentSpeed = _speed * inSpeedMultiplier;
         };

@@ -15,13 +15,11 @@ public class Inventory : MonoBehaviour
     public bool IsEmpty => count <= 0;
 
 
-
-
     private void Awake()
     {
         if (isPlayerInventory)
         {
-            PlayerStats.OnChangeStats += (float inSpeedMultiplier, float InForce) =>
+            PlayerStats.OnChangeStats += (float inSpeedMultiplier, float InForce, bool InMagnetism) =>
             {
                 maxPickableObj = (int)InForce;
             };

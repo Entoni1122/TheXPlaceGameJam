@@ -11,19 +11,27 @@ public class PlayerStats : MonoBehaviour
     public float Force = 1;
     public float Money = 0;
 
-    public static Action<float, float> OnChangeStats;
-    public static Action ToggleMagnetismAction;
+    public static Action<float, float,bool> OnChangeStats;
+
+    private bool magnetismOn;
 
     void Start()
     {
         variableValues["Force"] = Speed;
         variableValues["Speed"] = Force;
 
-        OnChangeStats?.Invoke(Speed, Force);
+        OnChangeStats?.Invoke(Speed, Force, magnetismOn);
     }
 
     public void IncreseStats(string StatName)
     {
+        if (StatName == "Magnetism")
+        {
+            magnetismOn = true;
+            OnChangeStats?.Invoke(Speed, Force, magnetismOn);
+            return;
+        }
+
         variableValues[StatName] += 1f;
         if (StatName == "Speed")
         {
@@ -34,11 +42,6 @@ public class PlayerStats : MonoBehaviour
             Force = variableValues[StatName];
         }
 
-        OnChangeStats?.Invoke(Speed, Force);
-    }
-
-    public void ToggleMagnetism()
-    {
-        ToggleMagnetismAction?.Invoke();
+        OnChangeStats?.Invoke(Speed, Force, magnetismOn);
     }
 }
