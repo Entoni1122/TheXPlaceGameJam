@@ -29,7 +29,7 @@ public class MulinoController : MonoBehaviour
     [SerializeField] Transform playerDismountPos;
 
     [Header("Carrelli")]
-    [SerializeField] Transform[] carrelliPosition;
+    [SerializeField] Vector2 carrelloOffset;
     [SerializeField] GameObject carreloPrefab;
     [SerializeField] List<GameObject> carreloReference;
 
@@ -110,9 +110,18 @@ public class MulinoController : MonoBehaviour
     int maxCarrelli = 3;
     public void AttachCarrello()
     {
+        Vector3 pos = carrelliIndex <= 0 ?
+              transform.position + transform.forward * carrelloOffset.x:
+              carreloReference[carrelliIndex - 1].transform.position + carreloReference[carrelliIndex - 1].transform.forward * carrelloOffset.x;
+        pos.y = carrelloOffset.y;
+
+        Quaternion rot = carrelliIndex <= 0 ?
+            transform.rotation :
+            carreloReference[carrelliIndex - 1].transform.rotation;
+
         if (carrelliIndex <= 0)
         {
-            GameObject carrello = Instantiate(carreloPrefab, carrelliPosition[carrelliIndex].position, carrelliPosition[carrelliIndex].rotation);
+            GameObject carrello = Instantiate(carreloPrefab, pos, rot);
             ConfigurableJoint firstJoint = transform.AddComponent<ConfigurableJoint>();
             SetConfigurableTrain(firstJoint, carrello.GetComponent<Rigidbody>(), new Vector3(0, -1.17f, -3.4f), new Vector3(0, 0, 0.64f));
             carreloReference.Add(carrello);
@@ -123,7 +132,7 @@ public class MulinoController : MonoBehaviour
         {
             return;
         }
-        GameObject otherCarrello = Instantiate(carreloPrefab, carrelliPosition[carrelliIndex].position, carrelliPosition[carrelliIndex].rotation);
+        GameObject otherCarrello = Instantiate(carreloPrefab, pos, rot);
         ConfigurableJoint secondJoint = carreloReference[carrelliIndex - 1].AddComponent<ConfigurableJoint>();
         secondJoint.connectedBody = otherCarrello.GetComponent<Rigidbody>();
         SetConfigurableTrain(secondJoint, otherCarrello.GetComponent<Rigidbody>(), new Vector3(0, 0, -0.74f), new Vector3(0, 0, 0.6f));
