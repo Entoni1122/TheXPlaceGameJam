@@ -93,7 +93,7 @@ public class EntityProp : MonoBehaviour
     {
         if (target != null)
         {
-            if (Vector3.Distance(target.position, transform.position) < 1f)
+            if (Vector3.Distance(target.position, transform.position) < 2f)
             {
                 rb.useGravity = true;
                 transform.parent = null;

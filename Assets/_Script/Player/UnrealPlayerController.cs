@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class UnrealPlayerController : MonoBehaviour
 {
-
     [SerializeField] List<MonoBehaviour> scriptsReference = new List<MonoBehaviour>();
     private void Awake()
     {
@@ -27,7 +26,6 @@ public class UnrealPlayerController : MonoBehaviour
         GetComponent<Rigidbody>().isKinematic = false;
 
     }
-
     public async void OnDeath()
     {
         foreach (var script in scriptsReference)
@@ -40,9 +38,7 @@ public class UnrealPlayerController : MonoBehaviour
         EnableInput();
         transform.eulerAngles = Vector3.zero;
         GetComponent<Rigidbody>().freezeRotation = true;
-
     }
-
     public void SetTransfrom(Transform InTransform)
     {
         transform.position = InTransform.position;

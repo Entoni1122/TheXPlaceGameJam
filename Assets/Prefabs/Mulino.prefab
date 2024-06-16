@@ -138,7 +138,7 @@ Transform:
   - {fileID: 5084212614499802324}
   - {fileID: 3034246781041486430}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 20.413, z: 0}
 --- !u!135 &3085611869038507306
 SphereCollider:
@@ -547,7 +547,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: -0.74}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000033527613, y: 0.00000004803727, z: 0.7033331}
+  m_ConnectedAnchor: {x: 0.0000014156103, y: 0, z: 0.7033329}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -812,7 +812,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: -0.74}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000033900142, y: 0.00000004803727, z: 0.6733333}
+  m_ConnectedAnchor: {x: 0.000000022351742, y: 0, z: 0.67333245}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0

@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.UI;
 
 public class MulinoController : MonoBehaviour
 {
@@ -25,13 +27,19 @@ public class MulinoController : MonoBehaviour
     [SerializeField] float respawnTimer = 2f;
     bool isGrounded;
     [SerializeField] Transform playerDismountPos;
+
+    [Header("Carrelli")]
+    [SerializeField] Transform[] carrelliPosition;
+    [SerializeField] GameObject carreloPrefab;
+    [SerializeField] List<GameObject> carreloReference;
+
     private void Update()
     {
         if (bEnableController)
         {
             isGrounded = Physics.Raycast(transform.position, Vector3.down, 2f);
             InputReader();
-        
+
         }
         if (Input.GetKeyUp(KeyCode.E))
         {
@@ -43,6 +51,11 @@ public class MulinoController : MonoBehaviour
 
             gameObject.layer = LayerMask.NameToLayer("Interactable");
             enabled = false;
+        }
+
+        if (Input.GetKeyUp(KeyCode.I))
+        {
+            AttachCarrello();
         }
     }
 
@@ -91,5 +104,47 @@ public class MulinoController : MonoBehaviour
         {
             rb.AddForce(transform.forward * speedInput, ForceMode.Acceleration);
         }
+    }
+
+    int carrelliIndex = 0;
+    int maxCarrelli = 3;
+    public void AttachCarrello()
+    {
+        if (carrelliIndex <= 0)
+        {
+            GameObject carrello = Instantiate(carreloPrefab, carrelliPosition[carrelliIndex].position, Quaternion.identity);
+            ConfigurableJoint firstJoint = transform.AddComponent<ConfigurableJoint>();
+            SetConfigurableTrain(firstJoint, carrello.GetComponent<Rigidbody>(), new Vector3(0, -1.17f, -3.4f), new Vector3(0, 0, 0.64f));
+            carreloReference.Add(carrello);
+            carrelliIndex++;
+            return;
+        }
+        else if (carrelliIndex >= maxCarrelli)
+        {
+            return;
+        }
+        GameObject otherCarrello = Instantiate(carreloPrefab, carrelliPosition[carrelliIndex].position, Quaternion.identity);
+        ConfigurableJoint secondJoint = carreloReference[carrelliIndex - 1].AddComponent<ConfigurableJoint>();
+        secondJoint.connectedBody = otherCarrello.GetComponent<Rigidbody>();
+        SetConfigurableTrain(secondJoint, otherCarrello.GetComponent<Rigidbody>(), new Vector3(0, 0, -0.74f), new Vector3(0, 0, 0.6f));
+        carreloReference.Add(otherCarrello);
+        carrelliIndex++;
+    }
+
+
+    void SetConfigurableTrain(ConfigurableJoint joint, Rigidbody rb, Vector3 anchor, Vector3 connectedAnchor)
+    {
+        //For carrelli anchor vectro3(0,0,-0.74f)    Connectecanchor vector3(0,0,0.6f)
+        joint.connectedBody = rb;
+        joint.anchor = anchor;
+        joint.connectedAnchor = connectedAnchor;
+        joint.xMotion = ConfigurableJointMotion.Locked;
+        joint.yMotion = ConfigurableJointMotion.Locked;
+        joint.zMotion = ConfigurableJointMotion.Limited;
+        joint.angularXMotion = ConfigurableJointMotion.Locked;
+        joint.angularYMotion = ConfigurableJointMotion.Limited;
+        joint.angularZMotion = ConfigurableJointMotion.Locked;
+        joint.angularYLimit = new SoftJointLimit() { limit = 80f, bounciness = 0, contactDistance = 0 };
+        joint.linearLimit = new SoftJointLimit() { limit = 1, bounciness = 0, contactDistance = 0 };
     }
 }
