@@ -121,7 +121,6 @@ public class EntityProp : MonoBehaviour
         rb.constraints = RigidbodyConstraints.None;
         rb.useGravity = false;
         target = inTarget;
-
         Move = StartMovement;
         speed *= 2f;
         gameObject.layer = 0;

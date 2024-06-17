@@ -6,6 +6,7 @@ public class Spot : MonoBehaviour
 {
     [SerializeField] ColorType color;
     public ColorType GetColor => color;
+    [SerializeField] Transform start;
     [SerializeField] Transform target;
     public int amountBaggage { private get; set; }
     private int currentAmountBaggage;
