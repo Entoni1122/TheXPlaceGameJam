@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
@@ -15,6 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] int roundCount;
 
     [SerializeField] int startTimerPerRound;
+    [SerializeField] int intermissionTimer = 5;
     [SerializeField] TextMeshProUGUI timerTxt;
     private float currentTimer;
     public float GetTimerRound =>currentTimer;
@@ -53,6 +55,7 @@ public class GameManager : MonoBehaviour
         timerTxt.text = $"Timer:{currentTimer.ToString("0")}";
         if (currentTimer <= 0)
         {
+            if (intermissionON) { return; }
             OnLoseRound?.Invoke();
         }
     }
@@ -123,8 +126,17 @@ public class GameManager : MonoBehaviour
         if (currentBaggageOnSpot == startBaggageToSpawn * roundCount &&
             currentPeopleOnSpot == startPeopleToSpawn * roundCount)
         {
-            StartGame();
+            IntermissionTime();
         }
+    }
+    bool intermissionON;
+    private async void IntermissionTime()
+    {
+        currentTimer = intermissionTimer;
+        intermissionON = true;
+        await Task.Delay(intermissionTimer * 1000);
+        StartGame();
+        intermissionON =false;
     }
 }
 
