@@ -167,7 +167,6 @@ public class PlayerInteraction : MonoBehaviour
                             _inventory.HandleOnLostLastItem();
                             _interface.Interact(_inventory.GetLastItem);
                             _inventory.RemoveLastItem();
-
                         }
                         break;
                     case InteractType.Valigia:
@@ -198,36 +197,42 @@ public class PlayerInteraction : MonoBehaviour
                 return;
             }
 
-            RunnerBehaviour runner = interactableObj.GetComponent<RunnerBehaviour>();
-            if (runner)
+            if (!_inventory.IsFull)
             {
-                _inventory.AddObjInInventory(runner.InteractWithRunenrBaggage());
-                Destroy(interactableObj);
+                RunnerBehaviour runner = interactableObj.GetComponent<RunnerBehaviour>();
+                if (runner)
+                {
+                    _inventory.AddObjInInventory(runner.InteractWithRunenrBaggage());
+                    Destroy(interactableObj);
+                }
+                interactableObj = null; 
             }
-            interactableObj = null;
         }
     }
 
     private void PickUpFromCarrello()
     {
-        Collider[] colliders = Physics.OverlapSphere(startCheckerPoint.position, isoRadius);
-        foreach (Collider cl in colliders)
+        if (!_inventory.IsFull)
         {
-            if (cl.gameObject.layer == LayerMask.NameToLayer("Interactable"))
+            Collider[] colliders = Physics.OverlapSphere(startCheckerPoint.position, isoRadius);
+            foreach (Collider cl in colliders)
             {
-                Inventory carrelloInventory = cl.GetComponent<Inventory>();
-                if (carrelloInventory)
+                if (cl.gameObject.layer == LayerMask.NameToLayer("Interactable"))
                 {
-                    Transform obj = carrelloInventory.GetLastItem;
-                    if (obj != null)
+                    Inventory carrelloInventory = cl.GetComponent<Inventory>();
+                    if (carrelloInventory)
                     {
-                        carrelloInventory.HandleOnLostLastItem();
-                        _inventory.AddObjInInventory(carrelloInventory.GetLastItem);
-                        carrelloInventory.RemoveLastItem();
+                        Transform obj = carrelloInventory.GetLastItem;
+                        if (obj != null)
+                        {
+                            carrelloInventory.HandleOnLostLastItem();
+                            _inventory.AddObjInInventory(carrelloInventory.GetLastItem);
+                            carrelloInventory.RemoveLastItem();
+                        }
+                        return;
                     }
-                    return;
                 }
-            }
+            } 
         }
     }
 

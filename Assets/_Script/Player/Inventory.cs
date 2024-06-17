@@ -14,6 +14,7 @@ public class Inventory : MonoBehaviour
     public int count => items.Count;
     public Transform GetLastItem => count > 0 ? items[count - 1] : null;
     public bool IsEmpty => count <= 0;
+    public bool IsFull => count >= maxPickableObj;
 
 
     private void Awake()

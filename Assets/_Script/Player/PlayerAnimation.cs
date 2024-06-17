@@ -52,7 +52,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         Vector2 input = new Vector2(GetInputMove().x, GetInputMove().z);
         input.Normalize();  
-        _animInstance.SetFloat(_MovingID, input.magnitude);
+        _animInstance.SetFloat(_MovingID, input.magnitude,.1f,Time.deltaTime);
     }
     private void UpdateIsFalling()
     {
