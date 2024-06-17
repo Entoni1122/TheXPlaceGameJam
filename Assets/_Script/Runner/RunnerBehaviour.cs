@@ -12,6 +12,7 @@ public class RunnerBehaviour : MonoBehaviour
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        GameManager.OnLoseRound += () => { Destroy(gameObject); };
     }
     public void Init(GameObject Owner,ColorType colorType)
     {
