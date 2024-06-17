@@ -57,6 +57,7 @@ public class BlinkOutline : MonoBehaviour
     private Mode outlineMode;
 
     [SerializeField]
+    private Color outlineColor;
 
     [SerializeField, Range(0f, 100f)] // Cambia il limite superiore da 10 a 100
     private float outlineWidth = 2f;
