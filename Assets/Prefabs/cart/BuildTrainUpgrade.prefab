@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 2260285445161924582}
   - component: {fileID: 7964826413120498610}
   m_Layer: 8
-  m_Name: MulinoCarrello
+  m_Name: BuildTrainUpgrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

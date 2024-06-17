@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2056393138183626569}
   - component: {fileID: 8905378753857712395}
   m_Layer: 8
-  m_Name: Autobus
+  m_Name: BuildAutobus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
