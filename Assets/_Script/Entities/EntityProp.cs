@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 
@@ -21,7 +22,6 @@ public class EntityProp : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] Rigidbody rb;
     private Transform target;
-    private Vector3 dir;
     public ColorType color { get; private set; }
     private Action Move;
     private Inventory inventory;
@@ -29,12 +29,10 @@ public class EntityProp : MonoBehaviour
 
     public void Init(Transform inTarget, EntityType _type, ColorType _color)
     {
-        rb.constraints = RigidbodyConstraints.None;
-        rb.useGravity = false;
-        rb.velocity = Vector3.zero;
+        if(_type == EntityType.Baggage)
+            rb.constraints = RigidbodyConstraints.None;
+
         target = inTarget;
-        dir = target.position - transform.position;
-        dir.Normalize();
         color = _color;
         Move = StartMovement;
         entityType = _type;
@@ -68,8 +66,8 @@ public class EntityProp : MonoBehaviour
             {
                 skinnedmeshRenderer.materials[5].color = meshcolor;
             }
-
         }
+
 
     }
     public void UpdateInventoryRef(Inventory InInventory)
@@ -86,10 +84,8 @@ public class EntityProp : MonoBehaviour
         transform.parent = null;
         rb.constraints = RigidbodyConstraints.None;
         rb.useGravity = false;
-        rb.velocity = Vector3.zero;
         target = inTarget;
-        dir = target.position - transform.position;
-        dir.Normalize();
+        
         Move = StartMovement;
         speed *= 2f;
         gameObject.layer = 0;
@@ -103,16 +99,15 @@ public class EntityProp : MonoBehaviour
     {
         if (target != null)
         {
-            if (Vector3.Distance(target.position, transform.position) < 2f)
+            Vector3 dir = target.position - transform.position;
+            dir.Normalize();
+            rb.AddForce(dir * speed * Time.deltaTime, ForceMode.Acceleration);
+
+            if (Vector3.Distance(target.position, transform.position) < 1f)
             {
-                rb.useGravity = true;
                 transform.parent = null;
                 Move = null;
             }
         }
-    }
-    private void FixedUpdate()
-    {
-        rb.AddForce(dir * speed * Time.deltaTime, ForceMode.Acceleration);
     }
 }

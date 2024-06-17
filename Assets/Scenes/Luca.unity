@@ -505,7 +505,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 26624499}
-  m_LocalRotation: {x: 0.24837853, y: 0.4164152, z: -0.1193769, w: 0.8664039}
+  m_LocalRotation: {x: 0.24837855, y: 0.4164152, z: -0.11937689, w: 0.8664039}
   m_LocalPosition: {x: -56.68, y: 40.147, z: -38.37}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2722,7 +2722,7 @@ MonoBehaviour:
   entity: {fileID: 6330567668775106612, guid: e67ea22877da73048aba521ffa163eaa, type: 3}
   spawnPos: {fileID: 1321581628}
   targetPos: {fileID: 2095294726}
-  timeToSpawn: 2
+  timeToSpawn: 0.1
 --- !u!4 &677733277
 Transform:
   m_ObjectHideFlags: 0
@@ -3353,7 +3353,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh41258
+  m_Name: pb_Mesh32262
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -5366,7 +5366,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1223103314}
-  m_LocalRotation: {x: 0.24837853, y: 0.4164152, z: -0.1193769, w: 0.8664039}
+  m_LocalRotation: {x: 0.24837855, y: 0.4164152, z: -0.11937689, w: 0.8664039}
   m_LocalPosition: {x: -56.68, y: 40.147, z: -38.37}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5827,7 +5827,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1321581627}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.3, z: 1.55}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5867,7 +5867,7 @@ MonoBehaviour:
   entity: {fileID: 6330567668775106612, guid: 59ca06075158aed4c99b4e8fe62c9aa4, type: 3}
   spawnPos: {fileID: 1561666434}
   targetPos: {fileID: 1674721073}
-  timeToSpawn: 2
+  timeToSpawn: 1
 --- !u!4 &1325565343
 Transform:
   m_ObjectHideFlags: 0
@@ -7081,7 +7081,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1561666433}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.3, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7749,7 +7749,7 @@ MonoBehaviour:
   startTimerPerRound: 100
   timerTxt: {fileID: 1205487436}
   startBaggageToSpawn: 4
-  startPeopleToSpawn: 0
+  startPeopleToSpawn: 4
   spotsList:
   - {fileID: 8772223414196609739}
   - {fileID: 734249657}
@@ -7940,7 +7940,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1674721072}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.3, z: -8.74}
+  m_LocalPosition: {x: 0, y: 1, z: -10.459999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10467,7 +10467,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2095294725}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.3, z: 9.07}
+  m_LocalPosition: {x: 0, y: 0, z: 5.540001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

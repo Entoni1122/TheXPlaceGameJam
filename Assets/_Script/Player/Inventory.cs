@@ -113,9 +113,7 @@ public class Inventory : MonoBehaviour
                 }
                 Destroy(items[i].GetComponent<ConfigurableJoint>());
                 items[i].GetComponent<EntityProp>().UpdateInventoryRef(null);
-                print("Before:" + count);
                 items.RemoveAt(i);
-                print(count);
                 break;
             }
         }
