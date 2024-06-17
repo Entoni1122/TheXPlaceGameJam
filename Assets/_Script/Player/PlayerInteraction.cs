@@ -186,6 +186,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             _currentCarrello.Release(transform);
             _currentCarrello = null;
+            GetComponent<PlayerAnimation>().NotifyOnCart(false);
         }
         else
         {
@@ -200,6 +201,7 @@ public class PlayerInteraction : MonoBehaviour
                         carrello.Handle(transform);
                         _currentCarrello = carrello;
                         _currentCarrello.magnetActive = magnetismON;
+                        GetComponent<PlayerAnimation>().NotifyOnCart(true);
                         return;
                     }
                 }

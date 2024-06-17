@@ -11,10 +11,11 @@ public class PlayerAnimation : MonoBehaviour
     Animator _animInstance;
     Rigidbody _rb;
 
-    [SerializeField] string _isMovingID;
+    [SerializeField] string _MovingID;
     [SerializeField] string _isFallingID;
     [SerializeField] string _OnCarID;
     [SerializeField] string _HandsUpID;
+    [SerializeField] string _HandsOnCartID;
 
     private void Start()
     {
@@ -47,26 +48,12 @@ public class PlayerAnimation : MonoBehaviour
         UpdateIsFalling();
         NotifyHands(!inventory.IsEmpty);
     }
-
     private void UpdateMoving()
     {
         Vector2 input = new Vector2(GetInputMove().x, GetInputMove().z);
-        if (input != Vector2.zero)
-        {
-            if (!_animInstance.GetBool(_isMovingID))
-            {
-                _animInstance.SetBool(_isMovingID, true);
-            }
-        }
-        else
-        {
-            if (_animInstance.GetBool(_isMovingID))
-            {
-                _animInstance.SetBool(_isMovingID, false);
-            }
-        }
+        input.Normalize();  
+        _animInstance.SetFloat(_MovingID, input.magnitude);
     }
-
     private void UpdateIsFalling()
     {
         if (!GetIsGrounded())
@@ -88,6 +75,10 @@ public class PlayerAnimation : MonoBehaviour
     {
         _animInstance.SetBool(_OnCarID, InCar);
     }
+    public void NotifyOnCart(bool InCart)
+    {
+        _animInstance.SetBool(_HandsOnCartID, InCart);
+    }
     private void NotifyHands(bool handsUp)
     {
         _animInstance.SetBool(_HandsUpID, handsUp);
@@ -104,7 +95,6 @@ public class PlayerAnimation : MonoBehaviour
 
         return false;
     }
-
     private Vector3 GetInputMove()
     {
         Type type = playerRef.GetType();
