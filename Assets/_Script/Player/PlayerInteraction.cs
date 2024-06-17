@@ -21,7 +21,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] Inventory _inventory;
     private Carrello _currentCarrello;
     private bool magnetismON;
-
+    private GameObject lastInteractableObj;
     #region UnityFunctions
     private void Awake()
     {
@@ -37,6 +37,7 @@ public class PlayerInteraction : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.E))
         {
             Interact();
+            HandleCarrello();
         }
         if (Input.GetKeyUp(KeyCode.Q))
         {
@@ -45,7 +46,7 @@ public class PlayerInteraction : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.C))
         {
-            HandleCarrello();
+           
         }
     }
     #endregion
@@ -82,13 +83,36 @@ public class PlayerInteraction : MonoBehaviour
             interactableObj = null;
         }
     }
+
+    private void ToggleOutline(GameObject obj, bool state)
+    {
+        var outline = obj.GetComponent<BlinkOutline>();
+        if (outline != null)
+        {
+            if (state)
+            {
+                outline.OutlineWidth = 20f;
+                outline.OutlineColor = Color.black;
+                outline.enabled = true;
+            }
+            else
+            {
+                outline.enabled = false;
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"No BlinkOutline component found on {obj.name}");
+        }
+    }
+
     private void CheckIsoPerson()
     {
         bool foundInteractable = false;
         Collider[] colliders = Physics.OverlapSphere(startCheckerPoint.position, isoRadius);
         if (colliders.Length != 0)
         {
-            float maxDist = int.MaxValue;
+            float maxDist = float.MaxValue;
             foreach (Collider cl in colliders)
             {
                 if (cl.gameObject.layer == LayerMask.NameToLayer("Interactable"))
@@ -107,7 +131,31 @@ public class PlayerInteraction : MonoBehaviour
         {
             interactableObj = null;
         }
+
+        HandleOutline();
     }
+
+    private void HandleOutline()
+    {
+        if (interactableObj != null)
+        {
+            if (lastInteractableObj != null && lastInteractableObj != interactableObj)
+            {
+                ToggleOutline(lastInteractableObj, false);
+            }
+            ToggleOutline(interactableObj, true);
+            lastInteractableObj = interactableObj;
+        }
+        else
+        {
+            if (lastInteractableObj != null)
+            {
+                ToggleOutline(lastInteractableObj, false);
+                lastInteractableObj = null;
+            }
+        }
+    }
+
     private void Interact()
     {
         if (interactableObj != null)

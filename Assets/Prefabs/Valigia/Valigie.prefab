@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6680369257959866982}
   - component: {fileID: 2979704712044700369}
   - component: {fileID: 5036837491737068164}
+  - component: {fileID: 2801516859708938870}
   m_Layer: 8
   m_Name: Valigie
   m_TagString: Untagged
@@ -111,6 +112,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactType: 1
+--- !u!114 &2801516859708938870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6330567668775106612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f702428453e20144288ad325006ef939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 0
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &2218201584929667816
 PrefabInstance:
   m_ObjectHideFlags: 0
