@@ -93,10 +93,5 @@ public class Shooter : MonoBehaviour
         _inventory.GetLastItem.GetComponent<BaseInteractableObj>().ThrowAway(dir * currentForce);
         _inventory.RemoveLastItem();
         trajcetory.SetTrajectoryVisible(false);
-
-        if (_inventory.IsEmpty)
-        {
-            GetComponent<PlayerAnimation>().NotifyHands(false);
-        }
     }
 }

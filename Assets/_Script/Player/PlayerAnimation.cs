@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerAnimation : MonoBehaviour
 {
     [SerializeField] MonoBehaviour playerRef;
+    Inventory inventory;
     Animator _animInstance;
     Rigidbody _rb;
 
@@ -36,12 +37,15 @@ public class PlayerAnimation : MonoBehaviour
             Debug.LogError("No controller in this object");
             Destroy(this);
         }
+
+        inventory = GetComponent<Inventory>();
     }
 
     private void Update()
     {
         UpdateMoving();
         UpdateIsFalling();
+        NotifyHands(!inventory.IsEmpty);
     }
 
     private void UpdateMoving()
@@ -84,7 +88,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         _animInstance.SetBool(_OnCarID, InCar);
     }
-    public void NotifyHands(bool handsUp)
+    private void NotifyHands(bool handsUp)
     {
         _animInstance.SetBool(_HandsUpID, handsUp);
     }

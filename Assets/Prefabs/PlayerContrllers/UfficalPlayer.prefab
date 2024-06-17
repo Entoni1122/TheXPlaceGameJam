@@ -294,9 +294,10 @@ MonoBehaviour:
   StorableLock: 2
   isPlayerInventory: 1
   socketRef: {fileID: 369784867436003388}
-  socketOffsetBaggage: {x: 0, y: 0.65, z: 0}
+  socketOffsetBaggage: {x: 0, y: 0.8, z: 0}
   socketOffsetPeople: {x: 0, y: 1.1, z: 0}
   maxPickableObj: 0
+  items: []
 --- !u!114 &6264279113447999304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -346,7 +347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 1
-  Force: 3
+  Force: 5
   Money: 0
 --- !u!114 &4395470171086576068
 MonoBehaviour:

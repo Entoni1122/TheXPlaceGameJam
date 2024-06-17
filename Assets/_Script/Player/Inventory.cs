@@ -40,10 +40,6 @@ public class Inventory : MonoBehaviour
         {
             if (count == 0)
             {
-                if (isPlayerInventory)
-                {
-                    GetComponent<PlayerAnimation>().NotifyHands(true);
-                }
                 currentTypeStored = obj.GetComponent<EntityProp>().entityType;
             }
             else
@@ -54,7 +50,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public List<Transform> items = new List<Transform>();
+    private List<Transform> items = new List<Transform>();
     private void HandleJointOnAdd(Transform obj)
     {
         if (items.Count == 0)
@@ -78,13 +74,18 @@ public class Inventory : MonoBehaviour
             joint.xMotion = ConfigurableJointMotion.Locked;
             joint.yMotion = ConfigurableJointMotion.Locked;
             joint.zMotion = ConfigurableJointMotion.Locked;
-            joint.angularXMotion = ConfigurableJointMotion.Limited;
+            SoftJointLimit linearLimit = new SoftJointLimit();
+            linearLimit.limit = 0.01f;
+            joint.linearLimit = linearLimit;
+            joint.angularXMotion = ConfigurableJointMotion.Locked;
             joint.angularYMotion = ConfigurableJointMotion.Limited;
             joint.angularZMotion = ConfigurableJointMotion.Limited;
             SoftJointLimit angularLimit = new SoftJointLimit();
-            angularLimit.limit = 5;
+            angularLimit.limit = 3;
             joint.angularYLimit = angularLimit;
+            joint.angularZLimit = angularLimit;
             joint.enableCollision = true;
+            joint.projectionMode = JointProjectionMode.PositionAndRotation;
         }
         items.Add(obj);
         obj.GetComponent<EntityProp>().UpdateInventoryRef(this);
@@ -143,13 +144,18 @@ public class Inventory : MonoBehaviour
                 joint.xMotion = ConfigurableJointMotion.Locked;
                 joint.yMotion = ConfigurableJointMotion.Locked;
                 joint.zMotion = ConfigurableJointMotion.Locked;
-                joint.angularXMotion = ConfigurableJointMotion.Limited;
+                SoftJointLimit linearLimit = new SoftJointLimit();
+                linearLimit.limit = 0.01f;
+                joint.linearLimit = linearLimit;
+                joint.angularXMotion = ConfigurableJointMotion.Locked;
                 joint.angularYMotion = ConfigurableJointMotion.Limited;
                 joint.angularZMotion = ConfigurableJointMotion.Limited;
                 SoftJointLimit angularLimit = new SoftJointLimit();
-                angularLimit.limit = 5;
+                angularLimit.limit = 3;
                 joint.angularYLimit = angularLimit;
+                joint.angularZLimit = angularLimit;
                 joint.enableCollision = true;
+                joint.projectionMode = JointProjectionMode.PositionAndRotation;
             }
         }
     }
@@ -162,7 +168,6 @@ public class Inventory : MonoBehaviour
             Rigidbody itemRB = item.GetComponent<Rigidbody>();
             itemRB.constraints = RigidbodyConstraints.None;
             itemRB.AddForce(Vector3.up * 10, ForceMode.Impulse);
-            GetComponent<PlayerAnimation>().NotifyHands(false);
             Destroy(items[i].GetComponent<ConfigurableJoint>());
         }
         items.Clear();
