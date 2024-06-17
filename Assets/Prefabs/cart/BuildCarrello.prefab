@@ -516,7 +516,7 @@ MonoBehaviour:
   socketRef: {fileID: 9011131323626750352}
   socketOffsetBaggage: {x: 0, y: 0.6, z: 0}
   socketOffsetPeople: {x: 0, y: 0, z: 0}
-  maxPickableObj: 3
+  maxPickableObj: 5
 --- !u!1 &6707794889366271284
 GameObject:
   m_ObjectHideFlags: 0

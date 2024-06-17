@@ -89,7 +89,7 @@ public class Carrello : BaseInteractableObj
             {
                 Transform valigiaTransform = col.transform;
 
-                if (valigiaTransform.IsChildOf(_socketTransform))
+                if (_inventory.IsAlreadyAdded(valigiaTransform))
                 {
                     continue;
                 }
@@ -119,21 +119,6 @@ public class Carrello : BaseInteractableObj
         {
             return;
         }
-
-        valigia.SetParent(_socketTransform);
-
-        int index = _socketTransform.childCount - 1;
-        Vector3 newPos = _socketTransform.position + index * _socketTransform.up * 0.8f;
-        valigia.position = newPos;
-        valigia.rotation = _socketTransform.rotation;
-
-        Rigidbody valigiaRb = valigia.GetComponent<Rigidbody>();
-        if (valigiaRb != null)
-        {
-            valigiaRb.velocity = Vector3.zero;
-            valigiaRb.isKinematic = true;
-        }
-
         _inventory.AddObjInInventory(valigia);
     }
 

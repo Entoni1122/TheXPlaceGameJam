@@ -172,4 +172,15 @@ public class Inventory : MonoBehaviour
         }
         items.Clear();
     }
+    public bool IsAlreadyAdded(Transform item)
+    {
+        foreach (Transform child in items)
+        { 
+            if (child == item)
+            {
+                return true;
+            }
+        }
+        return false;   
+    }
 }
