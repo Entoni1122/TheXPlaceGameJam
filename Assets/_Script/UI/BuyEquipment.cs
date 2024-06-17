@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 public class BuyEquipment : MonoBehaviour
 {
-    
+
     public int Cost;
     public GameObject ActorPrefab;
     public Transform SpawnPoint;
@@ -34,7 +34,7 @@ public class BuyEquipment : MonoBehaviour
     //impost on button click
     public void SpawnActor()
     {
-        if (ActorPrefab != null && SpawnPoint != null && MoneyCounterScript.Money>=Cost)
+        if (ActorPrefab != null && SpawnPoint != null && MoneyCounterScript.CurrentMoney >= Cost)
         {
             MoneyCounterScript.DecreaseMoney(Cost);
             Instantiate(ActorPrefab, SpawnPoint.position, SpawnPoint.rotation);

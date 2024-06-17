@@ -4,7 +4,6 @@ using UnityEngine;
 using TMPro;
 public class BuyStatistic : MonoBehaviour
 {
-    
     public int Cost;
 
     //name of the stat to modify
@@ -42,7 +41,7 @@ public class BuyStatistic : MonoBehaviour
     //impost on button click
     public void IncreseStat()
     {
-        if (MoneyCounterScript.Money >= Cost)
+        if (MoneyCounterScript.CurrentMoney >= Cost)
         {
             MoneyCounterScript.DecreaseMoney(Cost);
             PlayerScript.IncreseStats(StatName);

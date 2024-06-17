@@ -686,6 +686,7 @@ MonoBehaviour:
   socketOffsetBaggage: {x: 0, y: 0, z: 0.7}
   socketOffsetPeople: {x: 0, y: 0, z: 0}
   maxPickableObj: 4
+  items: []
 --- !u!1 &5019848893133393211
 GameObject:
   m_ObjectHideFlags: 0

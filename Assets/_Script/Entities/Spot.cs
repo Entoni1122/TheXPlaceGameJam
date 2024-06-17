@@ -1,3 +1,4 @@
+using System;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
@@ -11,18 +12,21 @@ public class Spot : MonoBehaviour
     public int amountPeople { private get; set; }
     private int currentAmountPeople;
 
+    [SerializeField] int moneyGet = 40;
+    public static event Action<int> OnScorePoint;
+
     private void OnTriggerEnter(Collider other)
     {
         if (!other.GetComponent<EntityProp>()) return;
 
-
         if (other.GetComponent<EntityProp>().color == color)
         {
+            OnScorePoint?.Invoke(moneyGet);
             if (other.GetComponent<EntityProp>().entityType == EntityType.Baggage)
             {
                 currentAmountBaggage++;
                 other.transform.gameObject.layer = 0;
-               
+
                 if (currentAmountBaggage >= amountBaggage)
                 {
                     GameManager.instance.OnFullSpot(amountBaggage, 0);

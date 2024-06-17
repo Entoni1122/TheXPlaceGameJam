@@ -24,7 +24,6 @@ public class MulinoController : MonoBehaviour
     [SerializeField] bool bEnableController = false;
     public bool BEnableController { get { return bEnableController; } set { bEnableController = value; } }
 
-    [SerializeField] float respawnTimer = 2f;
     bool isGrounded;
     [SerializeField] Transform playerDismountPos;
 

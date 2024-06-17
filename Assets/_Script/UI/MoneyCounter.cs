@@ -5,38 +5,49 @@ using TMPro;
 
 public class MoneyCounter : MonoBehaviour
 {
+    int currentMoney;
+
+    public int CurrentMoney { get { return currentMoney; } set { currentMoney = value;  } }
+
+
+    [SerializeField] int startingMoney = 1000;
 
     private TextMeshProUGUI TextComponent;
-    public int Money;
-    
-    // Start is called before the first frame update
+
+    private void OnEnable()
+    {
+        Spot.OnScorePoint += IncreaseMoney;
+        GameManager.OnLoseRound += () =>
+        {
+            currentMoney = startingMoney;
+            TextComponent.text = currentMoney.ToString() + " $";
+        };
+    }
+
+    private void OnDisable()
+    {
+        Spot.OnScorePoint -= IncreaseMoney;
+    }
+
     void Start()
     {
         TextComponent = GetComponent<TextMeshProUGUI>();
-        Money = 1000;
-        TextComponent.text = Money + " $";
+        currentMoney = startingMoney;
+        TextComponent.text = currentMoney + " $";
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    // Call when the player earns Money, with the money amount
     public void IncreaseMoney(int MoneyFromQuest)
     {
-        Money += MoneyFromQuest;
-        TextComponent.text = Money.ToString() + " $";
+        currentMoney += MoneyFromQuest;
+        TextComponent.text = currentMoney.ToString() + " $";
     }
 
-    // Call when the player Spends Money, with the money amount
     public void DecreaseMoney(int MoneySpent)
     {
-        if(Money >= MoneySpent)
+        if (currentMoney >= MoneySpent)
         {
-            Money -= MoneySpent;
-            TextComponent.text = Money.ToString() + " $";
+            currentMoney -= MoneySpent;
+            TextComponent.text = currentMoney.ToString() + " $";
         }
     }
 

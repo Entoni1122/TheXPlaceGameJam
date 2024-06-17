@@ -609,7 +609,7 @@ PrefabInstance:
     - target: {fileID: 6915320030215478376, guid: a2f068f572800694ea96dfefc7a5d4ab,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 4368
+      value: 4377
       objectReference: {fileID: 0}
     - target: {fileID: 7209030029601812617, guid: a2f068f572800694ea96dfefc7a5d4ab,
         type: 3}
@@ -624,7 +624,7 @@ PrefabInstance:
     - target: {fileID: 9022111379808379770, guid: a2f068f572800694ea96dfefc7a5d4ab,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 856
+      value: 865
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5449,7 +5449,7 @@ PrefabInstance:
     - target: {fileID: 6915320030215478376, guid: a2f068f572800694ea96dfefc7a5d4ab,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 4368
+      value: 4377
       objectReference: {fileID: 0}
     - target: {fileID: 7209030029601812617, guid: a2f068f572800694ea96dfefc7a5d4ab,
         type: 3}
@@ -5464,7 +5464,7 @@ PrefabInstance:
     - target: {fileID: 9022111379808379770, guid: a2f068f572800694ea96dfefc7a5d4ab,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 856
+      value: 865
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -5771,7 +5771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c8a883753cd09549b6412efead3f489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Money: 0
+  startingMoney: 500
 --- !u!114 &1280245005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11905,7 +11905,7 @@ PrefabInstance:
     - target: {fileID: 6915320030215478376, guid: a2f068f572800694ea96dfefc7a5d4ab,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 4368
+      value: 4377
       objectReference: {fileID: 0}
     - target: {fileID: 7209030029601812617, guid: a2f068f572800694ea96dfefc7a5d4ab,
         type: 3}
@@ -11920,7 +11920,7 @@ PrefabInstance:
     - target: {fileID: 9022111379808379770, guid: a2f068f572800694ea96dfefc7a5d4ab,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 853
+      value: 862
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

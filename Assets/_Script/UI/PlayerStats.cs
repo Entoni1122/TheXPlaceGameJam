@@ -9,7 +9,6 @@ public class PlayerStats : MonoBehaviour
 
     public float Speed = 1;
     public float Force = 1;
-    public float Money = 0;
 
     public static Action<float, float,bool> OnChangeStats;
 

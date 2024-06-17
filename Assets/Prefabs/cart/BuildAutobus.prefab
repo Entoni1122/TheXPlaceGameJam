@@ -40,7 +40,7 @@ Transform:
   - {fileID: 5577736924945274869}
   - {fileID: 3056208167043946284}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!135 &5937579068246622191
 SphereCollider:
@@ -111,6 +111,9 @@ MonoBehaviour:
   bEnableController: 1
   respawnTimer: 2
   playerDismountPos: {fileID: 5577736924945274869}
+  carrelloOffset: {x: 0, y: 0}
+  carreloPrefab: {fileID: 0}
+  carreloReference: []
 --- !u!114 &792630471233414255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,6 +167,7 @@ MonoBehaviour:
   socketOffsetBaggage: {x: 0, y: 0, z: 0}
   socketOffsetPeople: {x: 0, y: 0, z: 0}
   maxPickableObj: 10
+  items: []
 --- !u!1 &637503465974630990
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,11 +368,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: -1891630423312683343, guid: 7fca78c3a55b64e4890442d071acb325,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3403903160023496366}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fca78c3a55b64e4890442d071acb325, type: 3}
 --- !u!4 &2252042187854252829 stripped
 Transform:
@@ -376,30 +376,3 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1786351310266854646}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &9040396996697014855 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -1891630423312683343, guid: 7fca78c3a55b64e4890442d071acb325,
-    type: 3}
-  m_PrefabInstance: {fileID: 1786351310266854646}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &3403903160023496366
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9040396996697014855}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.07097014, y: 0.16318306, z: 0.039951287}
-  m_Center: {x: 0.000000007450581, y: -0.0011057218, z: 0.030588323}
