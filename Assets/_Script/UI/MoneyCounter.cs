@@ -6,13 +6,13 @@ using TMPro;
 public class MoneyCounter : MonoBehaviour
 {
     int currentMoney;
-
     public int CurrentMoney { get { return currentMoney; } set { currentMoney = value;  } }
-
-
     [SerializeField] int startingMoney = 1000;
 
     private TextMeshProUGUI TextComponent;
+
+    [SerializeField] GameObject coinPrefab;
+    [SerializeField] Transform coinSapwn;
 
     private void OnEnable()
     {
@@ -40,6 +40,10 @@ public class MoneyCounter : MonoBehaviour
     {
         currentMoney += MoneyFromQuest;
         TextComponent.text = currentMoney.ToString() + " $";
+        float rnaodm = Random.Range(50, 80);
+        Vector3 spean = new Vector3(coinSapwn.position.x + rnaodm, coinSapwn.position.y + rnaodm, coinSapwn.position.z + rnaodm);
+        GameObject onk = Instantiate(coinPrefab, coinSapwn);
+        onk.transform.position = spean;
     }
 
     public void DecreaseMoney(int MoneySpent)

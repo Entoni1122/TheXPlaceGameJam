@@ -1,13 +1,13 @@
 using System.Collections;
 using UnityEngine;
 using NaughtyAttributes;
+using UnityEditor;
 
 enum PlayerView
 {
     FirstPerson,
     Iso
 }
-
 public class PlayerInteraction : MonoBehaviour
 {
     [SerializeField] Transform startCheckerPoint;
@@ -26,7 +26,7 @@ public class PlayerInteraction : MonoBehaviour
     private void Awake()
     {
         StartCoroutine("CheckingForInteraction");
-        PlayerStats.OnChangeStats += (float speed,float force, bool InMagnetism) =>
+        PlayerStats.OnChangeStats += (float speed, float force, bool InMagnetism) =>
         {
             magnetismON = InMagnetism;
         };
@@ -42,11 +42,6 @@ public class PlayerInteraction : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Q))
         {
             PickUpFromCarrello();
-        }
-
-        if (Input.GetKeyUp(KeyCode.C))
-        {
-           
         }
     }
     #endregion
@@ -190,7 +185,7 @@ public class PlayerInteraction : MonoBehaviour
                         else
                         {
                             _inventory.HandleOnLostLastItem();
-                            _interface.Interact(_inventory.GetLastItem,true);
+                            _interface.Interact(_inventory.GetLastItem, true);
                             _inventory.RemoveLastItem();
                         }
                         break;

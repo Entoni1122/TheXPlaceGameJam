@@ -523,6 +523,42 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 32.18, y: 51.34, z: 0}
+--- !u!1 &116488859
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 116488860}
+  m_Layer: 5
+  m_Name: CoiSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &116488860
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116488859}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2066891140}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &147516233
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5864,7 +5900,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c8a883753cd09549b6412efead3f489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingMoney: 30000
+  startingMoney: 1000
+  coinPrefab: {fileID: 2808410327087849726, guid: fc75a88d5ff17cc4dbf0a7c5f5fabb18,
+    type: 3}
+  coinSapwn: {fileID: 116488860}
 --- !u!114 &1280245005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7557,6 +7596,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6264279113447999304, guid: d5cf783de1bedcd44918a2db5c56b4d6,
+        type: 3}
+      propertyPath: coinSapwn
+      value: 
+      objectReference: {fileID: 116488860}
+    - target: {fileID: 6264279113447999304, guid: d5cf783de1bedcd44918a2db5c56b4d6,
+        type: 3}
+      propertyPath: coinPrefab
+      value: 
+      objectReference: {fileID: 2808410327087849726, guid: fc75a88d5ff17cc4dbf0a7c5f5fabb18,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15839,6 +15889,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 116488860}
   - {fileID: 1205487435}
   - {fileID: 792531793}
   - {fileID: 682166011}
