@@ -9,12 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 235885173569160428}
-  - component: {fileID: 5937579068246622191}
   - component: {fileID: 7831620332133585044}
   - component: {fileID: 7611176513163751315}
   - component: {fileID: 792630471233414255}
-  - component: {fileID: 2056393138183626569}
   - component: {fileID: 8905378753857712395}
+  - component: {fileID: 4824037306758505567}
   m_Layer: 8
   m_Name: BuildAutobus
   m_TagString: Untagged
@@ -41,29 +40,8 @@ Transform:
   - {fileID: 3056208167043946284}
   - {fileID: 1085450999174846947}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!135 &5937579068246622191
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 38069178874808198}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.9069638
-  m_Center: {x: 0.046986103, y: 0, z: 0}
 --- !u!54 &7831620332133585044
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -123,27 +101,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactType: 3
   postionToSit: {fileID: 4529822294053066789}
---- !u!65 &2056393138183626569
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 38069178874808198}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 3.2858133, y: 2.6975236, z: 9.6944}
-  m_Center: {x: -4.0694036, y: 0.8487618, z: 0.8522558}
 --- !u!114 &8905378753857712395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,6 +119,27 @@ MonoBehaviour:
   socketOffsetBaggage: {x: 0, y: 0, z: 0}
   socketOffsetPeople: {x: 0, y: 0, z: 0}
   maxPickableObj: 10
+--- !u!65 &4824037306758505567
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38069178874808198}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 8
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 6.183916, y: 4.63167, z: 16.602076}
+  m_Center: {x: -0.93109155, y: 1.354911, z: -2.466136}
 --- !u!1 &637503465974630990
 GameObject:
   m_ObjectHideFlags: 0
