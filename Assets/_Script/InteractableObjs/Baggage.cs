@@ -12,6 +12,8 @@ public class Baggage : BaseInteractableObj
 
     public static event Action<Point> OnObjectRemoved;
 
+
+
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -32,4 +34,5 @@ public class Baggage : BaseInteractableObj
             currentPoint = null;
         }
     }
+
 }

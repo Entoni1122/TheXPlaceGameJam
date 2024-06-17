@@ -99,6 +99,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 700
   rb: {fileID: 6680369257959866982}
+  runnerPrefab: {fileID: 6919367549779047391, guid: 2f32b412adf7c444ca7b3766cc81e6c5,
+    type: 3}
 --- !u!114 &5036837491737068164
 MonoBehaviour:
   m_ObjectHideFlags: 0

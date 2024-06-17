@@ -25,19 +25,18 @@ public class EntityProp : MonoBehaviour
     public ColorType color { get; private set; }
     private Action Move;
     private Inventory inventory;
-
+    [SerializeField] GameObject runnerPrefab;
 
     public void Init(Transform inTarget, EntityType _type, ColorType _color)
     {
-        if(_type == EntityType.Baggage)
+        if (_type == EntityType.Baggage)
             rb.constraints = RigidbodyConstraints.None;
 
         target = inTarget;
         color = _color;
         Move = StartMovement;
         entityType = _type;
-
-        gameObject.layer = 0;   
+        gameObject.layer = 0;
 
 
         Color meshcolor = Color.white;
@@ -69,14 +68,49 @@ public class EntityProp : MonoBehaviour
                 skinnedmeshRenderer.materials[5].color = meshcolor;
             }
         }
+    }
+    public void UpdateRefFromRunner(ColorType InColor, EntityType _type)
+    {
+        if (_type == EntityType.Baggage)
+            rb.constraints = RigidbodyConstraints.None;
 
+        color = InColor;
+        entityType = _type;
 
+        Color meshcolor = Color.white;
+        switch (color)
+        {
+            case ColorType.Blue:
+                meshcolor = Color.blue;
+                break;
+            case ColorType.Red:
+                meshcolor = Color.red;
+                break;
+            case ColorType.Green:
+                meshcolor = Color.green;
+                break;
+            default:
+                break;
+        }
+
+        MeshRenderer meshRenderer = GetComponentInChildren<MeshRenderer>();
+        if (meshRenderer)
+        {
+            meshRenderer.materials[1].color = meshcolor;
+        }
+        else
+        {
+            SkinnedMeshRenderer skinnedmeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+            if (skinnedmeshRenderer)
+            {
+                skinnedmeshRenderer.materials[5].color = meshcolor;
+            }
+        }
     }
     public void UpdateInventoryRef(Inventory InInventory)
     {
         inventory = InInventory;
     }
-
     public void GoToStorage(Transform inTarget)
     {
         if (inventory)
@@ -87,12 +121,11 @@ public class EntityProp : MonoBehaviour
         rb.constraints = RigidbodyConstraints.None;
         rb.useGravity = false;
         target = inTarget;
-        
+
         Move = StartMovement;
         speed *= 2f;
         gameObject.layer = 0;
     }
-
     void Update()
     {
         Move?.Invoke();
@@ -110,6 +143,19 @@ public class EntityProp : MonoBehaviour
                 transform.parent = null;
                 Move = null;
                 gameObject.layer = LayerMask.NameToLayer("Interactable");
+                Invoke("ChangeStatus", 5);
+            }
+        }
+    }
+    private void ChangeStatus()
+    {
+        if (inventory is null)
+        {
+            if (runnerPrefab)
+            {
+                GameObject runner = Instantiate(runnerPrefab, transform.position, Quaternion.identity);
+                runner.GetComponent<RunnerBehaviour>().Init(gameObject,color);
+                gameObject.SetActive(false);
             }
         }
     }
