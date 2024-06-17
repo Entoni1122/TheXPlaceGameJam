@@ -152,6 +152,14 @@ public class PlayerInteraction : MonoBehaviour
                     default:
                         break;
                 }
+                return;
+            }
+
+            RunnerBehaviour runner = interactableObj.GetComponent<RunnerBehaviour>();
+            if (runner)
+            {
+                _inventory.AddObjInInventory(runner.InteractWithRunenrBaggage());
+                Destroy(interactableObj);
             }
             interactableObj = null;
         }
