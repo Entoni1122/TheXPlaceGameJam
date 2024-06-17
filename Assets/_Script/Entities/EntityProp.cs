@@ -37,6 +37,8 @@ public class EntityProp : MonoBehaviour
         Move = StartMovement;
         entityType = _type;
 
+        gameObject.layer = 0;   
+
 
         Color meshcolor = Color.white;
         switch (color)
@@ -107,6 +109,7 @@ public class EntityProp : MonoBehaviour
             {
                 transform.parent = null;
                 Move = null;
+                gameObject.layer = LayerMask.NameToLayer("Interactable");
             }
         }
     }
