@@ -17,8 +17,13 @@ public class PhysicPLayerController : MonoBehaviour
     [SerializeField] float gravity = 20f;
 
     Rigidbody _rb;
+    [Header("GroundCheck")]
     [SerializeField] bool isGrounded;
     [SerializeField] Transform groundChecker;
+
+    [Header("VFX")]
+    [SerializeField] Transform placeToPSawn;
+    [SerializeField] GameObject refToDustPrefab;
 
     private Vector3 _input;
 
@@ -27,38 +32,46 @@ public class PhysicPLayerController : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         currentSpeed = _speed;
 
-        PlayerStats.OnChangeStats += (float inSpeedMultiplier, float InForce, bool InMagnetism)=>
+        PlayerStats.OnChangeStats += (float inSpeedMultiplier, float InForce, bool InMagnetism) =>
         {
             currentSpeed = _speed * inSpeedMultiplier;
         };
     }
-
     private void Update()
     {
         GatherInput();
         Look();
         isGrounded = Physics.Raycast(groundChecker.position, -transform.up, 1f);
-        if (isGrounded)
-        {
-            _rb.velocity -= new Vector3(0, 0, 0) * Time.deltaTime;
-        }
-        else
+        if (!isGrounded)
         {
             _rb.velocity -= new Vector3(0, gravity, 0) * Time.deltaTime;
         }
-        Jump();
 
+        Jump();
     }
     private void FixedUpdate()
     {
-
         Move();
-
     }
 
+    bool bho;
     private void GatherInput()
     {
-        _input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        _input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+
+        if (_input != Vector3.zero)
+        {
+            if (!bho)
+            {
+                refToDustPrefab.GetComponent<ParticleSystem>().Play();
+                bho = true;
+            }
+        }
+        else
+        {
+            refToDustPrefab.GetComponent<ParticleSystem>().Stop();
+            bho = false;
+        }
     }
 
     #region Movement
@@ -83,7 +96,7 @@ public class PhysicPLayerController : MonoBehaviour
         }
     }
     #endregion
-
+    [Header("Exolosion when getting hitted")]
     [SerializeField] float explosionForce = 200f;
     [SerializeField] float explosionRadius = 20f;
     private void OnCollisionEnter(Collision collision)

@@ -515,7 +515,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 26624499}
-  m_LocalRotation: {x: 0.24837855, y: 0.4164152, z: -0.11937689, w: 0.8664039}
+  m_LocalRotation: {x: 0.24837853, y: 0.41641524, z: -0.119376905, w: 0.8664039}
   m_LocalPosition: {x: -56.68, y: 40.147, z: -38.37}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5804,7 +5804,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1223103314}
-  m_LocalRotation: {x: 0.24837855, y: 0.4164152, z: -0.11937689, w: 0.8664039}
+  m_LocalRotation: {x: 0.24837853, y: 0.41641524, z: -0.119376905, w: 0.8664039}
   m_LocalPosition: {x: -56.68, y: 40.147, z: -38.37}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7620,7 +7620,7 @@ PrefabInstance:
     - target: {fileID: 1546467586542059433, guid: f983e2b71d75e3d4093691ec0c392666,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1546467586542059433, guid: f983e2b71d75e3d4093691ec0c392666,
         type: 3}
@@ -7635,7 +7635,7 @@ PrefabInstance:
     - target: {fileID: 1546467586542059433, guid: f983e2b71d75e3d4093691ec0c392666,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1546467586542059433, guid: f983e2b71d75e3d4093691ec0c392666,
         type: 3}
@@ -7656,7 +7656,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 730997093}
+      objectReference: {fileID: 1593679183}
     - target: {fileID: 1546467586542059433, guid: f983e2b71d75e3d4093691ec0c392666,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
@@ -7695,7 +7695,7 @@ PrefabInstance:
     - target: {fileID: 1546467586542059433, guid: f983e2b71d75e3d4093691ec0c392666,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: SetActive
+      value: SpawnActor
       objectReference: {fileID: 0}
     - target: {fileID: 1546467586542059433, guid: f983e2b71d75e3d4093691ec0c392666,
         type: 3}
@@ -7715,7 +7715,7 @@ PrefabInstance:
     - target: {fileID: 1546467586542059433, guid: f983e2b71d75e3d4093691ec0c392666,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: BuyEquipment, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1546467586542059433, guid: f983e2b71d75e3d4093691ec0c392666,
         type: 3}
@@ -7730,7 +7730,7 @@ PrefabInstance:
     - target: {fileID: 1546467586542059433, guid: f983e2b71d75e3d4093691ec0c392666,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1546467586542059433, guid: f983e2b71d75e3d4093691ec0c392666,
         type: 3}
@@ -7910,6 +7910,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1593679181}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1593679183 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4265424331592383946, guid: f983e2b71d75e3d4093691ec0c392666,
+    type: 3}
+  m_PrefabInstance: {fileID: 1593679181}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2091190050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ca795ef6af3404a8910f311bdca5a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1596571795
 Mesh:
   m_ObjectHideFlags: 0
@@ -11870,9 +11882,9 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1593679182}
   - {fileID: 14988133}
   - {fileID: 730997094}
+  - {fileID: 1593679182}
   - {fileID: 839424699}
   - {fileID: 426753433}
   m_Father: {fileID: 201176501}
