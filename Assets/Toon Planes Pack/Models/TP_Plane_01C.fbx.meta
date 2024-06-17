@@ -1,0 +1,195 @@
+fileFormatVersion: 2
+guid: e647bdbb5a441e547b170350e9a02d73
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: TP_Plane_01C_Aileron.L
+    100004: TP_Plane_01C_Aileron.R
+    100006: TP_Plane_01C_Cockpit_Door
+    100008: TP_Plane_01C_Elevator.L
+    100010: TP_Plane_01C_Elevator.R
+    100012: TP_Plane_01C_Flap.L
+    100014: TP_Plane_01C_Flap.R
+    100016: TP_Plane_01C_Fuselage
+    100018: TP_Plane_01C_Landing_Gear
+    100020: TP_Plane_01C_Landing_Gear.L
+    100022: TP_Plane_01C_Landing_Gear.R
+    100024: TP_Plane_01C_Livery
+    100026: TP_Plane_01C_Propeller
+    100028: TP_Plane_01C_Rudder
+    100030: TP_Plane_01C_Wheel_F.R
+    100032: TP_Plane_01C_Wheel_R
+    100034: TP_Plane_01C_Yoke
+    100036: TP_Plane_01CB_Wheel_F.L
+    400000: //RootNode
+    400002: TP_Plane_01C_Aileron.L
+    400004: TP_Plane_01C_Aileron.R
+    400006: TP_Plane_01C_Cockpit_Door
+    400008: TP_Plane_01C_Elevator.L
+    400010: TP_Plane_01C_Elevator.R
+    400012: TP_Plane_01C_Flap.L
+    400014: TP_Plane_01C_Flap.R
+    400016: TP_Plane_01C_Fuselage
+    400018: TP_Plane_01C_Landing_Gear
+    400020: TP_Plane_01C_Landing_Gear.L
+    400022: TP_Plane_01C_Landing_Gear.R
+    400024: TP_Plane_01C_Livery
+    400026: TP_Plane_01C_Propeller
+    400028: TP_Plane_01C_Rudder
+    400030: TP_Plane_01C_Wheel_F.R
+    400032: TP_Plane_01C_Wheel_R
+    400034: TP_Plane_01C_Yoke
+    400036: TP_Plane_01CB_Wheel_F.L
+    2100000: Atlas_1A_D
+    2100002: Glass_Vehicles_01A_D
+    2300000: TP_Plane_01C_Aileron.L
+    2300002: TP_Plane_01C_Aileron.R
+    2300004: TP_Plane_01C_Cockpit_Door
+    2300006: TP_Plane_01C_Elevator.L
+    2300008: TP_Plane_01C_Elevator.R
+    2300010: TP_Plane_01C_Flap.L
+    2300012: TP_Plane_01C_Flap.R
+    2300014: TP_Plane_01C_Fuselage
+    2300016: TP_Plane_01C_Landing_Gear
+    2300018: TP_Plane_01C_Landing_Gear.L
+    2300020: TP_Plane_01C_Landing_Gear.R
+    2300022: TP_Plane_01C_Livery
+    2300024: TP_Plane_01C_Propeller
+    2300026: TP_Plane_01C_Rudder
+    2300028: TP_Plane_01C_Wheel_F.R
+    2300030: TP_Plane_01C_Wheel_R
+    2300032: TP_Plane_01C_Yoke
+    2300034: TP_Plane_01CB_Wheel_F.L
+    3300000: TP_Plane_01C_Aileron.L
+    3300002: TP_Plane_01C_Aileron.R
+    3300004: TP_Plane_01C_Cockpit_Door
+    3300006: TP_Plane_01C_Elevator.L
+    3300008: TP_Plane_01C_Elevator.R
+    3300010: TP_Plane_01C_Flap.L
+    3300012: TP_Plane_01C_Flap.R
+    3300014: TP_Plane_01C_Fuselage
+    3300016: TP_Plane_01C_Landing_Gear
+    3300018: TP_Plane_01C_Landing_Gear.L
+    3300020: TP_Plane_01C_Landing_Gear.R
+    3300022: TP_Plane_01C_Livery
+    3300024: TP_Plane_01C_Propeller
+    3300026: TP_Plane_01C_Rudder
+    3300028: TP_Plane_01C_Wheel_F.R
+    3300030: TP_Plane_01C_Wheel_R
+    3300032: TP_Plane_01C_Yoke
+    3300034: TP_Plane_01CB_Wheel_F.L
+    4300000: TP_Plane_01C_Yoke
+    4300002: TP_Plane_01C_Cockpit_Door
+    4300004: TP_Plane_01C_Fuselage
+    4300006: TP_Plane_01C_Livery
+    4300008: TP_Plane_01C_Propeller
+    4300010: TP_Plane_01C_Flap.L
+    4300012: TP_Plane_01C_Flap.R
+    4300014: TP_Plane_01C_Aileron.L
+    4300016: TP_Plane_01C_Rudder
+    4300018: TP_Plane_01C_Elevator.L
+    4300020: TP_Plane_01C_Elevator.R
+    4300022: TP_Plane_01C_Aileron.R
+    4300024: TP_Plane_01C_Landing_Gear
+    4300026: TP_Plane_01C_Wheel_R
+    4300028: TP_Plane_01C_Landing_Gear.R
+    4300030: TP_Plane_01C_Wheel_F.R
+    4300032: TP_Plane_01C_Landing_Gear.L
+    4300034: TP_Plane_01CB_Wheel_F.L
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Atlas_1A_D
+    second: {fileID: 2100000, guid: b994bc59fc60d5a40b39614094a170bd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glass_Vehicles_01A_D
+    second: {fileID: 2100000, guid: ab7e6186c64723e41808c63ee87fbc4b, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

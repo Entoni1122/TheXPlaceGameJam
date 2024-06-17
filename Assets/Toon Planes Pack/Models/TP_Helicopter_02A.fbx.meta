@@ -1,0 +1,220 @@
+fileFormatVersion: 2
+guid: 820b0afc92a3658479a35829a25fbec0
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: TP_Helicopter_02A_Door_F.L
+    100004: TP_Helicopter_02A_Door_F.R
+    100006: TP_Helicopter_02A_Door_R.L
+    100008: TP_Helicopter_02A_Door_R.R
+    100010: TP_Helicopter_02A_Extinguisher.L
+    100012: TP_Helicopter_02A_Extinguisher.R
+    100014: TP_Helicopter_02A_Fuselage
+    100016: TP_Helicopter_02A_Hatch_Ext_F
+    100018: TP_Helicopter_02A_Hatch_Ext_R.L
+    100020: TP_Helicopter_02A_Hatch_Ext_R.R
+    100022: TP_Helicopter_02A_Hatch_Int_F
+    100024: TP_Helicopter_02A_Hatch_Int_R.L
+    100026: TP_Helicopter_02A_Hatch_Int_R.R
+    100028: TP_Helicopter_02A_Landing_Gear_F
+    100030: TP_Helicopter_02A_Landing_Gear_R.L
+    100032: TP_Helicopter_02A_Landing_Gear_R.R
+    100034: TP_Helicopter_02A_Main_Rotor
+    100036: TP_Helicopter_02A_Tail_Rotor
+    100038: TP_Helicopter_02A_Wheel_F
+    100040: TP_Helicopter_02A_Wheel_R.L
+    100042: TP_Helicopter_02A_Wheel_R.R
+    100044: TP_Helicopter_02A_Yoke.L
+    100046: TP_Helicopter_02A_Yoke.R
+    400000: //RootNode
+    400002: TP_Helicopter_02A_Door_F.L
+    400004: TP_Helicopter_02A_Door_F.R
+    400006: TP_Helicopter_02A_Door_R.L
+    400008: TP_Helicopter_02A_Door_R.R
+    400010: TP_Helicopter_02A_Extinguisher.L
+    400012: TP_Helicopter_02A_Extinguisher.R
+    400014: TP_Helicopter_02A_Fuselage
+    400016: TP_Helicopter_02A_Hatch_Ext_F
+    400018: TP_Helicopter_02A_Hatch_Ext_R.L
+    400020: TP_Helicopter_02A_Hatch_Ext_R.R
+    400022: TP_Helicopter_02A_Hatch_Int_F
+    400024: TP_Helicopter_02A_Hatch_Int_R.L
+    400026: TP_Helicopter_02A_Hatch_Int_R.R
+    400028: TP_Helicopter_02A_Landing_Gear_F
+    400030: TP_Helicopter_02A_Landing_Gear_R.L
+    400032: TP_Helicopter_02A_Landing_Gear_R.R
+    400034: TP_Helicopter_02A_Main_Rotor
+    400036: TP_Helicopter_02A_Tail_Rotor
+    400038: TP_Helicopter_02A_Wheel_F
+    400040: TP_Helicopter_02A_Wheel_R.L
+    400042: TP_Helicopter_02A_Wheel_R.R
+    400044: TP_Helicopter_02A_Yoke.L
+    400046: TP_Helicopter_02A_Yoke.R
+    2100000: Atlas_1A_D
+    2100002: Glass_Vehicles_01A_D
+    2300000: TP_Helicopter_02A_Door_F.L
+    2300002: TP_Helicopter_02A_Door_F.R
+    2300004: TP_Helicopter_02A_Door_R.L
+    2300006: TP_Helicopter_02A_Door_R.R
+    2300008: TP_Helicopter_02A_Extinguisher.L
+    2300010: TP_Helicopter_02A_Extinguisher.R
+    2300012: TP_Helicopter_02A_Fuselage
+    2300014: TP_Helicopter_02A_Hatch_Ext_F
+    2300016: TP_Helicopter_02A_Hatch_Ext_R.L
+    2300018: TP_Helicopter_02A_Hatch_Ext_R.R
+    2300020: TP_Helicopter_02A_Hatch_Int_F
+    2300022: TP_Helicopter_02A_Hatch_Int_R.L
+    2300024: TP_Helicopter_02A_Hatch_Int_R.R
+    2300026: TP_Helicopter_02A_Landing_Gear_F
+    2300028: TP_Helicopter_02A_Landing_Gear_R.L
+    2300030: TP_Helicopter_02A_Landing_Gear_R.R
+    2300032: TP_Helicopter_02A_Main_Rotor
+    2300034: TP_Helicopter_02A_Tail_Rotor
+    2300036: TP_Helicopter_02A_Wheel_F
+    2300038: TP_Helicopter_02A_Wheel_R.L
+    2300040: TP_Helicopter_02A_Wheel_R.R
+    2300042: TP_Helicopter_02A_Yoke.L
+    2300044: TP_Helicopter_02A_Yoke.R
+    3300000: TP_Helicopter_02A_Door_F.L
+    3300002: TP_Helicopter_02A_Door_F.R
+    3300004: TP_Helicopter_02A_Door_R.L
+    3300006: TP_Helicopter_02A_Door_R.R
+    3300008: TP_Helicopter_02A_Extinguisher.L
+    3300010: TP_Helicopter_02A_Extinguisher.R
+    3300012: TP_Helicopter_02A_Fuselage
+    3300014: TP_Helicopter_02A_Hatch_Ext_F
+    3300016: TP_Helicopter_02A_Hatch_Ext_R.L
+    3300018: TP_Helicopter_02A_Hatch_Ext_R.R
+    3300020: TP_Helicopter_02A_Hatch_Int_F
+    3300022: TP_Helicopter_02A_Hatch_Int_R.L
+    3300024: TP_Helicopter_02A_Hatch_Int_R.R
+    3300026: TP_Helicopter_02A_Landing_Gear_F
+    3300028: TP_Helicopter_02A_Landing_Gear_R.L
+    3300030: TP_Helicopter_02A_Landing_Gear_R.R
+    3300032: TP_Helicopter_02A_Main_Rotor
+    3300034: TP_Helicopter_02A_Tail_Rotor
+    3300036: TP_Helicopter_02A_Wheel_F
+    3300038: TP_Helicopter_02A_Wheel_R.L
+    3300040: TP_Helicopter_02A_Wheel_R.R
+    3300042: TP_Helicopter_02A_Yoke.L
+    3300044: TP_Helicopter_02A_Yoke.R
+    4300000: TP_Helicopter_02A_Landing_Gear_R.R
+    4300002: TP_Helicopter_02A_Wheel_R.R
+    4300004: TP_Helicopter_02A_Extinguisher.R
+    4300006: TP_Helicopter_02A_Door_R.R
+    4300008: TP_Helicopter_02A_Door_F.R
+    4300010: TP_Helicopter_02A_Door_F.L
+    4300012: TP_Helicopter_02A_Door_R.L
+    4300014: TP_Helicopter_02A_Extinguisher.L
+    4300016: TP_Helicopter_02A_Yoke.L
+    4300018: TP_Helicopter_02A_Yoke.R
+    4300020: TP_Helicopter_02A_Fuselage
+    4300022: TP_Helicopter_02A_Main_Rotor
+    4300024: TP_Helicopter_02A_Hatch_Ext_R.L
+    4300026: TP_Helicopter_02A_Hatch_Ext_R.R
+    4300028: TP_Helicopter_02A_Hatch_Int_R.R
+    4300030: TP_Helicopter_02A_Hatch_Int_R.L
+    4300032: TP_Helicopter_02A_Hatch_Ext_F
+    4300034: TP_Helicopter_02A_Hatch_Int_F
+    4300036: TP_Helicopter_02A_Tail_Rotor
+    4300038: TP_Helicopter_02A_Landing_Gear_F
+    4300040: TP_Helicopter_02A_Wheel_F
+    4300042: TP_Helicopter_02A_Landing_Gear_R.L
+    4300044: TP_Helicopter_02A_Wheel_R.L
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Atlas_1A_D
+    second: {fileID: 2100000, guid: b994bc59fc60d5a40b39614094a170bd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glass_Vehicles_01A_D
+    second: {fileID: 2100000, guid: ab7e6186c64723e41808c63ee87fbc4b, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
