@@ -91,8 +91,8 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (state)
             {
-                outline.OutlineWidth = 20f;
-                outline.OutlineColor = Color.black;
+                outline.OutlineWidth = 3f;
+                outline.OutlineColor = Color.white;
                 outline.enabled = true;
             }
             else
