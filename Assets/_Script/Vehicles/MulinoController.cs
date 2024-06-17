@@ -5,36 +5,47 @@ using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.UI;
+        
+       
 
 public class MulinoController : MonoBehaviour
 {
-    [Header("References")]
-    [SerializeField] Rigidbody rb;
+    [Header("Movemnet")]
+    [SerializeField] float _speed = 5f;
+    [SerializeField] float _turnSpeed = 2f;
+    private float currentSpeed;
 
-    [Header("Car Setup")]
-    [SerializeField] float forwardAccel = 8f;
-    [SerializeField] float reverseAccel = 4f;
-    [SerializeField] float turnStrength = 180;
-    [SerializeField] float carControlInputOnGround = 3.5f;
+    [Header("Jump")]
+    [SerializeField] float gravity = 20f;
 
-    [Header("Ground Check Info")]
-    [SerializeField] Transform groundRayPoint;
-
-    private float speedInput, turnInput, verticalInput;
-    [SerializeField] bool bEnableController = false;
-    public bool BEnableController { get { return bEnableController; } set { bEnableController = value; } }
-
-    bool isGrounded;
+    Rigidbody _rb;
+    [SerializeField] bool isGrounded;
+    [SerializeField] Transform groundChecker;
     [SerializeField] Transform playerDismountPos;
+
+    private Vector3 _input;
+
+    private void Awake()
+    {
+        _rb = GetComponent<Rigidbody>();
+        currentSpeed = _speed;
+
+        PlayerStats.OnChangeStats += (float inSpeedMultiplier, float InForce, bool InMagnetism) =>
+        {
+            currentSpeed = _speed * inSpeedMultiplier;
+        };
+    }
 
     private void Update()
     {
-        if (bEnableController)
+        GatherInput();
+        Look();
+        isGrounded = Physics.Raycast(groundChecker.position, -transform.up, 1f);
+        if (!isGrounded)
         {
-            isGrounded = Physics.Raycast(transform.position, Vector3.down, 2f);
-            InputReader();
-
+            _rb.velocity -= new Vector3(0, gravity, 0) * Time.deltaTime;
         }
+
         if (Input.GetKeyUp(KeyCode.E))
         {
             UnrealPlayerController controller = LibraryFunction.GetUnrealPlayerController();
@@ -46,53 +57,32 @@ public class MulinoController : MonoBehaviour
             gameObject.layer = LayerMask.NameToLayer("Interactable");
             enabled = false;
         }
-    }
 
+    }
     private void FixedUpdate()
     {
-        if (bEnableController)
-        {
-            if (!isGrounded)
-            {
-                return;
-            }
-            Move();
-        }
+        Move();
     }
-    private void InputReader()
-    {
-        float localVerticalInput = Input.GetAxisRaw("Vertical");
-        float localTurnInput = Input.GetAxisRaw("Horizontal");
 
-        verticalInput = localVerticalInput != 0 ? localVerticalInput : Mathf.Lerp(verticalInput, 0, Time.deltaTime * carControlInputOnGround);
-        turnInput = localTurnInput != 0 ? localTurnInput : Mathf.Lerp(turnInput, 0, Time.deltaTime * carControlInputOnGround);
-
-        OnVerticalInput();
-        OnTurnInput();
-    }
-    private void OnVerticalInput()
+    private void GatherInput()
     {
-        speedInput = 0f;
+        _input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+    }
 
-        if (verticalInput != 0)
-        {
-            speedInput = verticalInput * (speedInput > 0 ? forwardAccel : reverseAccel);
-        }
-    }
-    private void OnTurnInput()
+    #region Movement
+    private void Look()
     {
-        if (isGrounded)
-        {
-            transform.Rotate(0, turnInput * turnStrength * Time.deltaTime, 0, Space.Self);
-            return;
-        }
+        if (_input.z == 0) return;
+
+        transform.Rotate(0, _input.x * _turnSpeed * Time.deltaTime, 0, Space.Self);
     }
+
     private void Move()
     {
-        if (Mathf.Abs(speedInput) > 0)
-        {
-            rb.AddForce(transform.forward * speedInput, ForceMode.Acceleration);
-        }
-    }
-}
+        if (!isGrounded) { return; }
 
+        _rb.AddForce(transform.forward * currentSpeed * _input.z,ForceMode.Acceleration);
+    }
+
+    #endregion
+}

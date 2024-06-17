@@ -39,8 +39,9 @@ Transform:
   - {fileID: 4529822294053066789}
   - {fileID: 5577736924945274869}
   - {fileID: 3056208167043946284}
+  - {fileID: 1085450999174846947}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!135 &5937579068246622191
 SphereCollider:
@@ -102,18 +103,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13cb32a57d8d7974e8387f65f2694822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 7831620332133585044}
-  forwardAccel: 30
-  reverseAccel: 30
-  turnStrength: 30
-  carControlInputOnGround: 2
-  groundRayPoint: {fileID: 1251193773722234634}
-  bEnableController: 1
-  respawnTimer: 2
-  playerDismountPos: {fileID: 5577736924945274869}
-  carrelloOffset: {x: 0, y: 0}
-  carreloPrefab: {fileID: 0}
-  carreloReference: []
+  _speed: 50
+  _turnSpeed: 120
+  gravity: 20
+  isGrounded: 0
+  groundChecker: {fileID: 1085450999174846947}
+  playerDismountPos: {fileID: 3056208167043946284}
 --- !u!114 &792630471233414255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,7 +162,6 @@ MonoBehaviour:
   socketOffsetBaggage: {x: 0, y: 0, z: 0}
   socketOffsetPeople: {x: 0, y: 0, z: 0}
   maxPickableObj: 10
-  items: []
 --- !u!1 &637503465974630990
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,7 +265,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3056208167043946284}
   m_Layer: 0
-  m_Name: PositiontoSit (1)
+  m_Name: DismountPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -292,6 +286,37 @@ Transform:
   m_Father: {fileID: 235885173569160428}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!1 &8978666963913098938
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1085450999174846947}
+  m_Layer: 0
+  m_Name: Checker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1085450999174846947
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8978666963913098938}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -2.379181, y: 0.050000012, z: 0.8522562}
+  m_LocalScale: {x: 0.99999976, y: 1, z: 0.99999976}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 235885173569160428}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1786351310266854646
 PrefabInstance:
   m_ObjectHideFlags: 0

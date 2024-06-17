@@ -22,7 +22,7 @@ public class UpgradeMulettoLogic : MonoBehaviour
 
     private void Start()
     {
-        AttachCarrello();
+       AttachCarrello();
     }
 
     int carrelliIndex = 0;
