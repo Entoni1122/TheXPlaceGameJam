@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 2558164185471797552}
   - component: {fileID: 7785891116161515438}
   - component: {fileID: 1532466037937599253}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: UfficalPlayer
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -348,7 +348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 1
-  Force: 5
+  Force: 1
 --- !u!114 &1532466037937599253
 MonoBehaviour:
   m_ObjectHideFlags: 0

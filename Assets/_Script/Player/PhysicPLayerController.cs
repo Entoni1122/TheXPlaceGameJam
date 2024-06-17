@@ -57,7 +57,7 @@ public class PhysicPLayerController : MonoBehaviour
     bool bho;
     private void GatherInput()
     {
-        _input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        _input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 
         if (_input != Vector3.zero)
         {

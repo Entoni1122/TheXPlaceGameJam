@@ -457,12 +457,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d26083f1e3884714a8869b3770ab5dfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 500
-  entityColorStored: 1
-  entityTypeStored: 1
-  baggagePrefab: {fileID: 6330567668775106612, guid: 59ca06075158aed4c99b4e8fe62c9aa4,
-    type: 3}
-  skin: {fileID: 8555143364014134869}
+  speed: 1000
+  OwnerRef: {fileID: 0}
 --- !u!54 &2769871453172564511
 Rigidbody:
   m_ObjectHideFlags: 0
