@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class RunnerBehaviour : MonoBehaviour
@@ -7,6 +8,7 @@ public class RunnerBehaviour : MonoBehaviour
     private Rigidbody _rb;
     int lastIndex = -1;
     [SerializeField] GameObject OwnerRef;
+    private Action TransitioAnim;
 
     private void Start()
     {
@@ -33,6 +35,8 @@ public class RunnerBehaviour : MonoBehaviour
                 break;
         }
         gameObject.GetComponentInChildren<SkinnedMeshRenderer>().materials[1].color = color;
+        TransitioAnim = TransitionAnimationOnEnable;
+        gameObject.layer = 0;
     }
     private void SetRandomPoint()
     {
@@ -41,19 +45,20 @@ public class RunnerBehaviour : MonoBehaviour
             int currentIndex = lastIndex;
             while (currentIndex == lastIndex)
             {
-                currentIndex = Random.Range(0, RunnerPath.GetPathCount());
+                currentIndex = UnityEngine.Random.Range(0, RunnerPath.GetPathCount());
             }
             lastIndex = currentIndex;
         }
         else
         {
-            lastIndex = Random.Range(0, RunnerPath.GetPathCount());
+            lastIndex = UnityEngine.Random.Range(0, RunnerPath.GetPathCount());
         }
         targetPoint = RunnerPath.GetPathAtIndex(lastIndex);
     }
 
     private void Update()
     {
+        TransitioAnim?.Invoke();
         if (targetPoint != null)
         {
             Vector3 dir = targetPoint.position - transform.position;
@@ -72,5 +77,21 @@ public class RunnerBehaviour : MonoBehaviour
     {
         OwnerRef.SetActive(true);
         return OwnerRef.transform;
+    }
+
+    float timer = .1f;
+    private void TransitionAnimationOnEnable()
+    {
+        timer -= Time.deltaTime;
+        if (timer <= 0)
+        {
+            gameObject.layer = 0;
+            timer = .1f;
+            transform.localScale = Vector3.one;
+            gameObject.layer = LayerMask.NameToLayer("Interactable");
+            TransitioAnim = null;
+            return;
+        }
+        transform.localScale = Vector3.Lerp(Vector3.one, Vector3.zero, timer / .1f);
     }
 }

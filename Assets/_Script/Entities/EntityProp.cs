@@ -24,6 +24,7 @@ public class EntityProp : MonoBehaviour
     private Transform target;
     public ColorType color { get; private set; }
     private Action Move;
+    private Action TransitioAnim;
     private Inventory inventory;
     [SerializeField] GameObject runnerPrefab;
 
@@ -106,6 +107,7 @@ public class EntityProp : MonoBehaviour
                 skinnedmeshRenderer.materials[5].color = meshcolor;
             }
         }
+        TransitioAnim = TransitionAnimationOnEnable;
     }
     public void UpdateInventoryRef(Inventory InInventory)
     {
@@ -128,6 +130,7 @@ public class EntityProp : MonoBehaviour
     void Update()
     {
         Move?.Invoke();
+        TransitioAnim?.Invoke();
     }
     private void StartMovement()
     {
@@ -152,10 +155,40 @@ public class EntityProp : MonoBehaviour
         {
             if (runnerPrefab)
             {
-                GameObject runner = Instantiate(runnerPrefab, transform.position, Quaternion.identity);
-                runner.GetComponent<RunnerBehaviour>().Init(gameObject,color);
-                gameObject.SetActive(false);
+                gameObject.layer = 0;
+                TransitioAnim = TransitionAnimationOnDisable;
             }
         }
     }
+    float timer = .2f;
+    private void TransitionAnimationOnDisable()
+    {
+        timer-= Time.deltaTime;
+        if (timer <= 0)
+        {
+            gameObject.layer = 0;
+            timer = .2f;
+            GameObject runner = Instantiate(runnerPrefab, transform.position, Quaternion.identity);
+            runner.GetComponent<RunnerBehaviour>().Init(gameObject, color);
+            gameObject.SetActive(false);
+            TransitioAnim = null;
+        }
+        transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, timer / .2f);
+
+    }
+    private void TransitionAnimationOnEnable()
+    {
+        timer -= Time.deltaTime;
+        if (timer <= 0)
+        {
+            timer = .2f;
+            gameObject.SetActive(true);
+            gameObject.layer = LayerMask.NameToLayer("Interactable");
+            transform.localScale = Vector3.one;
+            TransitioAnim = null;
+            return;
+        }
+        transform.localScale = Vector3.Lerp(Vector3.one, Vector3.zero, timer / .2f);
+    }
+
 }
