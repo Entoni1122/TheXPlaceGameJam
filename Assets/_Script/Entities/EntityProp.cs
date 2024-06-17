@@ -11,7 +11,7 @@ public enum EntityType
 public enum ColorType
 {
     Blue,
-    Orange,
+    Red,
     Green
 }
 
@@ -46,8 +46,8 @@ public class EntityProp : MonoBehaviour
             case ColorType.Blue:
                 meshcolor = Color.blue;
                 break;
-            case ColorType.Orange:
-                meshcolor = Color.yellow;
+            case ColorType.Red:
+                meshcolor = Color.red;
                 break;
             case ColorType.Green:
                 meshcolor = Color.green;
@@ -81,7 +81,7 @@ public class EntityProp : MonoBehaviour
     {
         if (inventory)
         {
-            inventory.RemoveItem(inTarget);
+            inventory.RemoveItem(transform);
         }
         transform.parent = null;
         rb.constraints = RigidbodyConstraints.None;
@@ -92,8 +92,7 @@ public class EntityProp : MonoBehaviour
         dir.Normalize();
         Move = StartMovement;
         speed *= 2f;
-        inventory.HandleOnLostLastItem();
-        gameObject.layer = 0;  
+        gameObject.layer = 0;
     }
 
     void Update()

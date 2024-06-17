@@ -54,7 +54,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    private List<Transform> items = new List<Transform>();
+    public List<Transform> items = new List<Transform>();
     private void HandleJointOnAdd(Transform obj)
     {
         if (items.Count == 0)
@@ -98,24 +98,61 @@ public class Inventory : MonoBehaviour
     }
     public void RemoveLastItem()
     {
-        items[count - 1].GetComponent<EntityProp>().UpdateInventoryRef(null);
+        //items[count - 1].GetComponent<EntityProp>().UpdateInventoryRef(null);
         items.RemoveAt(count - 1);
     }
     public void RemoveItem(Transform item)
     {
-        for (int i = 0; i < items.Count; i++)
+        for (int i = 0; i < count; i++)
         {
             if (items[i] == item)
             {
                 if (i > 1)
                 {
-                    Destroy(items[i - 2].GetComponent<ConfigurableJoint>());
+                    Destroy(items[i - 1].GetComponent<ConfigurableJoint>());
                 }
+                Destroy(items[i].GetComponent<ConfigurableJoint>());
                 items[i].GetComponent<EntityProp>().UpdateInventoryRef(null);
+                print("Before:" + count);
                 items.RemoveAt(i);
-                return;
+                print(count);
+                break;
             }
+        }
 
+        for (int i = 0; i < items.Count; i++)
+        {
+            Destroy(items[i].GetComponent<ConfigurableJoint>());
+
+            if (i == 0)
+            {
+                items[i].SetParent(socketRef);
+                Vector3 offset = currentTypeStored == EntityType.Baggage ? socketOffsetBaggage : socketOffsetPeople;
+                items[i].position = socketRef.position + offset;
+                items[i].rotation = socketRef.rotation;
+                items[i].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            }
+            else
+            {
+                Vector3 offset = currentTypeStored == EntityType.Baggage ? socketOffsetBaggage : socketOffsetPeople;
+                items[i].position = items[count - 1].position + offset;
+                items[i].rotation = items[count - 1].rotation;
+                items[i].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+
+                ConfigurableJoint joint = items[i - 1].gameObject.AddComponent<ConfigurableJoint>();
+                joint.connectedBody = items[i].GetComponent<Rigidbody>();
+                joint.anchor = new Vector3(0, 0.62f, 0);
+                joint.xMotion = ConfigurableJointMotion.Locked;
+                joint.yMotion = ConfigurableJointMotion.Locked;
+                joint.zMotion = ConfigurableJointMotion.Locked;
+                joint.angularXMotion = ConfigurableJointMotion.Limited;
+                joint.angularYMotion = ConfigurableJointMotion.Limited;
+                joint.angularZMotion = ConfigurableJointMotion.Limited;
+                SoftJointLimit angularLimit = new SoftJointLimit();
+                angularLimit.limit = 5;
+                joint.angularYLimit = angularLimit;
+                joint.enableCollision = true;
+            }
         }
     }
     public void ThrowAwayAllItems()
