@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +14,8 @@ public class Spawner : MonoBehaviour
 
     private List<GameObject> entitiesSpawned = new List<GameObject>();
     private bool startSpawn;
+
+    [SerializeField] Transform startRay;
 
     private void Awake()
     {
@@ -39,8 +41,9 @@ public class Spawner : MonoBehaviour
         }
         startSpawn = true;
     }
-
-
+    bool canSpawn;
+    [SerializeField] float raylengh;
+    [SerializeField] float maxdist;
     protected void Update()
     {
         if (startSpawn)
@@ -51,7 +54,11 @@ public class Spawner : MonoBehaviour
                 if (spawnTimer > timeToSpawn)
                 {
                     spawnTimer = 0;
-                    int randomIndex = Random.Range(0, entitiesSpawned.Count - 1);
+                    if (Physics.SphereCast(startRay.position, raylengh,Vector3.down, out RaycastHit hit, maxdist))
+                    {
+                        return;
+                    }
+                    int randomIndex = UnityEngine.Random.Range(0, entitiesSpawned.Count - 1);
                     entitiesSpawned[randomIndex].SetActive(true);
                     entitiesSpawned.RemoveAt(randomIndex);
                 }

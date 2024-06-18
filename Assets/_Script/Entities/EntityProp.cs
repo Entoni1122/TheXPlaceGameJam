@@ -30,7 +30,6 @@ public class EntityProp : MonoBehaviour
 
     public bool IsAlreadyAdded = false;
 
-
     private void Start()
     {
         GameManager.OnLoseRound += OnLoseRound;
@@ -56,7 +55,6 @@ public class EntityProp : MonoBehaviour
         color = _color;
         Move = StartMovement;
         entityType = _type;
-        gameObject.layer = 0;
 
 
         Color meshcolor = Color.white;
@@ -88,45 +86,6 @@ public class EntityProp : MonoBehaviour
                 skinnedmeshRenderer.materials[5].color = meshcolor;
             }
         }
-    }
-    public void UpdateRefFromRunner(ColorType InColor, EntityType _type)
-    {
-        if (_type == EntityType.Baggage)
-            rb.constraints = RigidbodyConstraints.None;
-
-        color = InColor;
-        entityType = _type;
-
-        Color meshcolor = Color.white;
-        switch (color)
-        {
-            case ColorType.Blue:
-                meshcolor = Color.blue;
-                break;
-            case ColorType.Red:
-                meshcolor = Color.red;
-                break;
-            case ColorType.Green:
-                meshcolor = Color.green;
-                break;
-            default:
-                break;
-        }
-
-        MeshRenderer meshRenderer = GetComponentInChildren<MeshRenderer>();
-        if (meshRenderer)
-        {
-            meshRenderer.materials[1].color = meshcolor;
-        }
-        else
-        {
-            SkinnedMeshRenderer skinnedmeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
-            if (skinnedmeshRenderer)
-            {
-                skinnedmeshRenderer.materials[5].color = meshcolor;
-            }
-        }
-        TransitioAnim = TransitionAnimationOnEnable;
     }
     public void UpdateInventoryRef(Inventory InInventory)
     {
@@ -166,7 +125,7 @@ public class EntityProp : MonoBehaviour
                 transform.parent = null;
                 Move = null;
                 gameObject.layer = LayerMask.NameToLayer("Interactable");
-                Invoke("ChangeStatus", 5);
+                Invoke("ChangeStatus", 4f);
             }
         }
     }
@@ -197,19 +156,4 @@ public class EntityProp : MonoBehaviour
         transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, timer / .2f);
 
     }
-    private void TransitionAnimationOnEnable()
-    {
-        timer -= Time.deltaTime;
-        if (timer <= 0)
-        {
-            timer = .2f;
-            gameObject.SetActive(true);
-            gameObject.layer = LayerMask.NameToLayer("Interactable");
-            transform.localScale = Vector3.one;
-            TransitioAnim = null;
-            return;
-        }
-        transform.localScale = Vector3.Lerp(Vector3.one, Vector3.zero, timer / .2f);
-    }
-
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using NaughtyAttributes;
 using UnityEditor;
+using System;
 
 enum PlayerView
 {
@@ -22,6 +23,7 @@ public class PlayerInteraction : MonoBehaviour
     private Carrello _currentCarrello;
     public bool magnetismON;
     private GameObject lastInteractableObj;
+
     #region UnityFunctions
     private void Awake()
     {

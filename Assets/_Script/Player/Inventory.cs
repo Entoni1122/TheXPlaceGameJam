@@ -36,7 +36,7 @@ public class Inventory : MonoBehaviour
         {
             if (StorableLock != obj.GetComponent<EntityProp>().entityType) return;
         }
-
+        
         if (count < maxPickableObj)
         {
             if (count == 0)

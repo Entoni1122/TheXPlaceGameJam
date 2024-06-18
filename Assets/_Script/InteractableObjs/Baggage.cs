@@ -5,20 +5,14 @@ using UnityEngine;
 
 public class Baggage : BaseInteractableObj
 {
-
     private Rigidbody _rb;
-
     private Point currentPoint;
-
     public static event Action<Point> OnObjectRemoved;
-
-
 
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
     }
-
     protected override void InteractNoParam()
     {
         NotifyObjectRemoved();
