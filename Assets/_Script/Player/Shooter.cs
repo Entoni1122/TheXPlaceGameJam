@@ -94,6 +94,6 @@ public class Shooter : MonoBehaviour
         _inventory.GetLastItem.GetComponent<BaseInteractableObj>().ThrowAway(dir * currentForce);
         _inventory.RemoveLastItem();
         trajcetory.SetTrajectoryVisible(false);
-        LibraryFunction.PlaySound2d(sound);
+        AudioManager.PlaySound2d(sound);
     }
 }
