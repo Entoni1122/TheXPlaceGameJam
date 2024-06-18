@@ -9,12 +9,13 @@ public class BuyEquipment : MonoBehaviour
     public int Cost;
     public GameObject ActorPrefab;
     public Transform SpawnPoint;
-
+    
     private TextMeshProUGUI TextComponent;
     private TextMeshProUGUI MoneyTxt;
     private MoneyCounter MoneyCounterScript;
 
     public static event Action upgrade;
+    [SerializeField] GameObject lockImage;
 
     void Start()
     {
@@ -29,6 +30,7 @@ public class BuyEquipment : MonoBehaviour
         MoneyTxt = MoneyCounterGameObject.GetComponent<TextMeshProUGUI>();
         MoneyCounterScript = MoneyTxt.GetComponent<MoneyCounter>();
     }
+
     public void SpawnActor()
     {
         if (ActorPrefab != null && SpawnPoint != null && MoneyCounterScript.CurrentMoney >= Cost)
@@ -37,6 +39,7 @@ public class BuyEquipment : MonoBehaviour
             Instantiate(ActorPrefab, SpawnPoint.position, SpawnPoint.rotation);
             GetComponent<Button>().enabled = false;
             gameObject.layer = LayerMask.NameToLayer("Default");
+            lockImage.SetActive(true);
         }
     }
 
