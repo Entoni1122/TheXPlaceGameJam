@@ -653,7 +653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5305f01e79135c045ab9977d31c87938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carrelloOffset: {x: -6, y: 0.1}
+  carrelloOffset: {x: -6, y: 1}
   carreloPrefab: {fileID: 5782993385463296817, guid: afb99ec7ee7487d46b696459dc13ee34,
     type: 3}
   carreloReference: []

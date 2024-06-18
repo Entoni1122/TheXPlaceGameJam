@@ -67,7 +67,7 @@ public class UpgradeMulettoLogic : MonoBehaviour
         joint.anchor = anchor;
         joint.connectedAnchor = connectedAnchor;
         joint.xMotion = ConfigurableJointMotion.Locked;
-        joint.yMotion = ConfigurableJointMotion.Locked;
+        joint.yMotion = ConfigurableJointMotion.Free;
         joint.zMotion = ConfigurableJointMotion.Limited;
         joint.angularXMotion = ConfigurableJointMotion.Locked;
         joint.angularYMotion = ConfigurableJointMotion.Limited;
