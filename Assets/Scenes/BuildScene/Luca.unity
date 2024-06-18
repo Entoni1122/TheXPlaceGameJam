@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 432388713}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -445,7 +445,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 26624499}
-  m_LocalRotation: {x: 0.24837853, y: 0.4164152, z: -0.1193769, w: 0.8664039}
+  m_LocalRotation: {x: 0.24837855, y: 0.4164152, z: -0.11937689, w: 0.8664039}
   m_LocalPosition: {x: -43, y: 40.147, z: -26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4718,9 +4718,7 @@ MonoBehaviour:
   spawnPos: {fileID: 1321581628}
   targetPos: {fileID: 2095294726}
   timeToSpawn: 0.4
-  startRay: {fileID: 1189586101}
-  raylengh: 0
-  maxdist: 0
+  raylength: 2
 --- !u!4 &677733277
 Transform:
   m_ObjectHideFlags: 0
@@ -4729,7 +4727,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 677733275}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.918, y: 2.667, z: -25.046}
+  m_LocalPosition: {x: 14.918, y: 0, z: -25.046}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8705,7 +8703,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1223103314}
-  m_LocalRotation: {x: 0.24837853, y: 0.4164152, z: -0.1193769, w: 0.8664039}
+  m_LocalRotation: {x: 0.24837855, y: 0.4164152, z: -0.11937689, w: 0.8664039}
   m_LocalPosition: {x: -43, y: 40.147, z: -26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8817,7 +8815,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh208200
+  m_Name: pb_Mesh33094
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -9114,7 +9112,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1321581627}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9154,10 +9152,8 @@ MonoBehaviour:
   entity: {fileID: 6330567668775106612, guid: 59ca06075158aed4c99b4e8fe62c9aa4, type: 3}
   spawnPos: {fileID: 1561666434}
   targetPos: {fileID: 1674721073}
-  timeToSpawn: 0.6
-  startRay: {fileID: 103563951}
-  raylengh: 0.2
-  maxdist: 0.5
+  timeToSpawn: 0.5
+  raylength: 2
 --- !u!4 &1325565343
 Transform:
   m_ObjectHideFlags: 0
@@ -12103,8 +12099,8 @@ MonoBehaviour:
   startTimerPerRound: 100
   intermissionTimer: 5
   timerTxt: {fileID: 1263437697}
-  startBaggageToSpawn: 200
-  startPeopleToSpawn: 200
+  startBaggageToSpawn: 2
+  startPeopleToSpawn: 2
   spotsList:
   - {fileID: 8772223414196609739}
   - {fileID: 734249657}
@@ -15548,7 +15544,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh179958
+  m_Name: pb_Mesh33242
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -16401,7 +16397,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2095294725}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 12.29}
+  m_LocalPosition: {x: 0, y: 0, z: 6.68}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

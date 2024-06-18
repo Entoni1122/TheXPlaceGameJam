@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -9,13 +10,9 @@ public class Spawner : MonoBehaviour
     [SerializeField] Transform spawnPos;
     [SerializeField] Transform targetPos;
     [SerializeField] float timeToSpawn;
-
     private float spawnTimer;
-
     private List<GameObject> entitiesSpawned = new List<GameObject>();
     private bool startSpawn;
-
-    [SerializeField] Transform startRay;
 
     private void Awake()
     {
@@ -41,9 +38,7 @@ public class Spawner : MonoBehaviour
         }
         startSpawn = true;
     }
-    bool canSpawn;
-    [SerializeField] float raylengh;
-    [SerializeField] float maxdist;
+    [SerializeField] float raylength;
     protected void Update()
     {
         if (startSpawn)
@@ -54,15 +49,16 @@ public class Spawner : MonoBehaviour
                 if (spawnTimer > timeToSpawn)
                 {
                     spawnTimer = 0;
-                    if (Physics.SphereCast(startRay.position, raylengh,Vector3.down, out RaycastHit hit, maxdist))
+                    if (CanSpawn())
                     {
-                        return;
+                        int randomIndex = UnityEngine.Random.Range(0, entitiesSpawned.Count - 1);
+                        entitiesSpawned[randomIndex].SetActive(true);
+                        entitiesSpawned.RemoveAt(randomIndex);
                     }
-                    int randomIndex = UnityEngine.Random.Range(0, entitiesSpawned.Count - 1);
-                    entitiesSpawned[randomIndex].SetActive(true);
-                    entitiesSpawned.RemoveAt(randomIndex);
                 }
             }
         }
+        Debug.DrawRay(spawnPos.position + spawnPos.forward * raylength, -spawnPos.forward * raylength * 2);
     }
+    bool CanSpawn() => !Physics.Raycast(spawnPos.position + spawnPos.forward * raylength, -spawnPos.forward, raylength * 2);
 }

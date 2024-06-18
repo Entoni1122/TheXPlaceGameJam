@@ -190,8 +190,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd5f3f9497051824b882d62d02108fae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 700
+  speed: 1000
   rb: {fileID: 6680369257959866982}
+  runnerPrefab: {fileID: 0}
+  IsAlreadyAdded: 0
 --- !u!114 &5036837491737068164
 MonoBehaviour:
   m_ObjectHideFlags: 0
