@@ -13,8 +13,20 @@ public class RunnerBehaviour : MonoBehaviour
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        GameManager.OnLoseRound += () => { Destroy(gameObject); };
+        GameManager.OnLoseRound += OnLoseRound;
     }
+    private void OnDestroy()
+    {
+        GameManager.OnLoseRound -= OnLoseRound;
+    }
+    private void OnLoseRound()
+    {
+        if (gameObject != null)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public void Init(GameObject Owner,ColorType colorType)
     {
         SetRandomPoint();
