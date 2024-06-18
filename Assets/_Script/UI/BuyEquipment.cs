@@ -8,6 +8,7 @@ public class BuyEquipment : MonoBehaviour
 {
     public int Cost;
     public GameObject ActorPrefab;
+    public GameObject VFXPrefab;
     public Transform SpawnPoint;
     
     private TextMeshProUGUI TextComponent;
@@ -35,6 +36,7 @@ public class BuyEquipment : MonoBehaviour
     {
         if (ActorPrefab != null && SpawnPoint != null && MoneyCounterScript.CurrentMoney >= Cost)
         {
+            Instantiate(VFXPrefab, SpawnPoint.position, SpawnPoint.rotation);
             MoneyCounterScript.DecreaseMoney(Cost);
             Instantiate(ActorPrefab, SpawnPoint.position, SpawnPoint.rotation);
             GetComponent<Button>().enabled = false;

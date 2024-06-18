@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 432388713}
-  m_IndirectSpecularColor: {r: 0.09742099, g: 0.29739466, b: 0.75303626, a: 1}
+  m_IndirectSpecularColor: {r: 0.0892388, g: 0.2748025, b: 0.757374, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3215,12 +3215,12 @@ PrefabInstance:
     - target: {fileID: 1546467586542059433, guid: f983e2b71d75e3d4093691ec0c392666,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1546467586542059433, guid: f983e2b71d75e3d4093691ec0c392666,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1546467586542059433, guid: f983e2b71d75e3d4093691ec0c392666,
         type: 3}
@@ -3241,7 +3241,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 473282130}
+      objectReference: {fileID: 473282131}
     - target: {fileID: 1546467586542059433, guid: f983e2b71d75e3d4093691ec0c392666,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -3281,7 +3281,7 @@ PrefabInstance:
     - target: {fileID: 1546467586542059433, guid: f983e2b71d75e3d4093691ec0c392666,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
+      value: SpawnActor
       objectReference: {fileID: 0}
     - target: {fileID: 1546467586542059433, guid: f983e2b71d75e3d4093691ec0c392666,
         type: 3}
@@ -3301,7 +3301,7 @@ PrefabInstance:
     - target: {fileID: 1546467586542059433, guid: f983e2b71d75e3d4093691ec0c392666,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: BuyEquipment, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1546467586542059433, guid: f983e2b71d75e3d4093691ec0c392666,
         type: 3}
@@ -3493,6 +3493,11 @@ PrefabInstance:
       propertyPath: Cost
       value: 400
       objectReference: {fileID: 0}
+    - target: {fileID: 4265424331592383946, guid: f983e2b71d75e3d4093691ec0c392666,
+        type: 3}
+      propertyPath: VFXPrefab
+      value: 
+      objectReference: {fileID: 100000, guid: 8c363066eff6be14fa9830148744b8b4, type: 3}
     - target: {fileID: 4265424331592383946, guid: f983e2b71d75e3d4093691ec0c392666,
         type: 3}
       propertyPath: SpawnPoint
@@ -8505,6 +8510,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7005919060324539656, guid: 97a21db9585fca94eb485fdd99697558,
         type: 3}
+      propertyPath: VFXPrefab
+      value: 
+      objectReference: {fileID: 100000, guid: 09d30227c3848dc499bb14eab1bd4cc3, type: 3}
+    - target: {fileID: 7005919060324539656, guid: 97a21db9585fca94eb485fdd99697558,
+        type: 3}
       propertyPath: SpawnPoint
       value: 
       objectReference: {fileID: 851860143}
@@ -8608,6 +8618,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 8506692278506513545, guid: 97a21db9585fca94eb485fdd99697558,
+        type: 3}
+      propertyPath: VFXPrefab
+      value: 
+      objectReference: {fileID: 100000, guid: 7335e10d36f94a9458d396b98ffd0433, type: 3}
     - target: {fileID: 8506692278506513545, guid: 97a21db9585fca94eb485fdd99697558,
         type: 3}
       propertyPath: SpawnPoint
