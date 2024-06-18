@@ -5,7 +5,8 @@ public enum InteractType
     Carrello,
     Valigia,
     Shop,
-    Mulino
+    Mulino,
+    People
 }
 public interface IInteract
 {
