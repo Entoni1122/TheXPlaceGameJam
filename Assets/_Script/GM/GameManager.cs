@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public static Action OnRoundStart;
     public static Action OnLoseRound;
+    public static Action<bool> OnIntermissionCall;
 
     [Header("Gameplay")]
     [SerializeField] int roundCount;
@@ -134,9 +135,11 @@ public class GameManager : MonoBehaviour
     {
         currentTimer = intermissionTimer;
         intermissionON = true;
+        OnIntermissionCall?.Invoke(true);
         await Task.Delay(intermissionTimer * 1000);
         StartGame();
         intermissionON =false;
+        OnIntermissionCall?.Invoke(false);
     }
 }
 
