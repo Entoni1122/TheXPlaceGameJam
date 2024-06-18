@@ -7,6 +7,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance;
 
     private static float volume = 1f;
+    public float AudioManagerVolume => volume;
     private static Transform selfPos;
     [SerializeField] AudioSource audioSource;
 

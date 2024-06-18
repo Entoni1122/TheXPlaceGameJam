@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour
     private int currentBaggageOnSpot;
     private int currentPeopleOnSpot;
 
+    [SerializeField] AudioSource audioSource;
+
     private void Awake()
     {
         instance = this;
@@ -48,6 +50,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         StartGame();
+
     }
 
     private void Update()
@@ -61,9 +64,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
     private void StartGame()
     {
+        audioSource.Play();
         roundCount++;
 
         currentTimer = startTimerPerRound * roundCount;
