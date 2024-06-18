@@ -123,8 +123,8 @@ public class GameManager : MonoBehaviour
         currentBaggageOnSpot += amountBaggage;
         currentPeopleOnSpot += amountPeople;
 
-        if (currentBaggageOnSpot == startBaggageToSpawn * roundCount &&
-            currentPeopleOnSpot == startPeopleToSpawn * roundCount)
+        if (currentBaggageOnSpot >= startBaggageToSpawn * roundCount &&
+            currentPeopleOnSpot >= startPeopleToSpawn * roundCount)
         {
             IntermissionTime();
         }
