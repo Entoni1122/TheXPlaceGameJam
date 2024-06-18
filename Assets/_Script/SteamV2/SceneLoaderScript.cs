@@ -1,19 +1,24 @@
 using System.Collections;
 using UnityEngine;
-using Unity.Netcode;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 
 public class SceneLoaderScript : MonoBehaviour
 {
-    void Start()
+    [SerializeField] string sceneToLoad;
+    public void ButtonPressed()
     {
-        StartCoroutine(LoadMainScene());
+        StartCoroutine(LoadYourAsyncScene());
     }
-
-    IEnumerator LoadMainScene()
+    IEnumerator LoadYourAsyncScene()
     {
-        yield return new WaitUntil(() => NetworkManager.Singleton != null);
-        SceneManager.LoadScene("Lobby");
+        yield return new WaitForSeconds(3f);
+
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneToLoad);
+
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
     }
 }

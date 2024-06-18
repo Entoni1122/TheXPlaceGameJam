@@ -6,12 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Setup.unity
-    guid: 485eb14971173744a945af3894cbeef4
+    path: Assets/Scenes/BuildScene/GameStart.unity
+    guid: fa00caf4fb01d97448442e597455bbd1
   - enabled: 1
-    path: Assets/Scenes/Lobby.unity
-    guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
-    path: Assets/Scenes/Gameplay.unity
-    guid: 0d4dfa028b05e2c4182e68081e064b53
+    path: Assets/Scenes/BuildScene/Luca.unity
+    guid: 96ae321d2a15de6448d627a3cbe18ce3
   m_configObjects: {}

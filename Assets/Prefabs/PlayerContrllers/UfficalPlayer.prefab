@@ -47,7 +47,7 @@ Transform:
   - {fileID: 6859559512964860499}
   - {fileID: 5264836005276433004}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &5352015316820361610
 Rigidbody:
@@ -120,6 +120,7 @@ MonoBehaviour:
   groundChecker: {fileID: 3799204996356715230}
   placeToPSawn: {fileID: 5264836005276433004}
   refToDustPrefab: {fileID: 7034982828121181277}
+  _jumpClip: {fileID: 8300000, guid: 933c393e594bf7941a34011223cf590d, type: 3}
   explosionForce: 1000
   explosionRadius: 20
 --- !u!95 &1663694180957727583
@@ -280,6 +281,7 @@ MonoBehaviour:
   minForce: 2
   upForceMultiplier: 1
   forceIncrementMultiplier: 5
+  sound: {fileID: 8300000, guid: bdf6c5c41156df74da253c51271fee48, type: 3}
 --- !u!114 &8094754988494075171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,6 +319,7 @@ MonoBehaviour:
   firstPersonDistance: 100
   isoRadius: 1
   _inventory: {fileID: 8094754988494075171}
+  magnetismON: 0
 --- !u!114 &2558164185471797552
 MonoBehaviour:
   m_ObjectHideFlags: 0

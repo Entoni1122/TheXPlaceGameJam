@@ -14,6 +14,7 @@ public class MoneyCounter : MonoBehaviour
     [SerializeField] GameObject coinPrefab;
     [SerializeField] Transform coinSapwn;
 
+    [SerializeField] AudioClip coinAudioClip;
     private void OnEnable()
     {
         Spot.OnScorePoint += IncreaseMoney;
@@ -47,6 +48,8 @@ public class MoneyCounter : MonoBehaviour
 
             GameObject onk = Instantiate(coinPrefab, coinSapwn);
             onk.transform.position = spean;
+
+            AudioManager.PlaySound2d(coinAudioClip);
         }
     }
 

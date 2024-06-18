@@ -27,6 +27,8 @@ public class PhysicPLayerController : MonoBehaviour
 
     private Vector3 _input;
 
+    [SerializeField] AudioClip _jumpClip;
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
@@ -93,6 +95,8 @@ public class PhysicPLayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             _rb.velocity += new Vector3(0, _jumpForce, 0);
+
+            AudioManager.PlaySound2d(_jumpClip);
         }
     }
     #endregion
