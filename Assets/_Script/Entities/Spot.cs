@@ -41,9 +41,9 @@ public class Spot : MonoBehaviour
             else
             {
                 currentAmountPeople++;
-                if (amountPeople >= currentAmountPeople)
+                if (currentAmountPeople >= amountPeople)
                 {
-                    GameManager.instance.OnFullSpot(0, amountPeople);
+                    GameManager.instance.OnFullSpot(0, currentAmountPeople);
                     currentAmountPeople = 0;
                 }
             }
