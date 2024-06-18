@@ -17,12 +17,4 @@ public class MulinoInteract : BaseInteractableObj
         GetComponent<MulinoController>().enabled = true;
         gameObject.layer = LayerMask.NameToLayer("MulinoMotor");
     }
-
-    protected override void InteractTwoParam(Transform transform, bool bNig)
-    {
-        if (bNig)
-        {
-            GetComponent<Inventory>().AddObjInInventory(transform);
-        }
-    }
 }

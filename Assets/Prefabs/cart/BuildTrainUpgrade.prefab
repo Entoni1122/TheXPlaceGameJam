@@ -141,7 +141,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5782993385463296817}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd86e012a2732ca49a9457545420c1f9, type: 3}
   m_Name: 
@@ -155,6 +155,7 @@ MonoBehaviour:
   magnetSpeed: 10
   magnetActive: 0
   attachDistance: 1
+  isCarrelloInHand: 0
 --- !u!1001 &6146675057933622394
 PrefabInstance:
   m_ObjectHideFlags: 0

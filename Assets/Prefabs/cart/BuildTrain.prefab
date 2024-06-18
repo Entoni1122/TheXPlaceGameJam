@@ -512,7 +512,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4334332816754449310}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.99, z: -0.4}
+  m_LocalPosition: {x: 0, y: -1.59, z: -0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -532,8 +532,8 @@ GameObject:
   - component: {fileID: 9190535030375509992}
   - component: {fileID: 4099501681860443781}
   - component: {fileID: 9219539827379418211}
-  - component: {fileID: -7149376752759881652}
   - component: {fileID: 888610726131413409}
+  - component: {fileID: 1175511769140208860}
   m_Layer: 8
   m_Name: BuildTrain
   m_TagString: Untagged
@@ -559,7 +559,7 @@ Transform:
   - {fileID: 2737507204428964940}
   - {fileID: 5626585097630808256}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -88.202, z: 0}
 --- !u!54 &5725643294663330632
 Rigidbody:
@@ -639,26 +639,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.9061193, y: 3.685706, z: 4.599178}
-  m_Center: {x: -0.012633324, y: -0.76883566, z: -0.69286084}
---- !u!114 &-7149376752759881652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4507228914285930525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4f35ba76c51456408bb50396de06974, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StorableLock: 1
-  isPlayerInventory: 0
-  socketRef: {fileID: 2737507204428964940}
-  socketOffsetBaggage: {x: 0, y: 0, z: 0.7}
-  socketOffsetPeople: {x: 0, y: 0, z: 0}
-  maxPickableObj: 4
+  m_Size: {x: 3.9061193, y: 3.7785969, z: 4.5254526}
+  m_Center: {x: -0.012633323, y: -0.67149216, z: -0.655998}
 --- !u!114 &888610726131413409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -671,10 +653,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5305f01e79135c045ab9977d31c87938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carrelloOffset: {x: -5.5, y: 0.1}
+  carrelloOffset: {x: -6, y: 0.1}
   carreloPrefab: {fileID: 5782993385463296817, guid: afb99ec7ee7487d46b696459dc13ee34,
     type: 3}
   carreloReference: []
+--- !u!114 &1175511769140208860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4507228914285930525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f702428453e20144288ad325006ef939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 0}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &4828012305128165250
 GameObject:
   m_ObjectHideFlags: 0
