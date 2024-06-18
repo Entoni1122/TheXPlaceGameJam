@@ -17,6 +17,9 @@ public class Carrello : BaseInteractableObj
     private Transform _socketTransform;
     public bool isCarrelloInHand = false;
 
+    [SerializeField] bool canBeHandle = true;
+    public bool CanBeHandle => canBeHandle;
+
     private void Awake()
     {
         _inventory = GetComponent<Inventory>();
@@ -37,11 +40,11 @@ public class Carrello : BaseInteractableObj
         _inventory.AddObjInInventory(obj);
     }
 
-    public void Handle(Transform player)
+    public bool Handle(Transform player)
     {
         if (handlePosition == null)
         {
-            return;
+            return false;
         }
 
         if (IsPlayerNearHandle(player))
@@ -54,7 +57,10 @@ public class Carrello : BaseInteractableObj
             Quaternion newRotation = handlePosition.rotation * Quaternion.Euler(rotationOffset);
             player.rotation = newRotation;
             transform.SetParent(player);
+            return true;
         }
+        return false;
+
     }
 
     public void Release(Transform player)

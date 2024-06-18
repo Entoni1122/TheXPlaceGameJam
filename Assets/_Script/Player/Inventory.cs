@@ -2,6 +2,7 @@ using UnityEngine;
 using NaughtyAttributes;
 using System.Data;
 using System.Collections.Generic;
+using TreeEditor;
 
 public class Inventory : MonoBehaviour
 {
@@ -28,7 +29,6 @@ public class Inventory : MonoBehaviour
         }
         GameManager.OnLoseRound += () => items.Clear();
     }
-
     EntityType currentTypeStored;
     public void AddObjInInventory(Transform obj)
     {
@@ -58,12 +58,13 @@ public class Inventory : MonoBehaviour
         {
             obj.SetParent(socketRef);
             Vector3 offset = currentTypeStored == EntityType.Baggage ? socketOffsetBaggage : socketOffsetPeople;
-            obj.position = socketRef.position + offset;
+            obj.position = socketRef.position;
             obj.rotation = socketRef.rotation;
             obj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
         else
         {
+            obj.parent = null;
             Vector3 offset = currentTypeStored == EntityType.Baggage ? socketOffsetBaggage : socketOffsetPeople;
             obj.position = items[count - 1].position + offset;
             obj.rotation = items[count - 1].rotation;
@@ -73,13 +74,13 @@ public class Inventory : MonoBehaviour
             joint.connectedBody = obj.GetComponent<Rigidbody>();
             joint.anchor = new Vector3(0, 0.62f, 0);
             joint.xMotion = ConfigurableJointMotion.Locked;
-            joint.yMotion = ConfigurableJointMotion.Locked;
+            joint.yMotion = ConfigurableJointMotion.Limited;
             joint.zMotion = ConfigurableJointMotion.Locked;
             SoftJointLimit linearLimit = new SoftJointLimit();
-            linearLimit.limit = 0.01f;
+            linearLimit.limit = .01f;
             joint.linearLimit = linearLimit;
-            joint.angularXMotion = ConfigurableJointMotion.Locked;
-            joint.angularYMotion = ConfigurableJointMotion.Limited;
+            joint.angularXMotion = ConfigurableJointMotion.Limited;
+            joint.angularYMotion = ConfigurableJointMotion.Locked;
             joint.angularZMotion = ConfigurableJointMotion.Limited;
             SoftJointLimit angularLimit = new SoftJointLimit();
             angularLimit.limit = 3;
@@ -100,7 +101,6 @@ public class Inventory : MonoBehaviour
     }
     public void RemoveLastItem()
     {
-        //items[count - 1].GetComponent<EntityProp>().UpdateInventoryRef(null);
         items.RemoveAt(count - 1);
     }
     public void RemoveItem(Transform item)

@@ -205,7 +205,7 @@ public class PlayerInteraction : MonoBehaviour
                     _inventory.AddObjInInventory(runner.InteractWithRunenrBaggage());
                     Destroy(interactableObj);
                 }
-                interactableObj = null; 
+                interactableObj = null;
             }
         }
     }
@@ -232,7 +232,7 @@ public class PlayerInteraction : MonoBehaviour
                         return;
                     }
                 }
-            } 
+            }
         }
     }
 
@@ -246,19 +246,25 @@ public class PlayerInteraction : MonoBehaviour
         }
         else
         {
-            Collider[] colliders = Physics.OverlapSphere(startCheckerPoint.position, isoRadius);
-            foreach (Collider cl in colliders)
+            if (_inventory.IsEmpty)
             {
-                Carrello carrello = cl.GetComponent<Carrello>();
-                if (carrello != null)
+                Collider[] colliders = Physics.OverlapSphere(startCheckerPoint.position, isoRadius);
+                foreach (Collider cl in colliders)
                 {
                     if (cl.gameObject.layer == LayerMask.NameToLayer("Interactable"))
                     {
-                        carrello.Handle(transform);
-                        _currentCarrello = carrello;
-                        _currentCarrello.magnetActive = magnetismON;
-                        GetComponent<PlayerAnimation>().NotifyOnCart(true);
-                        return;
+                        Carrello carrello = cl.GetComponent<Carrello>();
+                        if (carrello != null)
+                        {
+                            if (!carrello.CanBeHandle) return;
+                            if (carrello.Handle(transform))
+                            {
+                                _currentCarrello = carrello;
+                                _currentCarrello.magnetActive = magnetismON;
+                                GetComponent<PlayerAnimation>().NotifyOnCart(true);
+                            }
+                            return;
+                        }
                     }
                 }
             }

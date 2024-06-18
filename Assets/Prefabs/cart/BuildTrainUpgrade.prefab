@@ -12,7 +12,7 @@ GameObject:
   m_Layer: 0
   m_Name: PickPoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2453385119118360421}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.284, z: 0}
+  m_LocalPosition: {x: 0, y: 1.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -87,8 +87,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.045221, y: 1.541275, z: 3.0811095}
-  m_Center: {x: -0.009332299, y: 0.77458346, z: 0.013998508}
+  m_Size: {x: 2.045221, y: 1.1805539, z: 3.0811095}
+  m_Center: {x: -0.009332299, y: 0.5942229, z: 0.013998508}
 --- !u!54 &8267046950832384921
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
   StorableLock: 1
   isPlayerInventory: 0
   socketRef: {fileID: 8516265991305704149}
-  socketOffsetBaggage: {x: 0, y: 0.66, z: 0}
+  socketOffsetBaggage: {x: 0, y: 0.85, z: 0}
   socketOffsetPeople: {x: 0, y: 0, z: 0}
   maxPickableObj: 5
 --- !u!114 &7964826413120498610
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5782993385463296817}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd86e012a2732ca49a9457545420c1f9, type: 3}
   m_Name: 
@@ -156,6 +156,7 @@ MonoBehaviour:
   magnetActive: 0
   attachDistance: 1
   isCarrelloInHand: 0
+  canBeHandle: 0
 --- !u!1001 &6146675057933622394
 PrefabInstance:
   m_ObjectHideFlags: 0
