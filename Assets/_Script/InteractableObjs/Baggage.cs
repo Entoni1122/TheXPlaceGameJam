@@ -8,6 +8,7 @@ public class Baggage : BaseInteractableObj
     private Rigidbody _rb;
     private Point currentPoint;
     public static event Action<Point> OnObjectRemoved;
+    [SerializeField] GameObject vfxTrail;
 
     private void Start()
     {
@@ -17,6 +18,8 @@ public class Baggage : BaseInteractableObj
     {
         NotifyObjectRemoved();
         _rb.constraints = RigidbodyConstraints.FreezeAll;
+        DisableTrail();
+        GetComponent<EntityProp>().ResetMoveAction();
     }
 
     public void NotifyObjectRemoved()
@@ -29,4 +32,21 @@ public class Baggage : BaseInteractableObj
         }
     }
 
+    public override void ThrowAway(Vector3 force)
+    {
+        base.ThrowAway(force);
+
+        if (vfxTrail)
+        {
+            vfxTrail.SetActive(true);
+            Invoke("DisableTrail", 1.1f);
+        }
+    }
+    private void DisableTrail()
+    {
+        if (vfxTrail)
+        {
+            vfxTrail.SetActive(false);
+        }
+    }
 }

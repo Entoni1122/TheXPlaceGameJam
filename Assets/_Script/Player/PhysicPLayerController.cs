@@ -96,7 +96,7 @@ public class PhysicPLayerController : MonoBehaviour
         {
             _rb.velocity += new Vector3(0, _jumpForce, 0);
 
-            AudioManager.PlaySound2d(_jumpClip);
+            AudioManager.PlaySound2d(_jumpClip,2);
         }
     }
     #endregion

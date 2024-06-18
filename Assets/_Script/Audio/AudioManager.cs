@@ -27,7 +27,7 @@ public class AudioManager : MonoBehaviour
     }
 
 
-    public static void PlaySound2d(AudioClip clipAudio)
+    public static void PlaySound2d(AudioClip clipAudio,float volumeMultiplier = 1)
     {
         if (clipAudio == null)
         {
@@ -35,7 +35,7 @@ public class AudioManager : MonoBehaviour
             return;
 
         }
-        AudioSource.PlayClipAtPoint(clipAudio, selfPos.position, volume);
+        AudioSource.PlayClipAtPoint(clipAudio, selfPos.position, volume * volumeMultiplier);
     }
 
     public void UIsound(AudioClip clipAudio)

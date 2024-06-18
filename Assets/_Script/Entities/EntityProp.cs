@@ -45,7 +45,6 @@ public class EntityProp : MonoBehaviour
     {
         GameManager.OnLoseRound -= OnLoseRound;
     }
-
     public void Init(Transform inTarget, EntityType _type, ColorType _color)
     {
         if (_type == EntityType.Baggage)
@@ -124,10 +123,13 @@ public class EntityProp : MonoBehaviour
             {
                 transform.parent = null;
                 Move = null;
-                gameObject.layer = LayerMask.NameToLayer("Interactable");
                 Invoke("ChangeStatus", 4f);
             }
         }
+    }
+    public void ResetMoveAction()
+    {
+        Move = null;
     }
     private void ChangeStatus()
     {
