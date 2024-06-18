@@ -408,6 +408,7 @@ GameObject:
   - component: {fileID: 7657136711750043678}
   - component: {fileID: 8202158717617977488}
   - component: {fileID: 684657157741568181}
+  - component: {fileID: 6872978966599814455}
   m_Layer: 8
   m_Name: BuildCarrello
   m_TagString: Untagged
@@ -501,6 +502,7 @@ MonoBehaviour:
   magnetActive: 0
   attachDistance: 2
   isCarrelloInHand: 0
+  canBeHandle: 1
 --- !u!114 &8202158717617977488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -533,6 +535,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   placeToPSawn: {fileID: 7578689368035533174}
   Prefab: {fileID: 6059142082109679988, guid: 2e24c9fa5c2212f47b882efe2e77665c, type: 3}
+--- !u!114 &6872978966599814455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5823857797446843831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f702428453e20144288ad325006ef939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 0}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &6707794889366271284
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,15 +1,16 @@
 using UnityEngine;
+using UnityEngine.Splines;
 
 public class TriggerAudioWhenInPosition : MonoBehaviour
 {
     float xPosition;
     [SerializeField] AudioClip clip;
+    bool playedSound;
 
     private void Start()
     {
         xPosition = transform.position.x;
     }
-    bool playedSound;
     private void Update()
     {
         if (Mathf.Abs(transform.position.x - xPosition) <= 1f)
@@ -22,7 +23,7 @@ public class TriggerAudioWhenInPosition : MonoBehaviour
         }
         else
         {
-            playedSound = false ;
+            playedSound = false;
         }
     }
 }

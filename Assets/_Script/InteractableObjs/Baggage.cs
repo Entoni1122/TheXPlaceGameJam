@@ -38,15 +38,15 @@ public class Baggage : BaseInteractableObj
 
         if (vfxTrail)
         {
-            vfxTrail.SetActive(true);
-            Invoke("DisableTrail", 1.1f);
+            vfxTrail.GetComponentInChildren<TrailRenderer>().emitting = true;
+            Invoke("DisableTrail", 1f);
         }
     }
     private void DisableTrail()
     {
         if (vfxTrail)
         {
-            vfxTrail.SetActive(false);
+            vfxTrail.GetComponentInChildren<TrailRenderer>().emitting = false;
         }
     }
 }

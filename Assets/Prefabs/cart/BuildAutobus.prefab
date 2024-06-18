@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 792630471233414255}
   - component: {fileID: 8905378753857712395}
   - component: {fileID: 4824037306758505567}
+  - component: {fileID: 8077866240099479065}
   m_Layer: 8
   m_Name: BuildAutobus
   m_TagString: Untagged
@@ -140,6 +141,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 6.183916, y: 4.63167, z: 16.602076}
   m_Center: {x: -0.93109155, y: 1.354911, z: -2.466136}
+--- !u!114 &8077866240099479065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38069178874808198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f702428453e20144288ad325006ef939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 0}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &637503465974630990
 GameObject:
   m_ObjectHideFlags: 0

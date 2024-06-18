@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 8267046950832384921}
   - component: {fileID: 2260285445161924582}
   - component: {fileID: 7964826413120498610}
+  - component: {fileID: 7232476434674254748}
   m_Layer: 8
   m_Name: BuildTrainUpgrade
   m_TagString: Untagged
@@ -157,6 +158,24 @@ MonoBehaviour:
   attachDistance: 1
   isCarrelloInHand: 0
   canBeHandle: 0
+--- !u!114 &7232476434674254748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5782993385463296817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f702428453e20144288ad325006ef939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 0}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &6146675057933622394
 PrefabInstance:
   m_ObjectHideFlags: 0
