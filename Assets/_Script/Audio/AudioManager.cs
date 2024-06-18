@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
@@ -7,7 +8,7 @@ public class AudioManager : MonoBehaviour
 
     private static float volume = 1f;
     private static Transform selfPos;
-
+    [SerializeField] AudioSource audioSource;
 
     private void Awake()
     {
@@ -28,7 +29,22 @@ public class AudioManager : MonoBehaviour
 
     public static void PlaySound2d(AudioClip clipAudio)
     {
-        if (clipAudio == null) return;
+        if (clipAudio == null)
+        {
+            print("Not clip");
+            return;
+
+        }
         AudioSource.PlayClipAtPoint(clipAudio, selfPos.position, volume);
+    }
+
+    public void UIsound(AudioClip clipAudio)
+    {
+        if (clipAudio == null)
+        {
+            print("Not clip");
+            return;
+        }
+        audioSource.PlayOneShot(clipAudio, volume);
     }
 }
