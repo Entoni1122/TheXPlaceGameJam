@@ -12,6 +12,7 @@ public class Shooter : MonoBehaviour
     [SerializeField] float minForce = 2f;
     [SerializeField] float upForceMultiplier = .2f;
     [SerializeField] float forceIncrementMultiplier = 2f;
+    [SerializeField] AudioClip sound;
     float currentForce;
     private bool canShoot;
 
@@ -41,7 +42,7 @@ public class Shooter : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.Mouse0))
             {
                 Throw();
-            } 
+            }
         }
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
@@ -93,5 +94,6 @@ public class Shooter : MonoBehaviour
         _inventory.GetLastItem.GetComponent<BaseInteractableObj>().ThrowAway(dir * currentForce);
         _inventory.RemoveLastItem();
         trajcetory.SetTrajectoryVisible(false);
+        LibraryFunction.PlaySound2d(sound);
     }
 }

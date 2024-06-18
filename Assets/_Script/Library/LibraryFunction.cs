@@ -20,4 +20,10 @@ public static class LibraryFunction
     {
         return _unrealPlayerController;
     }
+    public static void PlaySound2d(AudioClip clipAudio)
+    {
+        if (clipAudio == null) return;
+
+        AudioSource.PlayClipAtPoint(clipAudio, _unrealPlayerController.transform.position);
+    }
 }
