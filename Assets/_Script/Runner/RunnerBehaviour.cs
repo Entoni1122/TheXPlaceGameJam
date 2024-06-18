@@ -64,8 +64,12 @@ public class RunnerBehaviour : MonoBehaviour
             Vector3 dir = targetPoint.position - transform.position;
             dir.y = 0;
             dir.Normalize();
+
+            dir = AvoidObstacles(dir);
+
             _rb.AddForce(dir * speed * Time.deltaTime, ForceMode.Force);
-            transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
+            Quaternion targetRot = Quaternion.LookRotation(dir, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation , targetRot, 5 * Time.deltaTime);
             float dist = Mathf.Abs((targetPoint.position - transform.position).magnitude);
             if (dist < 5)
             {
@@ -73,6 +77,23 @@ public class RunnerBehaviour : MonoBehaviour
             }
         }
     }
+
+    private Vector3 AvoidObstacles(Vector3 direction)
+    {
+        RaycastHit hit;
+        float sphereRadius = 2f;
+        float distance = 1f;
+
+        if (Physics.SphereCast(transform.position, sphereRadius, direction, out hit, distance))
+        {
+            if (hit.collider != null)
+            {
+                return Vector3.Cross(hit.normal, Vector3.up).normalized;
+            }
+        }
+        return direction;
+    }
+    
     public Transform InteractWithRunenrBaggage()
     {
         OwnerRef.SetActive(true);
