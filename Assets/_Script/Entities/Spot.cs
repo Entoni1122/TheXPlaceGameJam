@@ -18,12 +18,16 @@ public class Spot : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.GetComponent<EntityProp>()) return;
+        EntityProp entity = other.GetComponent<EntityProp>();
 
-        if (other.GetComponent<EntityProp>().color == color)
+        if (!entity || entity.IsAlreadyAdded) return;
+
+
+        if (entity.color == color)
         {
+            entity.IsAlreadyAdded = true;
             OnScorePoint?.Invoke(moneyGet);
-            if (other.GetComponent<EntityProp>().entityType == EntityType.Baggage)
+            if (entity.entityType == EntityType.Baggage)
             {
                 currentAmountBaggage++;
                 other.transform.gameObject.layer = 0;
@@ -44,8 +48,8 @@ public class Spot : MonoBehaviour
                 }
             }
 
-            other.GetComponent<EntityProp>().GoToStorage(target);
-            Destroy(other.gameObject, 5);
+            other.GetComponent<EntityProp>().GoToStorage(target,start);
+            Destroy(other.gameObject, 2);
         }
     }
 }

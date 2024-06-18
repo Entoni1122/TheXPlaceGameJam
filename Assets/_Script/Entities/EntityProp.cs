@@ -28,6 +28,8 @@ public class EntityProp : MonoBehaviour
     private Inventory inventory;
     [SerializeField] GameObject runnerPrefab;
 
+    public bool IsAlreadyAdded = false;
+
 
     private void Start()
     {
@@ -130,7 +132,7 @@ public class EntityProp : MonoBehaviour
     {
         inventory = InInventory;
     }
-    public void GoToStorage(Transform inTarget)
+    public void GoToStorage(Transform inTarget,Transform InStart)
     {
         if (inventory)
         {
@@ -144,6 +146,7 @@ public class EntityProp : MonoBehaviour
         speed *= 2f;
         gameObject.layer = 0;
         GameManager.OnLoseRound -= OnLoseRound;
+        transform.position = InStart.position;
     }
     void Update()
     {
@@ -169,7 +172,7 @@ public class EntityProp : MonoBehaviour
     }
     private void ChangeStatus()
     {
-        if (inventory is null)
+        if (inventory is null && !IsAlreadyAdded)
         {
             if (runnerPrefab)
             {

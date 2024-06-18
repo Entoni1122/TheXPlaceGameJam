@@ -33,6 +33,7 @@ public class BaseInteractableObj : MonoBehaviour, IInteract
         transform.parent = null;
         _rb.constraints = RigidbodyConstraints.None;
         _rb.AddForce(force, ForceMode.Impulse);
+        gameObject.layer = LayerMask.NameToLayer("Interactable");
     }
     public void Interact(Transform baggage, bool bHasToStore)
     {
