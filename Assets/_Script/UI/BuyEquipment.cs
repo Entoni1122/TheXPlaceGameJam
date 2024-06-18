@@ -35,9 +35,16 @@ public class BuyEquipment : MonoBehaviour
         {
             MoneyCounterScript.DecreaseMoney(Cost);
             Instantiate(ActorPrefab, SpawnPoint.position, SpawnPoint.rotation);
+            GetComponent<Button>().enabled = false;
+            gameObject.layer = LayerMask.NameToLayer("Default");
         }
     }
 
+    public void Activate()
+    {
+        gameObject.SetActive(true);
+
+    }
     public void SpawnCarrelloUpgrade()
     {
         upgrade?.Invoke();
