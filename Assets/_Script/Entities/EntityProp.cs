@@ -28,6 +28,23 @@ public class EntityProp : MonoBehaviour
     private Inventory inventory;
     [SerializeField] GameObject runnerPrefab;
 
+
+    private void Start()
+    {
+        GameManager.OnLoseRound += OnLoseRound;
+    }
+    private void OnLoseRound()
+    {
+        if (gameObject != null)
+        {
+            Destroy(gameObject);
+        }
+    }
+    private void OnDestroy()
+    {
+        GameManager.OnLoseRound -= OnLoseRound;
+    }
+
     public void Init(Transform inTarget, EntityType _type, ColorType _color)
     {
         if (_type == EntityType.Baggage)
@@ -126,6 +143,7 @@ public class EntityProp : MonoBehaviour
         Move = StartMovement;
         speed *= 2f;
         gameObject.layer = 0;
+        GameManager.OnLoseRound -= OnLoseRound;
     }
     void Update()
     {
@@ -163,7 +181,7 @@ public class EntityProp : MonoBehaviour
     float timer = .2f;
     private void TransitionAnimationOnDisable()
     {
-        timer-= Time.deltaTime;
+        timer -= Time.deltaTime;
         if (timer <= 0)
         {
             gameObject.layer = 0;

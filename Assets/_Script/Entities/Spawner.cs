@@ -35,13 +35,6 @@ public class Spawner : MonoBehaviour
                 entiti.GetComponent<EntityProp>().Init(targetPos, entityTypeToSpawn, ent.color);
                 entiti.SetActive(false);
                 entitiesSpawned.Add(entiti);
-                GameManager.OnLoseRound += () =>
-                {
-                    if (entiti)
-                    {
-                        Destroy(entiti);
-                    }
-                };
             }
         }
         startSpawn = true;
