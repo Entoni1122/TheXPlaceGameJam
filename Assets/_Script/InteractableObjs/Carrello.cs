@@ -15,7 +15,7 @@ public class Carrello : BaseInteractableObj
     public bool magnetActive = false;
     public float attachDistance = 1.0f;
     private Transform _socketTransform;
-    private bool isCarrelloInHand = false;
+    public bool isCarrelloInHand = false;
 
     private void Awake()
     {

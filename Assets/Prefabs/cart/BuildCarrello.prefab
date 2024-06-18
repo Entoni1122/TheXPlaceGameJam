@@ -407,6 +407,7 @@ GameObject:
   - component: {fileID: 2260587382386570352}
   - component: {fileID: 7657136711750043678}
   - component: {fileID: 8202158717617977488}
+  - component: {fileID: 684657157741568181}
   m_Layer: 8
   m_Name: BuildCarrello
   m_TagString: Untagged
@@ -499,6 +500,7 @@ MonoBehaviour:
   magnetSpeed: 15
   magnetActive: 0
   attachDistance: 2
+  isCarrelloInHand: 0
 --- !u!114 &8202158717617977488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -517,6 +519,20 @@ MonoBehaviour:
   socketOffsetBaggage: {x: 0, y: 0.6, z: 0}
   socketOffsetPeople: {x: 0, y: 0, z: 0}
   maxPickableObj: 5
+--- !u!114 &684657157741568181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5823857797446843831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcf8997b7af9bae4e912c03fabccf17c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placeToPSawn: {fileID: 7578689368035533174}
+  Prefab: {fileID: 6059142082109679988, guid: 2e24c9fa5c2212f47b882efe2e77665c, type: 3}
 --- !u!1 &6707794889366271284
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,6 +791,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5793539982026236961}
+  - component: {fileID: 1446544496170014718}
   m_Layer: 0
   m_Name: Meshes
   m_TagString: Untagged
@@ -806,3 +823,17 @@ Transform:
   m_Father: {fileID: 7578689368035533174}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &1446544496170014718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7622074244371336064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcf8997b7af9bae4e912c03fabccf17c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placeToPSawn: {fileID: 7578689368035533174}
+  Prefab: {fileID: 6059142082109679988, guid: 2e24c9fa5c2212f47b882efe2e77665c, type: 3}

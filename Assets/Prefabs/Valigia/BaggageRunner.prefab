@@ -400,6 +400,7 @@ GameObject:
   - component: {fileID: 2827622106261268685}
   - component: {fileID: 2769871453172564511}
   - component: {fileID: 8069425745906072910}
+  - component: {fileID: 3528821020482463437}
   m_Layer: 8
   m_Name: BaggageRunner
   m_TagString: Untagged
@@ -509,6 +510,24 @@ CapsuleCollider:
   m_Height: 2.003059
   m_Direction: 1
   m_Center: {x: -0.040692538, y: 0.9542129, z: -3.1193545e-10}
+--- !u!114 &3528821020482463437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6919367549779047391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f702428453e20144288ad325006ef939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 0
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &9049198003395033637
 GameObject:
   m_ObjectHideFlags: 0

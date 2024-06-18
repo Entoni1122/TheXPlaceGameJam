@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class VFXInstantiator : MonoBehaviour
 {
-    [SerializeField] Transform placeToPSawn;
-    [SerializeField] GameObject dustPrefab;
+    [SerializeField] public Transform placeToPSawn;
+    [SerializeField] public GameObject Prefab;
 
     public void SpawnDust()
     {
-        Instantiate(dustPrefab, placeToPSawn);
+        Instantiate(Prefab, placeToPSawn);
     }
 }

@@ -20,7 +20,7 @@ public class PlayerInteraction : MonoBehaviour
     GameObject interactableObj;
     [SerializeField] Inventory _inventory;
     private Carrello _currentCarrello;
-    private bool magnetismON;
+    public bool magnetismON;
     private GameObject lastInteractableObj;
     #region UnityFunctions
     private void Awake()
