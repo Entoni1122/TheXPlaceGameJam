@@ -147,7 +147,6 @@ GameObject:
   - component: {fileID: 5798467185564149134}
   - component: {fileID: 3971682530518019294}
   - component: {fileID: 1546467586542059433}
-  - component: {fileID: 7291711448233661882}
   - component: {fileID: 4265424331592383946}
   m_Layer: 5
   m_Name: BuyEquipment
@@ -262,18 +261,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &7291711448233661882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2505781342380239609}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2170a08b34ce254e83e85f26ad102ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4265424331592383946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,10 +273,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59ca795ef6af3404a8910f311bdca5a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextComponent: {fileID: 0}
+  Cost: 0
   ActorPrefab: {fileID: 0}
   SpawnPoint: {fileID: 0}
-  Cost: 0
 --- !u!1 &3769997162892410475
 GameObject:
   m_ObjectHideFlags: 0

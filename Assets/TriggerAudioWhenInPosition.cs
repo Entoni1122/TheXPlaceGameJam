@@ -1,17 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TriggerAudioWhenInPosition : MonoBehaviour
 {
-    [SerializeField] float xPosition;
+    float xPosition;
     [SerializeField] AudioClip clip;
+
+    private void Start()
+    {
+        xPosition = transform.position.x;
+    }
+    bool playedSound;
     private void Update()
     {
-        if (transform.position.x == xPosition)
+        if (Mathf.Abs(transform.position.x - xPosition) <= 1f)
         {
-            AudioManager.PlaySound2d(clip);
+            if (!playedSound)
+            {
+                AudioManager.PlaySound2d(clip);
+                playedSound = true;
+            }
+        }
+        else
+        {
+            playedSound = false ;
         }
     }
 }

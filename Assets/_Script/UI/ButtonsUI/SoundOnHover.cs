@@ -23,12 +23,10 @@ public class SoundOnHover : MonoBehaviour
             {
                 hovere = true;
                 AudioManager.Instance.UIsound(cliP);
-                print("new");
             }
         }
         else
         {
-            print("old");
             hovere = false;
         }
     }
