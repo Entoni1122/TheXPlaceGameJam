@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class UpgradeMulettoLogic : MonoBehaviour
 {
-
     [Header("Carrelli")]
     [SerializeField] Vector2 carrelloOffset;
     [SerializeField] GameObject carreloPrefab;
@@ -54,6 +53,7 @@ public class UpgradeMulettoLogic : MonoBehaviour
         GameObject otherCarrello = Instantiate(carreloPrefab, pos, rot);
         ConfigurableJoint secondJoint = carreloReference[carrelliIndex - 1].AddComponent<ConfigurableJoint>();
         secondJoint.connectedBody = otherCarrello.GetComponent<Rigidbody>();
+        secondJoint.massScale = 0.1f;
         SetConfigurableTrain(secondJoint, otherCarrello.GetComponent<Rigidbody>(), new Vector3(0, 0, -0.74f), new Vector3(0, 0, 0.6f));
         carreloReference.Add(otherCarrello);
         carrelliIndex++;

@@ -55,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2149390555844456050}
   m_LocalRotation: {x: -0, y: -0.70710677, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.617, z: -0.687}
+  m_LocalPosition: {x: 0, y: 0.731, z: -0.687}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -148,8 +148,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.2420173, y: 0.5799306, z: 1.5485443}
-  m_Center: {x: 0.003986448, y: 0.2899653, z: -0.68271405}
+  m_Size: {x: 1.2420173, y: 0.29705602, z: 1.4832349}
+  m_Center: {x: 0.003986458, y: 0.20523071, z: -0.71536875}
 --- !u!114 &7657136711750043678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,6 +173,8 @@ MonoBehaviour:
   attachDistance: 2
   isCarrelloInHand: 0
   canBeHandle: 1
+  explosionForce: 200
+  explosionRadius: 20
 --- !u!114 &8202158717617977488
 MonoBehaviour:
   m_ObjectHideFlags: 0
