@@ -58,14 +58,14 @@ Transform:
   m_GameObject: {fileID: 7209030029601812617}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -60.880264, y: -32.437206, z: -65.61193}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2563448903990381760}
   - {fileID: 1520352103049161036}
   - {fileID: 2662466334573685785}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5602616925582375564
 MonoBehaviour:
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bfb2058661dbf418a3a89bd83833c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: 0
+  color: 2
   start: {fileID: 2662466334573685785}
   target: {fileID: 2563448903990381760}
   moneyGet: 40
@@ -93,17 +93,17 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1783
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.6763954, y: 20, z: 24.031487}
-  m_Center: {x: -2.5925808, y: 7.631523, z: 9.910599}
+  m_Size: {x: 9.998909, y: 20, z: 23.12607}
+  m_Center: {x: -2.8697903, y: 7.0696287, z: 14.872392}
 --- !u!1 &8080058411900620959
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,11 +198,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4873446893628210142, guid: 553b56453f9a5f94398b2882fbe15086,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 77ea2eed944aa194e876d3b392acb244, type: 2}
+    - target: {fileID: -3940250730831666689, guid: 553b56453f9a5f94398b2882fbe15086,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b6d8fdda234f76346b9674ababdc872b, type: 2}
+    - target: {fileID: -3097340288434626328, guid: 553b56453f9a5f94398b2882fbe15086,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: f1c6b9333c39fbf4b88c941cf41f5bc2, type: 2}
     - target: {fileID: 919132149155446097, guid: 553b56453f9a5f94398b2882fbe15086,
         type: 3}
       propertyPath: m_Name
       value: conveior_belt (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2821655904238734759, guid: 553b56453f9a5f94398b2882fbe15086,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 843fab0d4f075a647a8ec2f8d0db8a22, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -211,10 +231,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6661207077742988302}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 553b56453f9a5f94398b2882fbe15086,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4428364980248806701}
   m_SourcePrefab: {fileID: 100100000, guid: 553b56453f9a5f94398b2882fbe15086, type: 3}
 --- !u!4 &1520352103049161036 stripped
 Transform:
@@ -249,19 +265,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 26.463034, y: 0.9854567, z: 1.6342567}
   m_Center: {x: 0.010732651, y: 0.46755922, z: -0.015137196}
---- !u!114 &4428364980248806701
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2185002842181546998}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50bfb2058661dbf418a3a89bd83833c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: 1
-  start: {fileID: 0}
-  target: {fileID: 2563448903990381760}
-  moneyGet: 40

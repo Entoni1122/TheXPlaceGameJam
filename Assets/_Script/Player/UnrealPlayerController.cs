@@ -16,6 +16,7 @@ public class UnrealPlayerController : MonoBehaviour
             script.enabled = false;
         }
         GetComponent<Rigidbody>().isKinematic = true;
+        GetComponent<CapsuleCollider>().enabled = false;
     }
     public void EnableInput()
     {
@@ -24,7 +25,7 @@ public class UnrealPlayerController : MonoBehaviour
             script.enabled = true;
         }
         GetComponent<Rigidbody>().isKinematic = false;
-
+        GetComponent<CapsuleCollider>().enabled = true;
     }
     public async void OnDeath()
     {

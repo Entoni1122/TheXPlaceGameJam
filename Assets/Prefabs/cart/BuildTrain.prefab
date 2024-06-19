@@ -143,12 +143,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13cb32a57d8d7974e8387f65f2694822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 50
-  _turnSpeed: 120
+  _speed: 100
+  _turnSpeed: 200
   gravity: 20
   isGrounded: 0
   groundChecker: {fileID: 5626585097630808256}
   playerDismountPos: {fileID: 5027255613078681261}
+  explosionForce: 200
+  explosionRadius: 20
 --- !u!114 &4099501681860443781
 MonoBehaviour:
   m_ObjectHideFlags: 0

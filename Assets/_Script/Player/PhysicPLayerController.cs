@@ -90,7 +90,6 @@ public class PhysicPLayerController : MonoBehaviour
     {
         _rb.MovePosition(transform.position + transform.forward * _input.normalized.magnitude * currentSpeed * Time.deltaTime);
     }
-
     private void Jump()
     {
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
@@ -114,7 +113,6 @@ public class PhysicPLayerController : MonoBehaviour
             GetComponent<Inventory>().ThrowAwayAllItems();
         }
     }
-
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Autobus"))
