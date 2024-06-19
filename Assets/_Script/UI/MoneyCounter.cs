@@ -34,13 +34,13 @@ public class MoneyCounter : MonoBehaviour
     {
         TextComponent = GetComponent<TextMeshProUGUI>();
         currentMoney = startingMoney;
-        TextComponent.text = currentMoney + " $";
+        TextComponent.text = currentMoney + "$";
     }
 
     public void IncreaseMoney(int MoneyFromQuest)
     {
         currentMoney += MoneyFromQuest;
-        TextComponent.text = currentMoney.ToString() + " $";
+        TextComponent.text = currentMoney.ToString() + "$";
         float rnaodm = Random.Range(50, 80);
         if (coinPrefab && coinSapwn)
         {
