@@ -96,6 +96,7 @@ public class GameManager : MonoBehaviour
                         shop.SetActive(true);
                         console = false;
                         consolecommand.gameObject.SetActive(false);
+                        EventSystem.current.SetSelectedGameObject(null);
                         return;
                     }
                     var match = System.Text.RegularExpressions.Regex.Match(commandText, @"^round (\d+)$");
@@ -107,6 +108,7 @@ public class GameManager : MonoBehaviour
                         StartGame();
                         console = false;
                         consolecommand.gameObject.SetActive(false);
+                        EventSystem.current.SetSelectedGameObject(null);
                         return;
                     }
                     match = System.Text.RegularExpressions.Regex.Match(commandText, @"^money (\d+)$");
@@ -116,6 +118,7 @@ public class GameManager : MonoBehaviour
                         money.GetComponent<MoneyCounter>().SetMoney(amount);
                         console = false;
                         consolecommand.gameObject.SetActive(false);
+                        EventSystem.current.SetSelectedGameObject(null);
                         return;
                     }
                 }
