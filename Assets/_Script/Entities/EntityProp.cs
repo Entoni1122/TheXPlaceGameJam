@@ -60,13 +60,13 @@ public class EntityProp : MonoBehaviour
         switch (color)
         {
             case ColorType.Blue:
-                meshcolor = Color.blue;
+                ColorUtility.TryParseHtmlString("#1561FF", out meshcolor);
                 break;
             case ColorType.Red:
-                meshcolor = Color.red;
+                ColorUtility.TryParseHtmlString("#FF1C15", out meshcolor);
                 break;
             case ColorType.Green:
-                meshcolor = Color.green;
+                ColorUtility.TryParseHtmlString("#55FF2A", out meshcolor);
                 break;
             default:
                 break;
