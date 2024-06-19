@@ -10,7 +10,8 @@ public class BuyEquipment : MonoBehaviour
     public GameObject ActorPrefab;
     public GameObject VFXPrefab;
     public Transform SpawnPoint;
-    
+
+    private int Counter;
     private TextMeshProUGUI TextComponent;
     private TextMeshProUGUI MoneyTxt;
     private MoneyCounter MoneyCounterScript;
@@ -21,6 +22,7 @@ public class BuyEquipment : MonoBehaviour
 
     void Start()
     {
+        Counter=0;
         TextComponent = gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         string CostString = TextComponent.text.TrimEnd('$');
         if (int.TryParse(CostString, out int parsedCost))
@@ -37,8 +39,8 @@ public class BuyEquipment : MonoBehaviour
     {
         if (ActorPrefab != null && SpawnPoint != null && MoneyCounterScript.CurrentMoney >= Cost)
         {
+            DecreaseMoney(Cost);
             Instantiate(VFXPrefab, SpawnPoint.position, SpawnPoint.rotation);
-            MoneyCounterScript.DecreaseMoney(Cost);
             Instantiate(ActorPrefab, SpawnPoint.position, SpawnPoint.rotation);
             GetComponent<Button>().enabled = false;
             AudioManager.PlaySound2d(_clip);
@@ -54,6 +56,14 @@ public class BuyEquipment : MonoBehaviour
     }
     public void SpawnCarrelloUpgrade()
     {
+        Counter++;
+        if(Counter<2)
+            DecreaseMoney(Cost);
         upgrade?.Invoke();
     }
+    public void DecreaseMoney(int CostIn)
+    {
+        MoneyCounterScript.DecreaseMoney(CostIn);
+    }
+
 }
