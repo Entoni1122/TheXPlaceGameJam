@@ -280,6 +280,7 @@ MonoBehaviour:
   VFXPrefab: {fileID: 0}
   SpawnPoint: {fileID: 0}
   lockImage: {fileID: 5961022707273652310}
+  _clip: {fileID: 8300000, guid: ab0d29c3fc949d944836a947a06b1216, type: 3}
 --- !u!1 &3769997162892410475
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,6 +17,7 @@ public class BuyEquipment : MonoBehaviour
 
     public static event Action upgrade;
     [SerializeField] GameObject lockImage;
+    [SerializeField] AudioClip _clip;
 
     void Start()
     {
@@ -40,6 +41,7 @@ public class BuyEquipment : MonoBehaviour
             MoneyCounterScript.DecreaseMoney(Cost);
             Instantiate(ActorPrefab, SpawnPoint.position, SpawnPoint.rotation);
             GetComponent<Button>().enabled = false;
+            AudioManager.PlaySound2d(_clip);
             gameObject.layer = LayerMask.NameToLayer("Default");
             lockImage.SetActive(true);
         }

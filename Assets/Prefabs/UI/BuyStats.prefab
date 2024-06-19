@@ -626,3 +626,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cost: 0
   StatName: 
+  _clip: {fileID: 8300000, guid: ab0d29c3fc949d944836a947a06b1216, type: 3}

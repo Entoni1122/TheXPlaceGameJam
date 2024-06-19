@@ -16,7 +16,7 @@ public class BuyStatistic : MonoBehaviour
     private TextMeshProUGUI TextComponent;
     private MoneyCounter MoneyCounterScript;
     private TextMeshProUGUI MoneyTxt;
-
+    [SerializeField] AudioClip _clip;
 
     void Start()
     {
@@ -43,6 +43,7 @@ public class BuyStatistic : MonoBehaviour
     {
         if (MoneyCounterScript.CurrentMoney >= Cost)
         {
+            AudioManager.PlaySound2d(_clip);
             MoneyCounterScript.DecreaseMoney(Cost);
             PlayerScript.IncreseStats(StatName);
         }
