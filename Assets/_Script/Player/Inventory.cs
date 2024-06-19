@@ -30,6 +30,7 @@ public class Inventory : MonoBehaviour
         GameManager.OnLoseRound += () => items.Clear();
     }
     EntityType currentTypeStored;
+    public EntityType CurrentTypeStored => currentTypeStored;
     public void AddObjInInventory(Transform obj)
     {
         if (StorableLock != EntityType.NONE)

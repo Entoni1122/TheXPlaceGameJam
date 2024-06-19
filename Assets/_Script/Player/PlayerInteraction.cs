@@ -166,9 +166,12 @@ public class PlayerInteraction : MonoBehaviour
                     case InteractType.Carrello:
                         if (_inventory.GetLastItem)
                         {
-                            _inventory.HandleOnLostLastItem();
-                            _interface.Interact(_inventory.GetLastItem);
-                            _inventory.RemoveLastItem();
+                            if (_inventory.CurrentTypeStored == EntityType.Baggage)
+                            {
+                                _inventory.HandleOnLostLastItem();
+                                _interface.Interact(_inventory.GetLastItem);
+                                _inventory.RemoveLastItem();
+                            }
                         }
                         break;
                     case InteractType.Valigia:
@@ -183,12 +186,22 @@ public class PlayerInteraction : MonoBehaviour
                         {
                             _interface.Interact(transform);
                         }
+                        break;
+                    case InteractType.Autobus:
+                        if (_inventory.IsEmpty)
+                        {
+                            _interface.Interact(transform);
+                        }
                         else
                         {
-                            _inventory.HandleOnLostLastItem();
-                            _interface.Interact(_inventory.GetLastItem, true);
-                            _inventory.RemoveLastItem();
+                            if (_inventory.CurrentTypeStored == EntityType.People)
+                            {
+                                _inventory.HandleOnLostLastItem();
+                                _interface.Interact(_inventory.GetLastItem, true);
+                                _inventory.RemoveLastItem();
+                            }
                         }
+
                         break;
                     case InteractType.Shop:
                         _interface.Interact();

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MulinoInteract : BaseInteractableObj
+public class AutobusInteract : BaseInteractableObj
 {
     [SerializeField] Transform postionToSit;
     protected override void InteractOneParam(Transform obj)
@@ -18,7 +18,6 @@ public class MulinoInteract : BaseInteractableObj
         gameObject.layer = LayerMask.NameToLayer("MulinoMotor");
     }
 
-
     private void OnLoseRound()
     {
         Destroy(gameObject);
@@ -31,5 +30,12 @@ public class MulinoInteract : BaseInteractableObj
     private void OnDestroy()
     {
         GameManager.OnLoseRound -= OnLoseRound;
+    }
+    protected override void InteractTwoParam(Transform transform, bool bNig)
+    {
+        if (bNig)
+        {
+            GetComponent<Inventory>().AddObjInInventory(transform);
+        }
     }
 }

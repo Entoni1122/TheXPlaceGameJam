@@ -49,8 +49,11 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        if (audioSource)
+        {
+            audioSource?.Play();
+        }
         StartGame();
-
     }
 
     private void Update()
@@ -66,10 +69,6 @@ public class GameManager : MonoBehaviour
 
     private void StartGame()
     {
-        if (audioSource)
-        {
-            audioSource?.Play();
-        }
         roundCount++;
 
         currentTimer = startTimerPerRound * roundCount;

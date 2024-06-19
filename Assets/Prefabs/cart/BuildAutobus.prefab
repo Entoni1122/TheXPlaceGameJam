@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 235885173569160428}
   - component: {fileID: 7831620332133585044}
   - component: {fileID: 7611176513163751315}
-  - component: {fileID: 792630471233414255}
   - component: {fileID: 8905378753857712395}
   - component: {fileID: 4824037306758505567}
   - component: {fileID: 8077866240099479065}
+  - component: {fileID: 1393113656281506693}
   m_Layer: 8
   m_Name: BuildAutobus
   m_TagString: Untagged
@@ -88,20 +88,8 @@ MonoBehaviour:
   isGrounded: 0
   groundChecker: {fileID: 1085450999174846947}
   playerDismountPos: {fileID: 3056208167043946284}
---- !u!114 &792630471233414255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 38069178874808198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cea24ee63e25f844792de39871417399, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactType: 3
-  postionToSit: {fileID: 4529822294053066789}
+  explosionForce: 200
+  explosionRadius: 20
 --- !u!114 &8905378753857712395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,6 +147,20 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &1393113656281506693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38069178874808198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7165da6b503bad241bbc9f04c54e0342, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactType: 5
+  postionToSit: {fileID: 4529822294053066789}
 --- !u!1 &637503465974630990
 GameObject:
   m_ObjectHideFlags: 0

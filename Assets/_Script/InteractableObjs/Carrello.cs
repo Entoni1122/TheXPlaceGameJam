@@ -50,6 +50,19 @@ public class Carrello : BaseInteractableObj
         }
     }
 
+    [Header("Exolosion when getting hitted")]
+    [SerializeField] float explosionForce = 200f;
+    [SerializeField] float explosionRadius = 20f;
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Autobus"))
+        {
+            _rb.AddExplosionForce(explosionForce, collision.transform.position, explosionRadius);
+            _rb.freezeRotation = false;
+            GetComponent<Inventory>().ThrowAwayAllItems();
+        }
+    }
+
     protected override void InteractOneParam(Transform obj)
     {
         _inventory.AddObjInInventory(obj);
@@ -84,6 +97,7 @@ public class Carrello : BaseInteractableObj
         _rb.isKinematic = false;
         transform.SetParent(null);
     }
+
 
     private bool IsPlayerNearHandle(Transform player)
     {

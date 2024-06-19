@@ -5,8 +5,8 @@ using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.UI;
-        
-       
+
+
 
 public class MulinoController : MonoBehaviour
 {
@@ -69,6 +69,22 @@ public class MulinoController : MonoBehaviour
         _input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
     }
 
+    [Header("Exolosion when getting hitted")]
+    [SerializeField] float explosionForce = 200f;
+    [SerializeField] float explosionRadius = 20f;
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Autobus"))
+        {
+            _rb.AddExplosionForce(explosionForce, collision.transform.position, explosionRadius);
+            _rb.freezeRotation = false;
+            if (GetComponent<Inventory>())
+            {
+                GetComponent<Inventory>().ThrowAwayAllItems();
+            }
+        }
+    }
+
     #region Movement
     private void Look()
     {
@@ -81,7 +97,7 @@ public class MulinoController : MonoBehaviour
     {
         if (!isGrounded) { return; }
 
-        _rb.AddForce(transform.forward * currentSpeed * _input.z,ForceMode.Acceleration);
+        _rb.AddForce(transform.forward * currentSpeed * _input.z, ForceMode.Acceleration);
     }
 
     #endregion
