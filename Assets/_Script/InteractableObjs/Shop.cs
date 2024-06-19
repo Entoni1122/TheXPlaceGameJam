@@ -12,7 +12,8 @@ public class Shop : BaseInteractableObj
 
     private void Start()
     {
-        GameManager.OnIntermissionCall += FlipFlopPadlock;
+        gameObject.layer = LayerMask.NameToLayer("Interactable");
+        //GameManager.OnIntermissionCall += FlipFlopPadlock;
     }
 
     private void FlipFlopPadlock(bool open)
@@ -26,5 +27,6 @@ public class Shop : BaseInteractableObj
     protected override void InteractNoParam()
     {
         shopUI.SetActive(true);
+        Cursor.visible = true;
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 
 
@@ -37,6 +38,12 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] AudioSource audioSource;
 
+
+    [Header("Debug")]
+    [SerializeField] TMP_InputField consolecommand;
+    [SerializeField] GameObject shop;
+    [SerializeField] GameObject money;
+
     private void Awake()
     {
         Application.targetFrameRate = 60;
@@ -58,6 +65,8 @@ public class GameManager : MonoBehaviour
         StartGame();
     }
 
+
+    bool console;
     private void Update()
     {
         currentTimer -= Time.deltaTime;
@@ -66,6 +75,54 @@ public class GameManager : MonoBehaviour
         {
             if (intermissionON) { return; }
             OnLoseRound?.Invoke();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            if (!console)
+            {
+                console = true;
+                consolecommand.gameObject.SetActive(true);
+                consolecommand.text = "";
+                EventSystem.current.SetSelectedGameObject(consolecommand.gameObject);
+            }
+            else
+            {
+                string commandText = consolecommand.text;
+                if (!String.IsNullOrWhiteSpace(commandText))
+                {
+                    if (commandText == "open shop")
+                    {
+                        shop.SetActive(true);
+                        console = false;
+                        consolecommand.gameObject.SetActive(false);
+                        return;
+                    }
+                    var match = System.Text.RegularExpressions.Regex.Match(commandText, @"^round (\d+)$");
+                    if (match.Success)
+                    {
+                        int roundNumber = int.Parse(match.Groups[1].Value);
+                        OnLoseRound?.Invoke();
+                        roundCount = roundNumber - 1;
+                        StartGame();
+                        console = false;
+                        consolecommand.gameObject.SetActive(false);
+                        return;
+                    }
+                    match = System.Text.RegularExpressions.Regex.Match(commandText, @"^money (\d+)$");
+                    if (match.Success)
+                    {
+                        int amount = int.Parse(match.Groups[1].Value);
+                        money.GetComponent<MoneyCounter>().SetMoney(amount);
+                        console = false;
+                        consolecommand.gameObject.SetActive(false);
+                        return;
+                    }
+                }
+                console = false;
+                consolecommand.gameObject.SetActive(false);
+                EventSystem.current.SetSelectedGameObject(null);
+            }
         }
     }
 

@@ -25,6 +25,12 @@ public class MoneyCounter : MonoBehaviour
         };
     }
 
+    public void SetMoney(int amount)
+    {
+        currentMoney = amount;
+        TextComponent.text = currentMoney + "$";
+    }
+
     private void OnDisable()
     {
         Spot.OnScorePoint -= IncreaseMoney;

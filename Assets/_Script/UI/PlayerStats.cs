@@ -34,7 +34,7 @@ public class PlayerStats : MonoBehaviour
         variableValues[StatName] += 1f;
         if (StatName == "Speed")
         {
-            Speed = variableValues[StatName] * 0.2f;
+            Speed = variableValues[StatName] * 1.2f;
         }
         if (StatName == "Force")
         {
