@@ -27,6 +27,21 @@ public class Carrello : BaseInteractableObj
         _socketTransform = _inventory.socketRef;
     }
 
+
+    private void OnLoseRound()
+    {
+        Destroy(gameObject);    
+    }
+
+
+    private void Start()
+    {
+        GameManager.OnLoseRound += OnLoseRound;
+    }
+    private void OnDestroy()
+    {
+        GameManager.OnLoseRound -= OnLoseRound;
+    }
     private void Update()
     {
         if (isCarrelloInHand && magnetActive)

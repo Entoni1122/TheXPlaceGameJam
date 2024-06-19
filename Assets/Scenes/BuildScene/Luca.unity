@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 432388713}
-  m_IndirectSpecularColor: {r: 0.09742099, g: 0.29739466, b: 0.75303626, a: 1}
+  m_IndirectSpecularColor: {r: 0.11265963, g: 0.28153434, b: 0.7091846, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8596,7 +8596,7 @@ PrefabInstance:
     - target: {fileID: 7784121361688266623, guid: 97a21db9585fca94eb485fdd99697558,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7951785613747412649, guid: 97a21db9585fca94eb485fdd99697558,
         type: 3}
@@ -12961,7 +12961,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roundCount: 0
-  startTimerPerRound: 100
+  startTimerPerRound: 20
   intermissionTimer: 5
   timerTxt: {fileID: 1263437697}
   startBaggageToSpawn: 2

@@ -18,6 +18,22 @@ public class MulinoInteract : BaseInteractableObj
         gameObject.layer = LayerMask.NameToLayer("MulinoMotor");
     }
 
+
+    private void OnLoseRound()
+    {
+        Destroy(gameObject);
+    }
+
+    private void Start()
+    {
+        GameManager.OnLoseRound += OnLoseRound;
+    }
+    private void OnDestroy()
+    {
+        GameManager.OnLoseRound -= OnLoseRound;
+    }
+
+
     protected override void InteractTwoParam(Transform transform, bool bNig)
     {
         if (bNig)
