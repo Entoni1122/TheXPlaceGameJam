@@ -3,13 +3,17 @@ using UnityEngine.Splines;
 
 public class TriggerAudioWhenInPosition : MonoBehaviour
 {
-    float xPosition;
     [SerializeField] AudioClip clip;
+    [SerializeField] float repeatingTimer;
+    float xPosition;
     bool playedSound;
+    SplineAnimate spline;
 
     private void Start()
     {
+        spline  = GetComponent<SplineAnimate>();
         xPosition = transform.position.x;
+        InvokeRepeating("Restart", 0, repeatingTimer);
     }
     private void Update()
     {
@@ -25,5 +29,10 @@ public class TriggerAudioWhenInPosition : MonoBehaviour
         {
             playedSound = false;
         }
+    }
+
+    private void Restart()
+    {
+        spline.Restart(true);
     }
 }
