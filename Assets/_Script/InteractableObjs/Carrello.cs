@@ -30,7 +30,10 @@ public class Carrello : BaseInteractableObj
 
     private void OnLoseRound()
     {
-        Destroy(gameObject);    
+        LibraryFunction.GetUnrealPlayerController().transform.parent = null;
+        LibraryFunction.GetUnrealPlayerController().EnableInput();
+        LibraryFunction.GetUnrealPlayerController().GetComponent<PlayerAnimation>().NotifyOnCart(false);
+        Destroy(gameObject);
     }
 
 

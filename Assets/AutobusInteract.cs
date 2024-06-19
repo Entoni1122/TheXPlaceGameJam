@@ -20,6 +20,9 @@ public class AutobusInteract : BaseInteractableObj
 
     private void OnLoseRound()
     {
+        LibraryFunction.GetUnrealPlayerController().transform.parent = null;
+        LibraryFunction.GetUnrealPlayerController().EnableInput();
+        LibraryFunction.GetUnrealPlayerController().GetComponent<PlayerAnimation>().NotifyOnCar(false);
         Destroy(gameObject);
     }
 
