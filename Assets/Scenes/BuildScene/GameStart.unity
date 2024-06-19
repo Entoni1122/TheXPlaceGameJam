@@ -2014,7 +2014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 401c76ec5563b644aae7085d98025c85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placeToGo: {x: 2000, y: 0, z: 0}
+  placeToGo: {x: 0, y: 0, z: 0}
   placeToGoBack: {x: 0, y: 0, z: 0}
   timeToTween: 1.5
   curve: 16
@@ -2803,8 +2803,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 294.72302, y: 0}
+  m_SizeDelta: {x: -589.447, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1741597276
 MonoBehaviour:
