@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] int startTimerPerRound;
     [SerializeField] int intermissionTimer = 5;
     [SerializeField] TextMeshProUGUI timerTxt;
+    [SerializeField] GameObject shopTimeRef;
     private float currentTimer;
     public float GetTimerRound => currentTimer;
 
@@ -70,9 +71,14 @@ public class GameManager : MonoBehaviour
     private void StartGame()
     {
         roundCount++;
-
-        currentTimer = startTimerPerRound * roundCount;
-
+        if (roundCount == 1)
+        {
+            currentTimer = startTimerPerRound;
+        }
+        else
+        {
+            currentTimer = startTimerPerRound + (startTimerPerRound * 0.5f * (roundCount - 1));
+        }
         baggagePerSpot.Clear();
         peoplePerSpot.Clear();
 
@@ -132,6 +138,8 @@ public class GameManager : MonoBehaviour
         if (currentBaggageOnSpot >= startBaggageToSpawn * roundCount &&
             currentPeopleOnSpot >= startPeopleToSpawn * roundCount)
         {
+            shopTimeRef.SetActive(true);
+            shopTimeRef.GetComponent<ShopTimeAni>().Play();
             IntermissionTime();
         }
     }
