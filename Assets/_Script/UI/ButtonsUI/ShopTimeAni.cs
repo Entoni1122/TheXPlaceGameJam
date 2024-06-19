@@ -14,7 +14,7 @@ public class ShopTimeAni : MonoBehaviour
     {
         RectTransform t = GetComponent<RectTransform>();
         t.anchoredPosition = startPos;
-        float timer = 3f;
+        float timer = 1.5f;
         float angle = 0;
         while (timer >= 0)
         {
@@ -29,7 +29,7 @@ public class ShopTimeAni : MonoBehaviour
         t.localScale = Vector3.one;
         while (timer >= 0)
         {
-            t.anchoredPosition = Vector3.Lerp(startPos + Vector3.up * 200, startPos, timer);
+            t.anchoredPosition = Vector3.Lerp(startPos + Vector3.up * 1000f + Vector3.right* 1500f, startPos, timer);
             timer -= Time.deltaTime;
             yield return null;
         }
