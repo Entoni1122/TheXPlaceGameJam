@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] int intermissionTimer = 5;
     [SerializeField] TextMeshProUGUI timerTxt;
     private float currentTimer;
-    public float GetTimerRound =>currentTimer;
+    public float GetTimerRound => currentTimer;
 
 
     [SerializeField] int startBaggageToSpawn;
@@ -66,7 +66,10 @@ public class GameManager : MonoBehaviour
 
     private void StartGame()
     {
-        audioSource.Play();
+        if (audioSource)
+        {
+            audioSource?.Play();
+        }
         roundCount++;
 
         currentTimer = startTimerPerRound * roundCount;
@@ -141,7 +144,7 @@ public class GameManager : MonoBehaviour
         OnIntermissionCall?.Invoke(true);
         await Task.Delay(intermissionTimer * 1000);
         StartGame();
-        intermissionON =false;
+        intermissionON = false;
         OnIntermissionCall?.Invoke(false);
     }
 }

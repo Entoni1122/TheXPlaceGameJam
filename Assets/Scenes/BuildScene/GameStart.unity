@@ -660,7 +660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68f0f08464948f94e89ffb158444919f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: Luca
+  sceneToLoad: SAMU SCENE
 --- !u!4 &304706005
 Transform:
   m_ObjectHideFlags: 0

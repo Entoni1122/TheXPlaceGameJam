@@ -31,17 +31,17 @@ public class RunnerBehaviour : MonoBehaviour
     {
         SetRandomPoint();
         OwnerRef = Owner;
-        Color color = Color.white;  
+        Color color = Color.white;
         switch (colorType)
         {
             case ColorType.Blue:
-                color = Color.blue;
+                ColorUtility.TryParseHtmlString("#1561FF", out color);
                 break;
             case ColorType.Red:
-                color = Color.red;
+                ColorUtility.TryParseHtmlString("#FF1C15", out color);
                 break;
             case ColorType.Green:
-                color = Color.green;
+                ColorUtility.TryParseHtmlString("#55FF2A", out color);
                 break;
             default:
                 break;
