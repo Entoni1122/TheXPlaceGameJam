@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
             {
                 if (maxBaggage > 0)
                 {
-                    int baggageInSpot = UnityEngine.Random.Range(1, maxBaggage);
+                    int baggageInSpot = UnityEngine.Random.Range(0, maxBaggage);
                     spotsList[i].amountBaggage = baggageInSpot;
                     maxBaggage -= baggageInSpot;
                     infoBaggage.count = baggageInSpot;
@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
                 }
                 if (maxPeople > 0)
                 {
-                    int peopleInSpot = UnityEngine.Random.Range(1, maxPeople);
+                    int peopleInSpot = UnityEngine.Random.Range(0, maxPeople);
                     spotsList[i].amountPeople = peopleInSpot;
                     maxPeople -= peopleInSpot;
                     infoPeople.count = peopleInSpot;

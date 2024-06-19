@@ -1,7 +1,6 @@
-using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using NaughtyAttributes;
 
 public class Spawner : MonoBehaviour
 {
@@ -9,6 +8,9 @@ public class Spawner : MonoBehaviour
     [SerializeField] GameObject entity;
     [SerializeField] Transform spawnPos;
     [SerializeField] Transform targetPos;
+    [SerializeField] bool twoSpawnOn = false;
+    [ShowIf("twoSpawnOn")] public Transform spawnPos2;
+    [ShowIf("twoSpawnOn")] public Transform targetPos2;
     [SerializeField] float timeToSpawn;
     private float spawnTimer;
     private List<GameObject> entitiesSpawned = new List<GameObject>();
@@ -38,7 +40,10 @@ public class Spawner : MonoBehaviour
         }
         startSpawn = true;
     }
+
+
     [SerializeField] float raylength;
+    bool flipFlop = true;
     protected void Update()
     {
         if (startSpawn)
@@ -49,16 +54,26 @@ public class Spawner : MonoBehaviour
                 if (spawnTimer > timeToSpawn)
                 {
                     spawnTimer = 0;
-                    if (CanSpawn())
+
+                    Transform start = flipFlop ? spawnPos : spawnPos2;
+                    Transform target = flipFlop ? targetPos : targetPos2;
+
+                    if (CanSpawn(start))
                     {
                         int randomIndex = UnityEngine.Random.Range(0, entitiesSpawned.Count - 1);
+                        entitiesSpawned[randomIndex].transform.position = start.position;
+                        entitiesSpawned[randomIndex].GetComponent<EntityProp>().UpdateTarget(target);
                         entitiesSpawned[randomIndex].SetActive(true);
                         entitiesSpawned.RemoveAt(randomIndex);
+                        if (twoSpawnOn)
+                        {
+                            flipFlop = !flipFlop;
+                        }
                     }
                 }
             }
         }
         Debug.DrawRay(spawnPos.position + spawnPos.forward * raylength, -spawnPos.forward * raylength * 2);
     }
-    bool CanSpawn() => !Physics.Raycast(spawnPos.position + spawnPos.forward * raylength, -spawnPos.forward, raylength * 2);
+    bool CanSpawn(Transform start) => !Physics.Raycast(start.position + start.forward * raylength, -start.forward, raylength * 2);
 }

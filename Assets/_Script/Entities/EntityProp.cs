@@ -86,6 +86,10 @@ public class EntityProp : MonoBehaviour
             }
         }
     }
+    public void UpdateTarget(Transform InTarget)
+    {
+        target = InTarget;  
+    }
     public void UpdateInventoryRef(Inventory InInventory)
     {
         inventory = InInventory;
