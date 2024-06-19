@@ -1,8 +1,5 @@
 using UnityEngine;
-using NaughtyAttributes;
-using System.Data;
 using System.Collections.Generic;
-using TreeEditor;
 
 public class Inventory : MonoBehaviour
 {
@@ -49,6 +46,7 @@ public class Inventory : MonoBehaviour
                 if (currentTypeStored != obj.GetComponent<EntityProp>().entityType) return;
             }
             HandleJointOnAdd(obj);
+            obj.gameObject.layer = 0;
         }
     }
 
@@ -97,6 +95,7 @@ public class Inventory : MonoBehaviour
     {
         if (count > 1)
         {
+            items[count - 1].gameObject.layer = LayerMask.NameToLayer("Interactable");
             Destroy(items[count - 2].GetComponent<ConfigurableJoint>());
         }
     }
@@ -116,6 +115,7 @@ public class Inventory : MonoBehaviour
                 }
                 Destroy(items[i].GetComponent<ConfigurableJoint>());
                 items[i].GetComponent<EntityProp>().UpdateInventoryRef(null);
+                items[i].gameObject.layer = LayerMask.NameToLayer("Interactable");
                 items.RemoveAt(i);
                 break;
             }
@@ -129,7 +129,7 @@ public class Inventory : MonoBehaviour
             {
                 items[i].SetParent(socketRef);
                 Vector3 offset = currentTypeStored == EntityType.Baggage ? socketOffsetBaggage : socketOffsetPeople;
-                items[i].position = socketRef.position + offset;
+                items[i].position = socketRef.position;
                 items[i].rotation = socketRef.rotation;
                 items[i].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             }
@@ -171,6 +171,7 @@ public class Inventory : MonoBehaviour
             itemRB.constraints = RigidbodyConstraints.None;
             itemRB.AddForce(Vector3.up * 10, ForceMode.Impulse);
             Destroy(items[i].GetComponent<ConfigurableJoint>());
+            items[i].gameObject.layer = LayerMask.NameToLayer("Interactable");
         }
         items.Clear();
     }
