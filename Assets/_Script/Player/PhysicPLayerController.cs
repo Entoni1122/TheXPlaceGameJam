@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using UnityEngine;
 
@@ -108,6 +109,17 @@ public class PhysicPLayerController : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Autobus"))
         {
             _rb.AddExplosionForce(explosionForce, collision.transform.position, explosionRadius);
+            _rb.freezeRotation = false;
+            GetComponent<UnrealPlayerController>().OnDeath();
+            GetComponent<Inventory>().ThrowAwayAllItems();
+        }
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Autobus"))
+        {
+            _rb.AddForce((transform.forward * -1 + Vector3.up) * explosionForce * .5f * Time.deltaTime , ForceMode.Impulse);
             _rb.freezeRotation = false;
             GetComponent<UnrealPlayerController>().OnDeath();
             GetComponent<Inventory>().ThrowAwayAllItems();
